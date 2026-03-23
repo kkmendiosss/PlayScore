@@ -20,7 +20,7 @@ window.onload = function () {
 
             const userName = document.getElementById('name').value;
 
-            alert(`Conta criada com sucesso, ${userName}! O teu cupão Humble Bundle será enviado para o teu email.`);
+            alert(`Registrado com sucesso, ${userName}! O teu cupão Humble Bundle será enviado para o teu email.`);
 
             form.reset();
         });
