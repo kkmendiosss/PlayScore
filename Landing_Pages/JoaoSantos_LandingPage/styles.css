@@ -76,12 +76,12 @@ h1, h2, h3 {
     max-width: 800px; 
 }
 
-.hero-content h1 {
-    font-size: 5rem;
-    color: #fff;
-    text-shadow: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan);
-    margin-bottom: 10px;
-    letter-spacing: 5px;
+.logo {
+    max-width: 550px;
+    width: 100%;      
+    height: auto;     
+    display: block;
+    margin: 0 auto 20px auto;
 }
 
 .tagline {
@@ -338,10 +338,10 @@ footer .partner strong {
         text-align: center !important;
     }
 
-    .hero-content h1 {
-        font-size: 1.8rem !important;
-        width: 100% !important;
-        margin: 0 auto 10px auto !important;
+    .logo {
+        max-width: 400px !important;
+        margin-bottom: 15px !important;
+        transform: none !important; 
     }
 
     .info-card {
