@@ -1,0 +1,129 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    background-color: #070708;
+    color: #ffffff;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+
+.container {
+    flex: 1;
+    max-width: 1200px;
+    margin: 30px auto;
+    width: 100%;
+    padding: 80px 24px;
+}
+
+
+
+
+.hero {
+    margin-bottom: 60px;
+    font-family: Abel;
+}
+
+.title {
+    margin-top: 50px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    padding: 20px 30px;
+    background: linear-gradient(90deg, #F80082, transparent);
+    display: inline-block;
+    width: 700px;
+    font-family: Kode Mono;
+}
+
+.subtitle {
+    margin-top: 40px;
+    max-width: 800px;
+    color: #cbd5e1;
+    line-height: 1.7;
+    margin-left: 100px;
+    font-family: Abel;
+}
+
+
+.calendar-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: #e5e7eb;
+    letter-spacing: 0.05em;
+    font-family: Kode Mono;
+}
+
+.month {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    color: #d1d5db;
+}
+
+.day {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 35px;
+}
+
+.date {
+    min-width: 80px;
+    text-align: center;
+    
+}
+
+.number {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #00F2FF;
+    font-family: Abel;
+}
+
+.weekday {
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+.events {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.event {
+    background: #121214;
+    border: 1px solid #F80082;
+    border-radius: 12px;
+    padding: 18px 20px;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    font-family: Abel;
+}
+
+
+.ver-mais {
+    text-align: center;
+    margin-top: 50px;
+    color: #9ca3af;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 0.95rem;
+    font-family: Abel;
+}
+
+.ver-mais:hover {
+    color: #00F2FF;
+}
+
