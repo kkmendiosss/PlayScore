@@ -1,4 +1,4 @@
-/* --- Navigation --- */
+
 
 .navbar {
     display: flex;
@@ -37,7 +37,7 @@
     align-items: center;
 }
 
-/* Links principais */
+
 .nav-links a {
     text-decoration: none;
     color: rgb(194, 194, 194);
@@ -46,18 +46,17 @@
     font-family: Abel;
 }
 
-/* Hover bonito */
+
 .nav-links a:hover {
     color: #00f3fc;
     transform: translateY(-2px);
 }
 
-/* Dropdown container */
+
 .dropdown {
     position: relative;
 }
 
-/* Caixa do dropdown */
 .dropdown-content {
     position: absolute;
     top: 100%;
@@ -74,7 +73,7 @@
     z-index: 1000;
 }
 
-/* Links dentro */
+
 .dropdown-content a {
     display: block;
     padding: 12px;
@@ -82,14 +81,13 @@
     transition: background 0.2s, color 0.2s;
 }
 
-/* Hover nos itens */
+
 .dropdown-content a:hover {
     background-color: #00f3fc;
     color: black;
     border-radius: 6px;
 }
 
-/* Mostrar dropdown com animação */
 .dropdown:hover .dropdown-content {
     opacity: 1;
     visibility: visible;
@@ -114,7 +112,7 @@
     box-shadow: 0 10px 20px rgba(167, 139, 250, 0.15);
 }
 
-/* HAMBURGER */
+
 
 .hamburger {
     display: none;
@@ -131,7 +129,7 @@
     transition: 0.3s;
 }
 
-/* MOBILE MENU */
+
 
 @media (max-width: 850px) {
 
@@ -179,7 +177,7 @@
 .hamburger.active span:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
 }
-/* --- Footer --- */
+
 
 footer {
     background-color: #050506;
@@ -230,7 +228,7 @@ footer {
     font-size: 0.85rem;
 }
 
-/* --- Responsive --- */
+
 
 @media (max-width: 850px) {
     .profile-header {
