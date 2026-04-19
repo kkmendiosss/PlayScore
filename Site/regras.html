@@ -5,10 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Regras da Comunidade</title>
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/regras.css">
     <link rel="icon" href="img/PlayScore_Icon.png">
+    <link rel="stylesheet" href="css/headerfooter.css">
 </head>
 <body>
+    <header class="navbar">
+        <div class="logo">
+            <img src="logo/Logo.png" alt="PlayScore">
+        </div>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="#">Início</a>
+            <a href="#">Catalogo</a>
+
+            <div class="dropdown">
+                <a href="#SobreNos">Sobre Nós</a>
+                <div class="dropdown-content">
+                    <a href="#">Contactos</a>
+                    <a href="regras.html">Regras da Comunidade</a>
+                    <a href="#">Politicas e privacidade</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a>Informação</a>
+                <div class="dropdown-content">
+                    <a href="#">Jogo do Ano</a>
+                    <a href="franquia.html">Franquia</a>
+                    <a href="lancamentos.html">Lançamentos </a>
+                </div>
+            </div>
+        </nav>
+
+        <button class="btn-login">Login</button>
+
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
     <main class="rules-container">
         <h1 class="page-title">Regras da Comunidade</h1>
         <div class="rules-grid">
@@ -46,5 +85,40 @@
             </div>
         </div>
     </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column brand-col">
+                <div class="logo">
+                    <img src="logo/Logo.png" alt="PlayScore">
+                </div>
+                <p class="footer-desc">
+                   Ajudamos a transformar dados em decisões mais inteligentes.<br>
+                </p>
+            </div>
+
+            <div class="footer-column nav-col">
+                <h3>Navegação</h3>
+                <a href="#">Início</a>
+                <a href="#">Sobre Nós</a>
+                <a href="#">Catalogo</a>
+            </div>
+
+            <div class="footer-column legal-col">
+                <h3>Legalidade</h3>
+                <a href="regras.html">Regras da Comunidade</a>
+                <a href="#">Política de privacidade</a>
+                <a href="#">Contactos</a>
+            </div>
+
+            <div class="footer-social">
+                <span>Discord</span>
+                <span>Twitter</span>
+                <span>LinkedIn</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 PLAYSCORE NETWORK. TODOS OS DIREITOS RESERVADOS.</p>
+        </div>
+    </footer>
 </body>
 </html>
