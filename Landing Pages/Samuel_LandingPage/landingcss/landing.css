@@ -23,7 +23,22 @@
          color: #fff;
          font-family: 'Rajdhani', sans-serif;
          overflow-x: hidden;
-     }  
+     }
+
+
+     /* Container do Logótipo no Canto Superior Esquerdo */
+     .logo-top-left {
+         position: absolute;
+         top: 20px;
+         left: 20px;
+         z-index: 1000;
+     }
+
+     /* Estilo da Imagem do Logótipo */
+     .logo-top-left img {
+         max-width: 150px;
+         height: auto;
+     }
 
      /* --- Scanline Effect (Efeito de Monitor Antigo) --- */
      body::before {
@@ -272,75 +287,77 @@
 
      /* --- Media Queries (Mobile Friendly) --- */
 
-@media (max-width: 1024px) {
-    .container {
-        padding: 0 20px;
-    }
-    
-    .bento {
-        grid-template-columns: repeat(2, 1fr); /* 2 colunas em tablets */
-    }
+     @media (max-width: 1024px) {
+         .container {
+             padding: 0 20px;
+         }
 
-    .team-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 colunas para equipa */
-    }
-}
+         .bento {
+             grid-template-columns: repeat(2, 1fr);
+             /* 2 colunas em tablets */
+         }
 
-@media (max-width: 768px) {
-    .glitch-title {
-        letter-spacing: 5px;
-        margin-bottom: 10px;
-    }
+         .team-grid {
+             grid-template-columns: repeat(2, 1fr);
+             /* 2 colunas para equipa */
+         }
+     }
 
-    .hero-content p {
-        letter-spacing: 3px;
-        font-size: 0.9rem;
-        padding: 0 10px;
-    }
+     @media (max-width: 768px) {
+         .glitch-title {
+             letter-spacing: 5px;
+             margin-bottom: 10px;
+         }
 
-    .bento {
-        grid-template-columns: 1fr; 
-    }
+         .hero-content p {
+             letter-spacing: 3px;
+             font-size: 0.9rem;
+             padding: 0 10px;
+         }
 
-    .span-2 {
-        grid-column: span 1;
-    }
+         .bento {
+             grid-template-columns: 1fr;
+         }
 
-    .card {
-        padding: 25px;
-    }
+         .span-2 {
+             grid-column: span 1;
+         }
 
-    .promo-code {
-        font-size: 1.8rem; 
-        letter-spacing: 5px;
-    }
+         .card {
+             padding: 25px;
+         }
 
-    .discount-inner {
-        padding: 40px 20px;
-    }
+         .promo-code {
+             font-size: 1.8rem;
+             letter-spacing: 5px;
+         }
 
-    .team-grid {
-        grid-template-columns: 1fr; 
-    }
+         .discount-inner {
+             padding: 40px 20px;
+         }
 
-    .member-card {
-        height: 350px; 
-    }
+         .team-grid {
+             grid-template-columns: 1fr;
+         }
 
-    .cyber-form {
-        grid-template-columns: 1fr; 
-    }
+         .member-card {
+             height: 350px;
+         }
 
-    .form-section {
-        margin: 80px 0;
-    }
+         .cyber-form {
+             grid-template-columns: 1fr;
+         }
 
-    .team-title {
-        font-size: 2rem;
-    }
-}
+         .form-section {
+             margin: 80px 0;
+         }
 
-/* Ajuste para evitar que o efeito de scanline bloqueie cliques no mobile */
-body::before {
-    pointer-events: none;
-}
+         .team-title {
+             font-size: 2rem;
+         }
+     }
+
+     /* Ajuste para evitar que o efeito de scanline bloqueie cliques no mobile */
+     body::before {
+         pointer-events: none;
+     }
