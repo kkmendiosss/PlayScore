@@ -1,0 +1,93 @@
+body {
+  font-family: 'Abel', sans-serif;
+  background: #0f0f14;
+  margin: 0;
+  color: white;
+}
+
+.main-title {
+  background: linear-gradient(
+    90deg,
+    #7b2cbf 0%,
+    #5a189a 15%,
+    #240046 40%,
+    #0f0f14 100%
+  );
+  padding: 30px 40px;
+}
+
+.main-title h1 {
+  margin: 0;
+  font-size: 40px;
+  font-family: 'Kode Mono', monospace;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+.section-title {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-size: 22px;
+  color: #ccc;
+  font-family: 'Kode Mono', monospace;
+}
+
+.faq-item {
+  border-bottom: 1px solid #333;
+  padding: 15px ;
+  cursor: pointer;
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 20px;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 10px solid #09FFFF;
+  transition: transform 0.3s ease;
+}
+
+.faq-item.active .triangle {
+  transform: rotate(90deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  color: #bbb;
+  margin-top: 10px;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 200px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f0f14;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #09FFFF;
+  border-radius: 10px;
+  border: 2px solid #0f0f14;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00e6e6;
+}
