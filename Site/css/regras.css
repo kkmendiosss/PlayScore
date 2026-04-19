@@ -1,0 +1,113 @@
+:root {
+    --neon-blue: #09FFFF;
+    --neon-pink: #F80082;
+    --bg-dark: #141414;
+    --font-mono: 'Kode Mono', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    font-family: var(--font-mono);
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.rules-container {
+    width: 90%;
+    max-width: 900px; 
+    margin: 20px auto;
+    padding: 20px 0;
+}
+
+.page-title {
+    color: var(--neon-blue);
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 100px;
+    text-decoration: underline;
+    text-underline-offset: 8px; 
+}
+
+.rules-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.rule-card {
+    background-color: transparent;
+    border-radius: 8px;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rule-card:hover {
+    transform: translateY(-5px);
+}
+
+.rule-icon {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.rule-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+.card-blue {
+    border: 2px solid var(--neon-blue);
+    box-shadow: 0 0 10px rgba(9, 255, 255, 0.4);
+    color: var(--neon-blue);
+}
+
+.card-blue:hover {
+    box-shadow: 0 0 20px rgba(9, 255, 255, 0.6);
+}
+
+.card-pink {
+    border: 2px solid var(--neon-pink);
+    box-shadow: 0 0 10px rgba(248, 0, 130, 0.4);
+    color: var(--neon-pink);
+}
+
+.card-pink:hover {
+    box-shadow: 0 0 20px rgba(248, 0, 130, 0.6);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 1.5rem;
+        margin-bottom: 75px;
+    }
+
+    .rules-grid {
+        grid-template-columns: 1fr; 
+        gap: 20px;
+    }
+
+    .rule-card {
+        padding: 25px 15px;
+    }
+
+    .rule-card p {
+        font-size: 0.85rem;
+    }
+}
