@@ -228,6 +228,24 @@ footer {
     font-size: 0.85rem;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f0f14;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #09FFFF;
+  border-radius: 10px;
+  border: 2px solid #0f0f14;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00e6e6;
+}
+
 
 
 @media (max-width: 850px) {
