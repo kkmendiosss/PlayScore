@@ -1,9 +1,6 @@
 CREATE DATABASE jogos_db;
 USE jogos_db;
 
--- =========================
--- Tabela: Utilizadores
--- =========================
 CREATE TABLE Utilizadores (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -12,9 +9,6 @@ CREATE TABLE Utilizadores (
     data DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
--- =========================
--- Tabela: Perfis
--- =========================
 CREATE TABLE Perfis (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_jogos INT,
@@ -23,17 +17,11 @@ CREATE TABLE Perfis (
     FOREIGN KEY (id_jogos) REFERENCES Jogos(id)
 );
 
--- =========================
--- Tabela: Generos
--- =========================
 CREATE TABLE Generos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nomes VARCHAR(100) NOT NULL
 );
 
--- =========================
--- Tabela: Franquias
--- =========================
 CREATE TABLE Franquias (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nomes VARCHAR(100),
@@ -43,9 +31,6 @@ CREATE TABLE Franquias (
     FOREIGN KEY (id_jogo) REFERENCES Jogos(id)
 );
 
--- =========================
--- Tabela: Jogos
--- =========================
 CREATE TABLE Jogos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nomes VARCHAR(150) NOT NULL,
@@ -60,9 +45,6 @@ CREATE TABLE Jogos (
     FOREIGN KEY (id_franquia) REFERENCES Franquias(id)
 );
 
--- =========================
--- Tabela: Favoritos
--- =========================
 CREATE TABLE Favoritos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_utilizador INT,
@@ -75,9 +57,6 @@ CREATE TABLE Favoritos (
     FOREIGN KEY (id_genero) REFERENCES Generos(id)
 );
 
--- =========================
--- Tabela: Jogo_do_ano
--- =========================
 CREATE TABLE Jogo_do_ano (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_jogo INT,
@@ -86,9 +65,6 @@ CREATE TABLE Jogo_do_ano (
     FOREIGN KEY (id_jogo) REFERENCES Jogos(id)
 );
 
--- =========================
--- Tabela: Lancamentos
--- =========================
 CREATE TABLE Lancamentos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(150),
