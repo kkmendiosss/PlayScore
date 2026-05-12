@@ -40,7 +40,7 @@
             </div>
         </nav>
 
-        <button class="btn-login">Login</button>
+        <button onclick="window.location.href='login.php'" class="btn-login" >Login</button>
 
         <div class="hamburger" id="hamburger">
             <span></span>
