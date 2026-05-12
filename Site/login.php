@@ -58,7 +58,7 @@ if (isset($_POST["entrar"])) {
 
         <nav class="nav-links" id="navLinks">
 
-            <a href="#Home">Início</a>
+            <a href="index.php">Início</a>
             <a href="#Catalogo">Catalogo</a>
 
             <div class="dropdown">
