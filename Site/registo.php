@@ -1,27 +1,56 @@
+<?php
+include "conexao.php";
+
+$mensagem = "";
+
+if (isset($_POST["registar"])) {
+
+    $nome = $_POST["nome"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    $sql = "INSERT INTO users (nome, email, password_hash)
+            VALUES ('$nome', '$email', '$password')";
+
+    if (mysqli_query($conn, $sql)) {
+        $mensagem = "Conta criada com sucesso!";
+    } else {
+        $mensagem = "Erro ao criar conta: " . mysqli_error($conn);
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  <link rel="stylesheet" href="css/login.css">
-  <link rel="stylesheet" href="css/headerfooter.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registo</title>
+
+    <link rel="stylesheet" href="css/registo.css">
+    <link rel="stylesheet" href="css/headerfooter.css">
+
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<header class="navbar">
+    <header class="navbar">
+
         <div class="logo">
             <img src="logo/Logo.png" alt="PlayScore">
         </div>
 
         <nav class="nav-links" id="navLinks">
+
             <a href="#Home">Início</a>
             <a href="#Catalogo">Catalogo</a>
 
             <div class="dropdown">
                 <a href="#SobreNos">Sobre Nós</a>
+
                 <div class="dropdown-content">
                     <a href="#">Contactos</a>
                     <a href="regras.html">Regras da Comunidade</a>
@@ -32,12 +61,14 @@
 
             <div class="dropdown">
                 <a>Informação</a>
+
                 <div class="dropdown-content">
                     <a href="#jogodoano">Jogo do Ano</a>
                     <a href="franquia.html">Franquia</a>
-                    <a href="lancamentos.html">Lançamentos </a>
+                    <a href="lancamentos.html">Lançamentos</a>
                 </div>
             </div>
+
         </nav>
 
         <button class="btn-login">Login</button>
@@ -47,47 +78,80 @@
             <span></span>
             <span></span>
         </div>
-</header>
-<main class="login-page">
-    <section class="login-card">
-        <h1>Login</h1>
 
-        <form class="login-form">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email">
+    </header>
 
-            <label for="password">Palavra Passe</label>
-            <input type="password" id="password" name="password">
+    <main class="register-page">
 
-            <button type="submit">Entrar</button>
-        </form>
+        <section class="register-card">
 
-        <a href="registo.html" class="register-link">Ainda não criou conta?</a>
-    </section>
-</main>
+            <h1>Registo</h1>
+
+            <?php
+            if ($mensagem != "") {
+                echo "<p style='margin-bottom:15px;'>$mensagem</p>";
+            }
+            ?>
+
+            <form class="register-form" method="POST" action="registo.php">
+
+                <label for="nome">Nome do Utilizador</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="password">Palavra Passe</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit" name="registar">
+                    Criar conta
+                </button>
+
+            </form>
+
+            <a href="login.php" class="login-link">
+                Já criou uma conta?
+            </a>
+
+        </section>
+
+    </main>
+
     <footer>
+
         <div class="footer-content">
+
             <div class="footer-column brand-col">
+
                 <div class="logo">
                     <img src="logo/Logo.png" alt="PlayScore">
                 </div>
+
                 <p class="footer-desc">
-                   Ajudamos a transformar dados em decisões mais inteligentes.<br>
+                    Ajudamos a transformar dados em decisões mais inteligentes.<br>
                 </p>
+
             </div>
-            
+
             <div class="footer-column nav-col">
+
                 <h3>Navegação</h3>
+
                 <a href="#">Início</a>
                 <a href="#">Sobre Nós</a>
                 <a href="#">Catalogo</a>
+
             </div>
 
             <div class="footer-column legal-col">
+
                 <h3>Legalidade</h3>
+
                 <a href="regras.html">Regras da Comunidade</a>
                 <a href="#">Política de privacidade</a>
                 <a href="#">Contactos</a>
+
             </div>
 
             <div class="footer-social">
@@ -95,10 +159,17 @@
                 <span>Twitter</span>
                 <span>LinkedIn</span>
             </div>
+
         </div>
+
         <div class="footer-bottom">
             <p>© 2026 PLAYSCORE NETWORK. TODOS OS DIREITOS RESERVADOS.</p>
         </div>
+
     </footer>
 
-    <script src="/js/headerfooter.js"></script>
+    <script src="js/headerfooter.js"></script>
+
+</body>
+
+</html>
