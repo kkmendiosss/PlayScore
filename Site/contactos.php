@@ -1,3 +1,11 @@
+<?php
+session_start();
+include "conexao.php";
+$nome = $_SESSION["nome"] ?? "";
+$email = $_SESSION["email"] ?? "";
+$tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
+?>
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
