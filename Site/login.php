@@ -18,9 +18,10 @@ if (isset($_POST["entrar"])) {
 
         if ($password == $user["password_hash"]) {
 
-            $_SESSION["id"] = $user["id"];
+            $_SESSION["id"] = $user["id_utilizador"];
             $_SESSION["nome"] = $user["nome"];
             $_SESSION["email"] = $user["email"];
+            $_SESSION["tipo_utilizador"] = strtolower(trim($user["tipo_utilizador"]));
 
             header("Location: index.php");
             exit();
@@ -31,6 +32,8 @@ if (isset($_POST["entrar"])) {
         $erro = "Conta não encontrada.";
     }
 }
+
+$tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +41,6 @@ if (isset($_POST["entrar"])) {
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 
     <link rel="stylesheet" href="css/login.css">
@@ -57,13 +59,11 @@ if (isset($_POST["entrar"])) {
         </div>
 
         <nav class="nav-links" id="navLinks">
-
             <a href="index.php">Início</a>
             <a href="#Catalogo">Catalogo</a>
 
             <div class="dropdown">
                 <a href="#SobreNos">Sobre Nós</a>
-
                 <div class="dropdown-content">
                     <a href="#">Contactos</a>
                     <a href="regras.html">Regras da Comunidade</a>
@@ -74,17 +74,15 @@ if (isset($_POST["entrar"])) {
 
             <div class="dropdown">
                 <a>Informação</a>
-
                 <div class="dropdown-content">
                     <a href="#jogodoano">Jogo do Ano</a>
                     <a href="franquia.html">Franquia</a>
                     <a href="lancamentos.html">Lançamentos</a>
                 </div>
             </div>
-
         </nav>
 
-        <?php if (isset($_SESSION["nome"])) { ?>
+        <?php if (isset($_SESSION["nome"]) && $_SESSION["nome"] != "") { ?>
 
             <div class="user-dropdown">
 
@@ -93,8 +91,15 @@ if (isset($_POST["entrar"])) {
                 </button>
 
                 <div class="user-dropdown-content">
+
                     <a href="perfil.php">Perfil</a>
+
+                    <?php if ($tipo == "admin") { ?>
+                        <a href="dashboard.php">Dashboard</a>
+                    <?php } ?>
+
                     <a href="logout.php">Sair</a>
+
                 </div>
 
             </div>
@@ -135,9 +140,7 @@ if (isset($_POST["entrar"])) {
                 <label for="password">Palavra Passe</label>
                 <input type="password" id="password" name="password" required>
 
-                <button type="submit" name="entrar">
-                    Entrar
-                </button>
+                <button type="submit" name="entrar">Entrar</button>
 
             </form>
 
@@ -150,11 +153,9 @@ if (isset($_POST["entrar"])) {
     </main>
 
     <footer>
-
         <div class="footer-content">
 
             <div class="footer-column brand-col">
-
                 <div class="logo">
                     <img src="logo/Logo.png" alt="PlayScore">
                 </div>
@@ -162,27 +163,20 @@ if (isset($_POST["entrar"])) {
                 <p class="footer-desc">
                     Ajudamos a transformar dados em decisões mais inteligentes.
                 </p>
-
             </div>
 
             <div class="footer-column nav-col">
-
                 <h3>Navegação</h3>
-
                 <a href="#">Início</a>
                 <a href="#">Sobre Nós</a>
                 <a href="#">Catalogo</a>
-
             </div>
 
             <div class="footer-column legal-col">
-
                 <h3>Legalidade</h3>
-
                 <a href="regras.html">Regras da Comunidade</a>
                 <a href="#">Política de privacidade</a>
                 <a href="#">Contactos</a>
-
             </div>
 
             <div class="footer-social">
@@ -196,7 +190,6 @@ if (isset($_POST["entrar"])) {
         <div class="footer-bottom">
             <p>© 2026 PLAYSCORE NETWORK. TODOS OS DIREITOS RESERVADOS.</p>
         </div>
-
     </footer>
 
     <script src="js/headerfooter.js"></script>
