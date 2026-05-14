@@ -124,25 +124,21 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
 
                 <div class="games-slider" id="slider">
 
-                    <div class="game-card">
-                        <img src="https://upload.wikimedia.org/wikipedia/en/4/4f/Forza_Horizon_6_cover.jpg" alt="">
-                    </div>
+                <div class="game-card">
+                    <a href="jogo.php?id=2">
+                        <img src="https://store-images.s-microsoft.com/image/apps.45738.13616283370123336.55bc585b-1fc2-4652-8965-61111d6975e0.5236f2e9-a0f4-4fc1-8aba-dbf96b812b95" alt="">
+                    </a>
+                </div>
 
-                    <div class="game-card">
-                        <img src="https://upload.wikimedia.org/wikipedia/en/0/03/Resident_Evil_Requiem.jpg" alt="">
-                    </div>
+                <div class="game-card">
+                    <a href="jogo.php?id=3">
+                        <img src="https://store-images.s-microsoft.com/image/apps.60342.13547047233571036.013c5ec3-a5d7-4e8a-83e7-470299116376.2346f664-c01a-4b06-a92c-4819a43e8f75" alt="">
+                    </a>
+                </div>
 
-                    <div class="game-card">
-                        <img src="https://upload.wikimedia.org/wikipedia/en/8/89/Pragmata_cover.jpg" alt="">
-                    </div>
-
-                    <div class="game-card">
-                        <img src="https://upload.wikimedia.org/wikipedia/en/3/3e/Fable_cover_art.jpg" alt="">
-                    </div>
-
-                    <div class="game-card">
-                        <img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co5vmg.jpg" alt="">
-                    </div>
+                <div class="game-card" data-id="pragmata">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/8/89/Pragmata_cover.jpg" alt="">
+                </div>
 
                 </div>
 

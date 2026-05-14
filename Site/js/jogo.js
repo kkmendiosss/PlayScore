@@ -11,3 +11,4 @@ favoriteBtn.addEventListener("click", (e) => {
 
     favoriteBtn.innerText = "Adicionado aos favoritos!";
 });
+

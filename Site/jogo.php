@@ -119,7 +119,7 @@ if ($result->num_rows > 0) {
     <main>
 
         <section class="banner">
-            <h1>Crimson Desert</h1>
+            <h1><?= $jogo['titulo'] ?></h1>
         </section>
 
         <section class="content">
