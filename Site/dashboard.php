@@ -25,8 +25,8 @@ $nome = $_SESSION["nome"] ?? "Admin";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | PlayScore</title>
 
-    <link rel="stylesheet" href="css/headerfooter.css">
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/backoffice.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
@@ -54,11 +54,10 @@ $nome = $_SESSION["nome"] ?? "Admin";
                 <a href="dashboard.php?page=jogos">Jogos</a>
                 <a href="dashboard.php?page=jogo_do_ano">Jogo do Ano</a>
                 <a href="dashboard.php?page=lancamentos">Lançamentos</a>
-                <a href="dashboard.php?page=users">Users</a>
+                <a href="dashboard_users.php">Users</a>
             </nav>
 
             <a href="index.php" class="back-site">Voltar ao site</a>
-            <a href="logout.php" class="logout-btn">Sair</a>
 
         </aside>
 
