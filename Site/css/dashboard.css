@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #070708;
+    color: white;
+    font-family: 'Abel', sans-serif;
+}
+
+.dashboard-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    background: #111;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    padding: 25px;
+}
+
+.sidebar-logo img {
+    width: 140px;
+    margin-bottom: 30px;
+}
+
+.sidebar h2 {
+    font-family: 'Kode Mono', monospace;
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar-menu a,
+.back-site,
+.logout-btn {
+    color: white;
+    text-decoration: none;
+    padding: 12px 14px;
+    border-radius: 8px;
+    background: #181818;
+    transition: 0.2s;
+}
+
+.sidebar-menu a:hover,
+.back-site:hover {
+    background: #ff008c;
+}
+
+.back-site {
+    display: block;
+    margin-top: 30px;
+}
+
+.logout-btn {
+    display: block;
+    margin-top: 10px;
+    background: #2a0d0d;
+}
+
+.logout-btn:hover {
+    background: #c4003a;
+}
+
+.dashboard-main {
+    flex: 1;
+    padding: 40px;
+}
+
+.dashboard-header {
+    margin-bottom: 35px;
+}
+
+.dashboard-header h1 {
+    font-family: 'Kode Mono', monospace;
+    font-size: 32px;
+}
+
+.dashboard-header p {
+    color: #bdbdbd;
+    margin-top: 8px;
+}
+
+.dashboard-content {
+    background: #111;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 30px;
+}
+
+.dashboard-content h2 {
+    font-family: 'Kode Mono', monospace;
+    margin-bottom: 10px;
+}

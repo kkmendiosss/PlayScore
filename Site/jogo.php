@@ -1,9 +1,28 @@
 <?php
+
 session_start();
 include "conexao.php";
+
 $nome = $_SESSION["nome"] ?? "";
 $email = $_SESSION["email"] ?? "";
 $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
+
+$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+$stmt = $conn->prepare("SELECT * FROM jogos WHERE id_jogo = ?");
+$stmt->bind_param("i", $id);
+$stmt->execute();
+
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+
+    $jogo = $result->fetch_assoc();
+
+} else {
+    die("Jogo não encontrado.");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt">
@@ -106,80 +125,81 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
         <section class="content">
 
             <!-- SIDEBAR -->
-            <aside class="sidebar">
+    <aside class="sidebar">
 
-                <img src="https://store-images.s-microsoft.com/image/apps.45738.13616283370123336.55bc585b-1fc2-4652-8965-61111d6975e0.5236f2e9-a0f4-4fc1-8aba-dbf96b812b95" class="game-cover">
+        <img 
+            src="<?= $jogo['capa_url'] ?>" 
+            class="game-cover"
+            alt="<?= $jogo['titulo'] ?>"
+        >
 
-                <div class="info-box">
-                    <h2>Playscore:</h2>
-                    <div class="score">4,5/5</div>
-                    <span>67 votos</span>
+        <div class="info-box">
 
-                    <p><strong>Desenvolvedor:</strong><br>Pearl Abyss</p>
+            <h2>Playscore</h2>
 
-                    <p><strong>Editora:</strong><br>Pearl Abyss</p>
+            <div class="score">
+                <?= $jogo['classificacao'] ?>/5
+            </div>
 
-                    <p><strong>Plataforma:</strong><br>
-                        Pc, Playstation 5,<br>
-                        Xbox series X/S
-                    </p>
+            <p>
+                <strong>Desenvolvedor:</strong><br>
+                <?= $jogo['desenvolvedor'] ?>
+            </p>
 
-                    <p><strong>Lançamento:</strong><br>
-                        19 de Março de 2026
-                    </p>
+            <p>
+                <strong>Editor:</strong><br>
+                <?= $jogo['editor'] ?>
+            </p>
 
-                    <p><strong>Género:</strong><br>
-                        Ação, Aventura,<br>
-                        Mundo Aberto
-                    </p>
 
-                    <a href="#" class="favorite">Favoritar</a>
-                </div>
+            <p>
+                <strong>Plataforma:</strong><br>
+                <?= $jogo['plataforma'] ?>
+            </p>
 
-            </aside>
+            <p>
+                <strong>Lançamento:</strong><br>
+                <?= $jogo['data_lancamento'] ?>
+            </p>
+
+            <a href="#" class="favorite">Favoritar</a>
+
+        </div>
+
+    </aside>
 
             <!-- MAIN CONTENT -->
             <div class="details">
 
-                <section class="about">
-                    <h2>Sobre</h2>
+        <section class="about">
 
-                    <p>
-                        Crimson Desert decorre no continente fictício de Pywel,
-                        um mundo de fantasia medieval afetado por múltiplos conflitos
-                        e forças misteriosas. Os jogadores controlam Kliff, um membro
-                        dos Greymanes, enquanto este navega por um mundo povoado por
-                        facções rivais, criaturas míticas e forças arcanas.
-                    </p>
+            <h2>Sobre</h2>
 
-                    <p>
-                        O jogo apresenta um sistema de combate dinâmico inspirado
-                        pelo BlackSpace Engine, que combina sequências de combate
-                        corpo a corpo, ataques combinados e jogabilidade estratégica.
-                    </p>
+            <p>
+                <?= $jogo['descricao'] ?>
+            </p>
 
-                    <p>
-                        Além do combate, o jogo oferece diversas atividades,
-                        incluindo pesca, culinária, artesanato e caça.
-                    </p>
-                </section>
+        </section>
 
-                <section class="trailer">
-                    <h2>Trailer</h2>
+        <!-- TRAILER -->
+        <section class="trailer">
 
-                    <div class="trailer-box">
-                    <iframe 
-                        src="https://www.youtube.com/embed/ZdmoGYg8tB0"
-                        title="Crimson Desert Trailer"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
-                    </iframe>
-                    </div>
-                </section>
+            <h2>Trailer</h2>
 
-                <!-- COMMENTS -->
-                <section class="comments">
+            <div class="trailer-box">
+
+                <iframe
+                    src="<?= $jogo['trailer_url'] ?>"
+                    title="Trailer"
+                    frameborder="0"
+                    allowfullscreen>
+                </iframe>
+
+            </div>
+
+        </section>
+
+        <section class="comments">
                     <h2>Comentários <span>(2 comentário)</span></h2>
 
                     <div class="comment">
@@ -206,6 +226,8 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
                     </div>
 
                 </section>
+
+    </div>
 
             </div>
 
