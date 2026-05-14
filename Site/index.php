@@ -24,7 +24,7 @@
             <div class="dropdown">
                 <a href="#SobreNos">Sobre Nós</a>
                 <div class="dropdown-content">
-                    <a href="#">Contactos</a>
+                    <a href="contactos.php">Contactos</a>
                     <a href="regras.html">Regras da Comunidade</a>
                     <a href="#">Politicas e privacidade</a>
                     <a href="faq.html">FAQ</a>

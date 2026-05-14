@@ -1,0 +1,140 @@
+/* 1. IMPORTAR AS FONTES DO GOOGLE FONTS (Sempre na primeira linha) */
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Kode+Mono:wght@400..700&display=swap');
+
+:root {
+    --neon-blue: #00f2ff;
+    --neon-purple: #bc13fe;
+    --dark: #0a0a0c;
+    --card-bg: #151518;
+    --border-color: #333;
+}
+
+body {
+    background-color: var(--dark);
+    color: #fff;
+    font-family: 'Abel', sans-serif; /* A Abel fica como padrão para todo o texto */
+    margin: 0;
+    padding: 0;
+}
+
+/* 2. FORÇAR A KODE MONO NOS TÍTULOS */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Kode Mono', monospace;
+    font-weight: 700;
+}
+
+/* CONTAINER PRINCIPAL */
+.page-wrapper {
+    max-width: 1000px;
+    margin: 120px auto 80px;
+    padding: 0 20px;
+}
+
+/* CABEÇALHO DA PÁGINA */
+.page-header {
+    text-align: center;
+    margin-bottom: 60px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 30px;
+}
+
+.page-header h1 {
+    color: var(--neon-blue);
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.page-header p {
+    color: #aaa;
+    /* Retirado o Arial daqui, agora herda a Abel do body automaticamente */
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* LAYOUT DOS CONTACTOS (Flexbox simples) */
+.contact-container {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap; 
+    margin-bottom: 60px;
+}
+
+/* CAIXAS DE INFORMAÇÃO E FORMULÁRIO */
+.contact-info, .contact-form-box {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 30px;
+    border-radius: 8px;
+    flex: 1; 
+    min-width: 300px;
+}
+
+.contact-info h3, .contact-form-box h3 {
+    color: var(--neon-purple);
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.contact-info p {
+    color: #ccc;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.contact-info strong {
+    color: #fff;
+}
+
+/* ESTILOS DO FORMULÁRIO */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #aaa;
+    font-size: 1rem;
+}
+
+/* Inputs e Textarea limpos e diretos */
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    background-color: #1a1a20;
+    border: 1px solid #333;
+    color: #fff;
+    border-radius: 4px;
+    font-family: 'Abel', sans-serif; /* Garante que as caixas de texto usam a Abel */
+    font-size: 1rem;
+    box-sizing: border-box; 
+}
+
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--neon-blue);
+}
+
+/* BOTÃO DE SUBMETER */
+.submit-btn {
+    background-color: var(--neon-purple);
+    color: #fff;
+    border: none;
+    padding: 15px 20px;
+    cursor: pointer;
+    font-family: 'Kode Mono', monospace; /* Fica muito bem ter a fonte dos títulos no botão principal! */
+    font-size: 1.2rem;
+    border-radius: 4px;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #9d0fd6; 
+}
