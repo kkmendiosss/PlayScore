@@ -9,3 +9,10 @@ nextBtn.addEventListener("click", () => {
 prevBtn.addEventListener("click", () => {
     slider.scrollLeft -= 300;
 });
+
+document.querySelectorAll('.game-card').forEach(card => {
+    card.addEventListener('click', () => {
+        const id = card.dataset.id;
+        window.location.href = `game.html?id=${id}`;
+    });
+});

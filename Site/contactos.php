@@ -112,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <br>
                 <p><strong>Suporte Real-Time:</strong> #tech-support (via Discord)</p>
                 <br>
-                <p><strong>Localização Física:</strong><br> Lisboa & Porto, Portugal</p>
+                <p><strong>Localização Física:</strong><br> Leiria, Portugal</p>
             </div>
 
             <div class="contact-form-box">

@@ -29,7 +29,7 @@ if ($result->num_rows > 0) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crimson Desert - Playscore</title>
+    <title><?= $jogo['titulo'] ?> - Playscore</title>
 
     <link rel="stylesheet" href="css/jogo.css">
     <link rel="stylesheet" href="css/headerfooter.css">
@@ -119,7 +119,7 @@ if ($result->num_rows > 0) {
     <main>
 
         <section class="banner">
-            <h1>Crimson Desert</h1>
+            <h1><?= $jogo['titulo'] ?></h1>
         </section>
 
         <section class="content">
