@@ -112,14 +112,18 @@ h1, h2, h3, h4, h5, h6 {
     box-sizing: border-box; 
 }
 
+/*Block de resize da caixa de textow*/
+.form-group textarea {
+    resize: none; 
+}
+
 .form-group input:focus, 
 .form-group select:focus, 
 .form-group textarea:focus {
     outline: none;
     border-color: var(--neon-blue);
 }
-
-/* BOTÃO DE SUBMETER */
+/*butão submeter*/
 .submit-btn {
     background-color: var(--neon-purple);
     color: #fff;
@@ -135,4 +139,82 @@ h1, h2, h3, h4, h5, h6 {
 
 .submit-btn:hover {
     background-color: #9d0fd6; 
+}
+
+
+.ticket-status-box {
+    background-color: #1a1a20;
+    border: 1px solid var(--neon-purple);
+    border-radius: 8px;
+    padding: 25px;
+    margin-top: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 15px rgba(188, 19, 254, 0.2);
+}
+
+.ticket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.ticket-header h4 {
+    color: #fff;
+    margin: 0;
+    font-size: 1.2rem;
+    font-family: 'Kode Mono', monospace;
+}
+
+.badge-pendente {
+    background-color: rgba(255, 165, 0, 0.1);
+    color: #ffa500;
+    border: 1px solid #ffa500;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    font-family: 'Kode Mono', monospace;
+    letter-spacing: 1px;
+}
+
+.ticket-body p {
+    color: #ccc;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+}
+
+.ticket-body strong {
+    color: var(--neon-blue);
+}
+
+.ticket-footer {
+    margin-top: 20px;
+    font-size: 0.85rem;
+    color: #777;
+    text-align: center;
+    font-style: italic;
+}
+
+/* BOTÃO FECHAR*/
+.btn-feito {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid var(--neon-blue);
+    padding: 8px 25px;
+    border-radius: 4px;
+    font-family: 'Kode Mono', monospace;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-feito:hover {
+    background-color: var(--neon-blue);
+    color: #000;
+    box-shadow: 0 0 10px var(--neon-blue);
 }
