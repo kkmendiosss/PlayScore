@@ -7,7 +7,8 @@
 
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/headerfooter.css">
-  <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400;600&family=Abel&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400;600&family=Abel&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
 </head>
 <body>
 
