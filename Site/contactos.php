@@ -6,25 +6,18 @@ $nome_user = $_SESSION["nome"] ?? "";
 $email_user = $_SESSION["email"] ?? "";
 $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
 
-// ==========================================
-// 1. LÓGICA PARA APAGAR DA BD (O NOVO BOTÃO)
-// ==========================================
+
 if (isset($_GET['apagar_id'])) {
-    // Apanha o ID que o botão enviou
+    
     $id_apagar = (int)$_GET['apagar_id'];
     
-    // Apaga esse ID específico da base de dados
     $sql_delete = "DELETE FROM contactos WHERE id_contacto = $id_apagar";
     $conn->query($sql_delete);
     
-    // Dá um refresh limpo à página para remover o código da barra de endereço
     header("Location: contactos.php");
     exit;
 }
 
-// ==========================================
-// 2. LÓGICA PARA INSERIR NA BD
-// ==========================================
 $ticket_enviado = false;
 $dados_ticket = [];
 
@@ -39,11 +32,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($conn->query($sql) === TRUE) {
         $ticket_enviado = true;
         
-        // MAGIA AQUI: Apanhamos o ID do registo que acabou de ser criado!
         $id_inserido = $conn->insert_id;
         
         $dados_ticket = [
-            'id' => $id_inserido, // Guardamos o ID para usar no botão
+            'id' => $id_inserido,
             'nome' => htmlspecialchars($_POST['nome']),
             'email' => htmlspecialchars($_POST['email']),
             'mensagem' => htmlspecialchars($_POST['mensagem']),
@@ -160,7 +152,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             
             <div style="text-align: center; margin-top: 20px;">
-                <button type="button" class="btn-feito" onclick="window.location.href='contactos.php?apagar_id=<?php echo $dados_ticket['id']; ?>'">FEITO // FECHAR E APAGAR</button>
+                <button type="button" class="btn-feito" onclick="window.location.href='contactos.php?apagar_id=<?php echo $dados_ticket['id']; ?>'">Concluido</button>
             </div>
         </div>
         <?php endif; ?>
