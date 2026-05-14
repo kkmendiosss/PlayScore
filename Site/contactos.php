@@ -88,18 +88,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="assunto">Assunto da Submissão</label>
-                    <select id="assunto" name="assunto" required>
-                        <option value="" disabled selected>Seleciona o departamento...</option>
-                        <option value="Suporte Tecnico">Suporte Técnico</option>
-                        <option value="Parcerias">Parcerias</option>
-                        <option value="Franquia">Franquia</option>
-                        <option value="Outro">Outro</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="mensagem">Mensagem Heurística</label>
+                    <label for="mensagem">Mensagem</label>
                     <textarea id="mensagem" name="mensagem" rows="5" required placeholder="Descreve a tua questão aqui..."></textarea>
                 </div>
 
