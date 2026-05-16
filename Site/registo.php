@@ -2,20 +2,32 @@
 include "conexao.php";
 
 $mensagem = "";
-
+$tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
 if (isset($_POST["registar"])) {
 
-    $nome = $_POST["nome"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
+    $nome = mysqli_real_escape_string($conn, $_POST["nome"]);
+    $email = mysqli_real_escape_string($conn, $_POST["email"]);
+    $password = mysqli_real_escape_string($conn, $_POST["password"]);
 
-    $sql = "INSERT INTO users (nome, email, password_hash)
-            VALUES ('$nome', '$email', '$password')";
+    // Verificar se email já existe
+    $sql_check = "SELECT * FROM users WHERE email = '$email'";
+    $result_check = mysqli_query($conn, $sql_check);
 
-    if (mysqli_query($conn, $sql)) {
-        $mensagem = "Conta criada com sucesso!";
+    if (mysqli_num_rows($result_check) > 0) {
+
+        $mensagem = "Este email já está registado.";
     } else {
-        $mensagem = "Erro ao criar conta: " . mysqli_error($conn);
+
+        $sql = "INSERT INTO users (nome, email, password_hash)
+                VALUES ('$nome', '$email', '$password')";
+
+        if (mysqli_query($conn, $sql)) {
+
+            $mensagem = "Conta criada com sucesso!";
+        } else {
+
+            $mensagem = "Erro ao criar conta: " . mysqli_error($conn);
+        }
     }
 }
 ?>
@@ -37,37 +49,83 @@ if (isset($_POST["registar"])) {
 
 <body>
 
-    <nav class="nav-links" id="navLinks">
+    <header class="navbar">
 
-        <a href="index.php">Início</a>
-        <a href="#">Catalogo</a>
-
-        <div class="dropdown">
-
-            <a href="#">Sobre Nós</a>
-
-            <div class="dropdown-content">
-                <a href="contactos.php">Contactos</a>
-                <a href="regras.php">Regras da Comunidade</a>
-                <a href="politicas.php">Politicas e privacidade</a>
-                <a href="faq.php">FAQ</a>
-            </div>
-
+        <div class="logo">
+            <img src="logo/Logo.png" alt="PlayScore">
         </div>
 
-        <div class="dropdown">
+        <nav class="nav-links" id="navLinks">
 
-            <a href="#">Informação</a>
+            <a href="index.php">Início</a>
+            <a href="#">Catalogo</a>
 
-            <div class="dropdown-content">
-                <a href="jogoano.php">Jogo do Ano</a>
-                <a href="franquia.php">Franquia</a>
-                <a href="lancamentos.php">Lançamentos</a>
+            <div class="dropdown">
+
+                <a href="#">Sobre Nós</a>
+
+                <div class="dropdown-content">
+                    <a href="contactos.php">Contactos</a>
+                    <a href="regras.php">Regras da Comunidade</a>
+                    <a href="politicas.php">Politicas e privacidade</a>
+                    <a href="faq.php">FAQ</a>
+                </div>
+
             </div>
 
+            <div class="dropdown">
+
+                <a href="#">Informação</a>
+
+                <div class="dropdown-content">
+                    <a href="jogoano.php">Jogo do Ano</a>
+                    <a href="franquia.php">Franquia</a>
+                    <a href="lancamentos.php">Lançamentos</a>
+                </div>
+
+            </div>
+
+        </nav>
+
+        <?php if ($nome != "") { ?>
+
+            <div class="user-dropdown">
+
+                <button class="btn-login">
+                    <?php echo $nome; ?> ▼
+                </button>
+
+                <div class="user-dropdown-content">
+
+                    <a href="perfil.php">Perfil</a>
+
+                    <?php if ($tipo == "admin") { ?>
+                        <a href="dashboard.php">Dashboard</a>
+                    <?php } ?>
+
+                    <a href="logout.php">Sair</a>
+
+                </div>
+
+            </div>
+
+        <?php } else { ?>
+
+            <a href="login.php">
+                <button class="btn-login">
+                    Login
+                </button>
+            </a>
+
+        <?php } ?>
+
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
 
-    </nav>
+    </header>
 
     <main class="register-page">
 
