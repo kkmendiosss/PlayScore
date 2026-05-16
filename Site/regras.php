@@ -5,25 +5,22 @@ $nome = $_SESSION["nome"] ?? "";
 $email = $_SESSION["email"] ?? "";
 $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
 ?>
-
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-PT">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlayScore - Lançamentos</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap" rel="stylesheet">
+    <title>Regras da Comunidade</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/lancamentos.css">
-    <link rel="stylesheet" href="css/headerfooter.css">
+    <link rel="stylesheet" href="css/regras.css">
     <link rel="icon" href="img/PlayScore_Icon.png">
+    <link rel="stylesheet" href="css/headerfooter.css">
+    <link rel="stylesheet" href="js/headerfooter.js">
 </head>
 
 <body>
-
     <header class="navbar">
 
         <div class="logo">
@@ -102,75 +99,43 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
 
     </header>
 
-
-    <section class="hero">
-        <h1 class="title">Lançamentos</h1>
-        <p class="subtitle">
-            Mantém-te a par dos próximos lançamentos de jogos para PS5, Xbox Series X|S, Nintendo Switch e PC.
-            A nossa página é atualizada diariamente com todos os títulos confirmados, incluindo datas de lançamento, editoras e plataformas disponíveis.
-            Explora o calendário e utiliza os filtros para encontrares facilmente os jogos que mais te interessam.
-        </p>
-    </section>
-
-    <main class="container">
-
-        <section class="calendar">
-            <h2 class="calendar-title">Calendário</h2>
-
-            <div class="month">Abril 2026</div>
-
-            <!-- DIA -->
-            <div class="day">
-                <div class="date">
-                    <span class="number">21</span>
-                    <br>
-                    <span class="weekday">Terça-feira</span>
-                </div>
-
-                <div class="events">
-                    <div class="event">Albion Online (Xbox Series X/S)</div>
-                    <div class="event">Vampire Crawlers The Turbo Wildcard from Vampire Survivors (PC, Nintendo Switch, PS5, Xbox Series X/S)</div>
-                </div>
+    <main class="rules-container">
+        <h1 class="page-title">Regras da Comunidade</h1>
+        <div class="rules-grid">
+            <div class="rule-card card-blue">
+                <img src="img/Regras/Icon1.png" alt="Ícone 1" class="rule-icon">
+                <p>Sê respeitoso. Não toleramos assédio, ataques pessoais ou qualquer discurso de ódio. Mantém a toxicidade fora do jogo.</p>
             </div>
-
-            <div class="day">
-                <div class="date">
-                    <span class="number">22</span>
-                    <br>
-                    <span class="weekday">Quarta-feira</span>
-                </div>
-
-                <div class="events">
-                    <div class="event">Clockwork Ambrosia (PC)</div>
-                    <div class="event">Masters of Albion (PC)</div>
-                    <div class="event">Tides of Tomorrow (PC, PS5, Xbox Series X/S)</div>
-                </div>
+            <div class="rule-card card-pink">
+                <img src="img/Regras/Icon2.png" alt="Ícone 2" class="rule-icon">
+                <p>Não partilhes links para conteúdo ilegal ou pirateado. Respeita os direitos de autor e a segurança da comunidade.</p>
             </div>
-
-            <div class="day">
-                <div class="date">
-                    <span class="number">23</span>
-                    <br>
-                    <span class="weekday">Quinta-feira</span>
-                </div>
-
-                <div class="events">
-                    <div class="event">Kiln (PC, PS5, Xbox Series X/S)</div>
-                    <div class="event">Kingdom’s Return Time-Eating Fruit and the Ancient Monster (PC, Nintendo Switch 1 e 2, PS5, Xbox Series X/S)</div>
-                    <div class="event">Neverness to Everness (PC, PS5, mobile)</div>
-                    <div class="event">Outbound (PC, Nintendo Switch 1 e 2, PS5, Xbox Series X/S)</div>
-                    <div class="event">Sudden Strike 5 (PC, PS5, Xbox Series X/S)</div>
-                    <div class="event">Matsurika no Kei kEi Tenmei Kashokuden (Switch)</div>
-                    <div class="event">Elminage ORIGINAL Priestess of Darkness and the Ring of the Gods (Nintendo Switch)</div>
-                </div>
+            <div class="rule-card card-pink">
+                <img src="img/Regras/Icon3.png" alt="Ícone 3" class="rule-icon">
+                <p>Escreve as tuas próprias reviews. Plágio e textos gerados por IA são proibidos. Queremos opiniões reais de pessoas reais.</p>
             </div>
-
-            <div class="ver-mais">Ver mais</div>
-
-        </section>
-
+            <div class="rule-card card-blue">
+                <img src="img/Regras/Icon4.png" alt="Ícone 4" class="rule-icon">
+                <p>Usa a tag de "Spoiler" em qualquer detalhe importante da história. Não estragues a experiência aos outros jogadores.</p>
+            </div>
+            <div class="rule-card card-blue">
+                <img src="img/Regras/Icon5.png" alt="Ícone 5" class="rule-icon">
+                <p>Mantém as reviews e comentários sobre o jogo. Evita dramas da comunidade ou discussões fora de contexto.</p>
+            </div>
+            <div class="rule-card card-pink">
+                <img src="img/Regras/Icon6.png" alt="Ícone 6" class="rule-icon">
+                <p>Não uses o site para publicidade ou para ganhar tráfego noutras redes. Links sem conteúdo útil serão removidos.</p>
+            </div>
+            <div class="rule-card card-pink">
+                <img src="img/Regras/Icon7.png" alt="Ícone 7" class="rule-icon">
+                <p>Explica o porquê da tua nota. Reviews vazias ou de quem admite não ter jogado o título serão eliminadas.</p>
+            </div>
+            <div class="rule-card card-blue">
+                <img src="img/Regras/Icon8.png" alt="Ícone 8" class="rule-icon">
+                <p>Viste algo errado? Denuncia. Avisos e infrações repetidas podem levar à suspensão ou expulsão permanente da conta.</p>
+            </div>
+        </div>
     </main>
-
     <footer>
         <div class="footer-content">
             <div class="footer-column brand-col">
@@ -206,8 +171,6 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
             <p>© 2026 PLAYSCORE NETWORK. TODOS OS DIREITOS RESERVADOS.</p>
         </div>
     </footer>
-
-    <script src="/js/headerfooter.js"></script>
 </body>
 
 </html>
