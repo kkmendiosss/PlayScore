@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Roboto:wght@300;400;700&display=swap');
-
 *{
     margin:0;
     padding:0;
@@ -20,7 +18,7 @@ body{
 
 .banner h1{
     font-size:56px;
-    font-family:'Orbitron', sans-serif;
+    font-family:'Kode Mono', sans-serif;
 }
 
 .content{
@@ -81,7 +79,7 @@ body{
 .details h2{
     font-size:40px;
     margin-bottom:20px;
-    font-family:'Orbitron', sans-serif;
+    font-family:'Abel', sans-serif;
 }
 
 .about p{
@@ -105,13 +103,11 @@ body{
 .comments {
     margin-top: 60px;
     padding: 25px;
-    background: #111; 
-    border-radius: 12px;
     color: #fff;
 }
 
 .comments h2 {
-    font-family: 'Kode Mono', monospace;
+    font-family: 'Abel', monospace;
     font-size: 22px;
     margin-bottom: 20px;
     display: flex;
@@ -132,10 +128,6 @@ body{
     background: #1a1a1a;
     border-radius: 10px;
     transition: 0.2s;
-}
-
-.comment:hover {
-    background: #222;
 }
 
 .avatar {
@@ -165,7 +157,7 @@ body{
     margin: 0;
     font-size: 16px;
     color: #fff;
-    font-family: 'Abel', sans-serif;
+    font-family: 'Kode Mono', sans-serif;
 }
 
 .comment p {
