@@ -5,17 +5,29 @@ $mensagem = "";
 
 if (isset($_POST["registar"])) {
 
-    $nome = $_POST["nome"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
+    $nome = mysqli_real_escape_string($conn, $_POST["nome"]);
+    $email = mysqli_real_escape_string($conn, $_POST["email"]);
+    $password = mysqli_real_escape_string($conn, $_POST["password"]);
 
-    $sql = "INSERT INTO users (nome, email, password_hash)
-            VALUES ('$nome', '$email', '$password')";
+    // Verificar se email já existe
+    $sql_check = "SELECT * FROM users WHERE email = '$email'";
+    $result_check = mysqli_query($conn, $sql_check);
 
-    if (mysqli_query($conn, $sql)) {
-        $mensagem = "Conta criada com sucesso!";
+    if (mysqli_num_rows($result_check) > 0) {
+
+        $mensagem = "Este email já está registado.";
     } else {
-        $mensagem = "Erro ao criar conta: " . mysqli_error($conn);
+
+        $sql = "INSERT INTO users (nome, email, password_hash)
+                VALUES ('$nome', '$email', '$password')";
+
+        if (mysqli_query($conn, $sql)) {
+
+            $mensagem = "Conta criada com sucesso!";
+        } else {
+
+            $mensagem = "Erro ao criar conta: " . mysqli_error($conn);
+        }
     }
 }
 ?>
