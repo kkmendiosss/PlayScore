@@ -201,6 +201,14 @@ td:nth-child(7) {
     border: 2px solid rgba(255,255,255,0.12);
 }
 
+.table-avatar-jogo {
+    width: 70px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid #444;
+}
+
 .avatar-placeholder {
     background: linear-gradient(135deg, #222, #151515);
     display: flex;
