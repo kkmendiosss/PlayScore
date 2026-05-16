@@ -37,49 +37,37 @@ if (isset($_POST["registar"])) {
 
 <body>
 
-    <header class="navbar">
+    <nav class="nav-links" id="navLinks">
 
-        <div class="logo">
-            <img src="logo/Logo.png" alt="PlayScore">
-        </div>
+        <a href="index.php">Início</a>
+        <a href="#">Catalogo</a>
 
-        <nav class="nav-links" id="navLinks">
+        <div class="dropdown">
 
-            <a href="#Home">Início</a>
-            <a href="#Catalogo">Catalogo</a>
+            <a href="#">Sobre Nós</a>
 
-            <div class="dropdown">
-                <a href="#SobreNos">Sobre Nós</a>
-
-                <div class="dropdown-content">
-                    <a href="#">Contactos</a>
-                    <a href="regras.html">Regras da Comunidade</a>
-                    <a href="#">Politicas e privacidade</a>
-                    <a href="faq.html">FAQ</a>
-                </div>
+            <div class="dropdown-content">
+                <a href="contactos.php">Contactos</a>
+                <a href="regras.php">Regras da Comunidade</a>
+                <a href="politicas.php">Politicas e privacidade</a>
+                <a href="faq.php">FAQ</a>
             </div>
 
-            <div class="dropdown">
-                <a>Informação</a>
-
-                <div class="dropdown-content">
-                    <a href="#jogodoano">Jogo do Ano</a>
-                    <a href="franquia.html">Franquia</a>
-                    <a href="lancamentos.html">Lançamentos</a>
-                </div>
-            </div>
-
-        </nav>
-
-        <button class="btn-login">Login</button>
-
-        <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
         </div>
 
-    </header>
+        <div class="dropdown">
+
+            <a href="#">Informação</a>
+
+            <div class="dropdown-content">
+                <a href="jogoano.php">Jogo do Ano</a>
+                <a href="franquia.php">Franquia</a>
+                <a href="lancamentos.php">Lançamentos</a>
+            </div>
+
+        </div>
+
+    </nav>
 
     <main class="register-page">
 

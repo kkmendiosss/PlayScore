@@ -18,7 +18,6 @@ $result = $stmt->get_result();
 if ($result->num_rows > 0) {
 
     $jogo = $result->fetch_assoc();
-
 } else {
     die("Jogo não encontrado.");
 }
@@ -26,6 +25,7 @@ if ($result->num_rows > 0) {
 ?>
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,6 +36,7 @@ if ($result->num_rows > 0) {
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400;600&family=Abel&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
     <header class="navbar">
@@ -125,81 +126,80 @@ if ($result->num_rows > 0) {
         <section class="content">
 
             <!-- SIDEBAR -->
-    <aside class="sidebar">
+            <aside class="sidebar">
 
-        <img 
-            src="<?= $jogo['capa_url'] ?>" 
-            class="game-cover"
-            alt="<?= $jogo['titulo'] ?>"
-        >
+                <img
+                    src="<?= $jogo['capa_url'] ?>"
+                    class="game-cover"
+                    alt="<?= $jogo['titulo'] ?>">
 
-        <div class="info-box">
+                <div class="info-box">
 
-            <h2>Playscore</h2>
+                    <h2>Playscore</h2>
 
-            <div class="score">
-                <?= $jogo['classificacao'] ?>/5
-            </div>
+                    <div class="score">
+                        <?= $jogo['classificacao'] ?>/5
+                    </div>
 
-            <p>
-                <strong>Desenvolvedor:</strong><br>
-                <?= $jogo['desenvolvedor'] ?>
-            </p>
+                    <p>
+                        <strong>Desenvolvedor:</strong><br>
+                        <?= $jogo['desenvolvedor'] ?>
+                    </p>
 
-            <p>
-                <strong>Editor:</strong><br>
-                <?= $jogo['editor'] ?>
-            </p>
+                    <p>
+                        <strong>Editor:</strong><br>
+                        <?= $jogo['editor'] ?>
+                    </p>
 
 
-            <p>
-                <strong>Plataforma:</strong><br>
-                <?= $jogo['plataforma'] ?>
-            </p>
+                    <p>
+                        <strong>Plataforma:</strong><br>
+                        <?= $jogo['plataforma'] ?>
+                    </p>
 
-            <p>
-                <strong>Lançamento:</strong><br>
-                <?= $jogo['data_lancamento'] ?>
-            </p>
+                    <p>
+                        <strong>Lançamento:</strong><br>
+                        <?= $jogo['data_lancamento'] ?>
+                    </p>
 
-            <a href="#" class="favorite">Favoritar</a>
+                    <a href="#" class="favorite">Favoritar</a>
 
-        </div>
+                </div>
 
-    </aside>
+            </aside>
 
             <!-- MAIN CONTENT -->
             <div class="details">
 
-        <section class="about">
+                <section class="about">
 
-            <h2>Sobre</h2>
+                    <h2>Sobre</h2>
 
-            <p>
-                <?= $jogo['descricao'] ?>
-            </p>
+                    <p>
+                        <?= $jogo['descricao'] ?>
+                    </p>
 
-        </section>
+                </section>
 
-        <!-- TRAILER -->
-        <section class="trailer">
+                <!-- TRAILER -->
+                <section class="trailer">
 
-            <h2>Trailer</h2>
+                    <h2>Trailer</h2>
 
-            <div class="trailer-box">
+                    <div class="trailer-box">
 
-                <iframe
-                    src="<?= $jogo['trailer_url'] ?>"
-                    title="Trailer"
-                    frameborder="0"
-                    allowfullscreen>
-                </iframe>
+                        <iframe
+                            src="<?= $jogo['trailer_url'] ?>"
+                            title="Trailer"
+                            frameborder="0"
+                            allowfullscreen>
+                        </iframe>
 
-            </div>
+                    </div>
 
-        </section>
+                </section>
 
-        <section class="comments">
+                <section class="comments">
                     <h2>Comentários <span>(2 comentário)</span></h2>
 
                     <div class="comment">
@@ -227,7 +227,7 @@ if ($result->num_rows > 0) {
 
                 </section>
 
-    </div>
+            </div>
 
             </div>
 
@@ -242,7 +242,7 @@ if ($result->num_rows > 0) {
                     <img src="logo/Logo.png" alt="PlayScore">
                 </div>
                 <p class="footer-desc">
-                   Ajudamos a transformar dados em decisões mais inteligentes.<br>
+                    Ajudamos a transformar dados em decisões mais inteligentes.<br>
                 </p>
             </div>
 
@@ -277,4 +277,5 @@ if ($result->num_rows > 0) {
 
     <script src="jogo.js"></script>
 </body>
+
 </html>

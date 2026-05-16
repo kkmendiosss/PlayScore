@@ -45,15 +45,15 @@ $nome = $_SESSION["nome"] ?? "Admin";
             </div>
 
             <h2>Dashboard</h2>
-
+            <a href="dashboard.php">Dashboard</a>
             <nav class="sidebar-menu">
-                <a href="dashboard.php?page=favoritos">Favoritos</a>
-                <a href="dashboard.php?page=generos">Géneros</a>
-                <a href="dashboard.php?page=contactos">Contactos</a>
-                <a href="dashboard.php?page=franquias">Franquias</a>
-                <a href="dashboard.php?page=jogos">Jogos</a>
-                <a href="dashboard.php?page=jogo_do_ano">Jogo do Ano</a>
-                <a href="dashboard.php?page=lancamentos">Lançamentos</a>
+                <a href="dashboard_favoritos.php">Favoritos</a>
+                <a href="dashboard_generos.php">Géneros</a>
+                <a href="dashboard_contactos.php">Contactos</a>
+                <a href="dashboard_franquia.php">Franquias</a>
+                <a href="dashboard_jogos.php">Jogos</a>
+                <a href="dashboard_jogoano.php">Jogo do Ano</a>
+                <a href="dashboard_lancamento.php">Lançamentos</a>
                 <a href="dashboard_users.php">Users</a>
             </nav>
 

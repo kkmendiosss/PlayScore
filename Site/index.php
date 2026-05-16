@@ -7,6 +7,7 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +18,7 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400;600&family=Abel&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
     <header class="navbar">
@@ -35,10 +37,10 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
                 <a href="#">Sobre Nós</a>
 
                 <div class="dropdown-content">
-                    <a href="#">Contactos</a>
-                    <a href="regras.html">Regras da Comunidade</a>
-                    <a href="#">Politicas e privacidade</a>
-                    <a href="faq.html">FAQ</a>
+                    <a href="contactos.php">Contactos</a>
+                    <a href="regras.php">Regras da Comunidade</a>
+                    <a href="politicas.php">Politicas e privacidade</a>
+                    <a href="faq.php">FAQ</a>
                 </div>
 
             </div>
@@ -48,9 +50,9 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
                 <a href="#">Informação</a>
 
                 <div class="dropdown-content">
-                    <a href="#">Jogo do Ano</a>
-                    <a href="franquia.html">Franquia</a>
-                    <a href="lancamentos.html">Lançamentos</a>
+                    <a href="jogoano.php">Jogo do Ano</a>
+                    <a href="franquia.php">Franquia</a>
+                    <a href="lancamentos.php">Lançamentos</a>
                 </div>
 
             </div>
@@ -95,10 +97,10 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
             <span></span>
         </div>
 
-    </header> 
+    </header>
 
     <section class="hero">
-    
+
         <img src="https://media.gq-magazine.co.uk/photos/645b5c3c8223a5c3801b8b26/16:9/w_1920,c_limit/100-best-games-hp-b.jpg" alt="Banner Principal" class="hero-image">
 
         <div class="overlay"></div>
@@ -124,21 +126,21 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
 
                 <div class="games-slider" id="slider">
 
-                <div class="game-card">
-                    <a href="jogo.php?id=2">
-                        <img src="https://store-images.s-microsoft.com/image/apps.45738.13616283370123336.55bc585b-1fc2-4652-8965-61111d6975e0.5236f2e9-a0f4-4fc1-8aba-dbf96b812b95" alt="">
-                    </a>
-                </div>
+                    <div class="game-card">
+                        <a href="jogo.php?id=2">
+                            <img src="https://store-images.s-microsoft.com/image/apps.45738.13616283370123336.55bc585b-1fc2-4652-8965-61111d6975e0.5236f2e9-a0f4-4fc1-8aba-dbf96b812b95" alt="">
+                        </a>
+                    </div>
 
-                <div class="game-card">
-                    <a href="jogo.php?id=3">
-                        <img src="https://store-images.s-microsoft.com/image/apps.60342.13547047233571036.013c5ec3-a5d7-4e8a-83e7-470299116376.2346f664-c01a-4b06-a92c-4819a43e8f75" alt="">
-                    </a>
-                </div>
+                    <div class="game-card">
+                        <a href="jogo.php?id=3">
+                            <img src="https://store-images.s-microsoft.com/image/apps.60342.13547047233571036.013c5ec3-a5d7-4e8a-83e7-470299116376.2346f664-c01a-4b06-a92c-4819a43e8f75" alt="">
+                        </a>
+                    </div>
 
-                <div class="game-card" data-id="pragmata">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/8/89/Pragmata_cover.jpg" alt="">
-                </div>
+                    <div class="game-card" data-id="pragmata">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/8/89/Pragmata_cover.jpg" alt="">
+                    </div>
 
                 </div>
 
@@ -174,7 +176,7 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
                     <img src="logo/Logo.png" alt="PlayScore">
                 </div>
                 <p class="footer-desc">
-                   Ajudamos a transformar dados em decisões mais inteligentes.<br>
+                    Ajudamos a transformar dados em decisões mais inteligentes.<br>
                 </p>
             </div>
 
@@ -205,4 +207,5 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
 
     <script src="js/index.js"></script>
 </body>
+
 </html>

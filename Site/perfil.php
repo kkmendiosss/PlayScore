@@ -108,35 +108,43 @@ $total_favoritos =
         </div>
 
         <nav class="nav-links" id="navLinks">
+
             <a href="index.php">Início</a>
-            <a href="#Catalogo">Catalogo</a>
+            <a href="#">Catalogo</a>
 
             <div class="dropdown">
-                <a href="#SobreNos">Sobre Nós</a>
+
+                <a href="#">Sobre Nós</a>
+
                 <div class="dropdown-content">
-                    <a href="#">Contactos</a>
-                    <a href="regras.html">Regras da Comunidade</a>
-                    <a href="#">Politicas e privacidade</a>
-                    <a href="faq.html">FAQ</a>
+                    <a href="contactos.php">Contactos</a>
+                    <a href="regras.php">Regras da Comunidade</a>
+                    <a href="politicas.php">Politicas e privacidade</a>
+                    <a href="faq.php">FAQ</a>
                 </div>
+
             </div>
 
             <div class="dropdown">
-                <a>Informação</a>
+
+                <a href="#">Informação</a>
+
                 <div class="dropdown-content">
-                    <a href="#jogodoano">Jogo do Ano</a>
-                    <a href="franquia.html">Franquia</a>
-                    <a href="lancamentos.html">Lançamentos</a>
+                    <a href="jogoano.php">Jogo do Ano</a>
+                    <a href="franquia.php">Franquia</a>
+                    <a href="lancamentos.php">Lançamentos</a>
                 </div>
+
             </div>
+
         </nav>
 
-        <?php if (isset($_SESSION["nome"]) && $_SESSION["nome"] != "") { ?>
+        <?php if ($nome != "") { ?>
 
             <div class="user-dropdown">
 
                 <button class="btn-login">
-                    <?php echo $_SESSION["nome"]; ?> ▼
+                    <?php echo $nome; ?> ▼
                 </button>
 
                 <div class="user-dropdown-content">
@@ -156,7 +164,9 @@ $total_favoritos =
         <?php } else { ?>
 
             <a href="login.php">
-                <button class="btn-login">Login</button>
+                <button class="btn-login">
+                    Login
+                </button>
             </a>
 
         <?php } ?>
