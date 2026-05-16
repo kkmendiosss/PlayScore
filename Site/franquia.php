@@ -1,3 +1,11 @@
+<?php
+session_start();
+include "conexao.php";
+$nome = $_SESSION["nome"] ?? "";
+$email = $_SESSION["email"] ?? "";
+$tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
+?>
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -14,41 +22,81 @@
 <body>
 
 <header class="navbar">
+
         <div class="logo">
             <img src="logo/Logo.png" alt="PlayScore">
         </div>
 
         <nav class="nav-links" id="navLinks">
-            <a href="#Home">Início</a>
-            <a href="#Catalogo">Catalogo</a>
+
+            <a href="index.php">Início</a>
+            <a href="#">Catalogo</a>
 
             <div class="dropdown">
-                <a href="#SobreNos">Sobre Nós</a>
+
+                <a href="#">Sobre Nós</a>
+
                 <div class="dropdown-content">
                     <a href="#">Contactos</a>
                     <a href="regras.html">Regras da Comunidade</a>
                     <a href="#">Politicas e privacidade</a>
                     <a href="faq.html">FAQ</a>
                 </div>
+
             </div>
 
             <div class="dropdown">
-                <a>Informação</a>
+
+                <a href="#">Informação</a>
+
                 <div class="dropdown-content">
-                    <a href="#jogodoano">Jogo do Ano</a>
+                    <a href="#">Jogo do Ano</a>
                     <a href="franquia.html">Franquia</a>
-                    <a href="lancamentos.html">Lançamentos </a>
+                    <a href="lancamentos.html">Lançamentos</a>
                 </div>
+
             </div>
+
         </nav>
 
-        <button class="btn-login">Login</button>
+        <?php if ($nome != "") { ?>
+
+            <div class="user-dropdown">
+
+                <button class="btn-login">
+                    <?php echo $nome; ?> ▼
+                </button>
+
+                <div class="user-dropdown-content">
+
+                    <a href="perfil.php">Perfil</a>
+
+                    <?php if ($tipo == "admin") { ?>
+                        <a href="dashboard.php">Dashboard</a>
+                    <?php } ?>
+
+                    <a href="logout.php">Sair</a>
+
+                </div>
+
+            </div>
+
+        <?php } else { ?>
+
+            <a href="login.php">
+                <button class="btn-login">
+                    Login
+                </button>
+            </a>
+
+        <?php } ?>
 
         <div class="hamburger" id="hamburger">
             <span></span>
             <span></span>
             <span></span>
         </div>
+
     </header>
 
     
