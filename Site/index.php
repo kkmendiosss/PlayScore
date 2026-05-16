@@ -115,10 +115,14 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
     </section>
 
     <!-- MAIN -->
+
+    <section class="banner">
+        <h1>Jogos Mais Votados</h1>
+    </section>
+
     <main class="container">
 
         <section class="games-section">
-            <h2>Jogos Mais Votados</h2>
 
             <div class="slider-container">
 

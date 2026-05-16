@@ -6,13 +6,9 @@ body {
 }
 
 .main-title {
-  background: linear-gradient(
-    90deg,
-    #7b2cbf 0%,
-    #5a189a 15%,
-    #240046 40%,
-    #0f0f14 100%
-  );
+  background: linear-gradient(to right, #ff007f 0%, transparent 100%);
+  background-repeat: no-repeat;
+  background-size: 50% 100%;
   padding: 30px 40px;
 }
 
