@@ -54,6 +54,7 @@ $nome = $_SESSION["nome"] ?? "Admin";
                 <a href="dashboard_jogos.php">Jogos</a>
                 <a href="dashboard_jogoano.php">Jogo do Ano</a>
                 <a href="dashboard_lancamento.php">Lançamentos</a>
+                <a href="dashboard_comentarios.php">Comentários</a>
                 <a href="dashboard_users.php">Users</a>
             </nav>
 

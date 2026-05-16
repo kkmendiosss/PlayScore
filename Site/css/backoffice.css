@@ -218,12 +218,13 @@ td:nth-child(7) {
     border: 1px solid rgba(255,255,255,0.08);
 }
 
-
 .actions {
     display: flex;
+    
+    justify-content: center;
     align-items: center;
     gap: 8px;
-    flex-wrap: nowrap;
+    height: 100%;
 }
 
 .btn {
@@ -234,6 +235,7 @@ td:nth-child(7) {
     font-size: 14px;
     transition: 0.2s ease;
     white-space: nowrap;
+    margin:0;
 }
 
 .view {

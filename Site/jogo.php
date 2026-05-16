@@ -1,7 +1,43 @@
 <?php
-
 session_start();
 include "conexao.php";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    if (!isset($_SESSION["id"])) {
+        die("Não estás logado.");
+    }
+
+    if (!isset($_POST["comentario"], $_POST["id_jogo"])) {
+        die("Dados em falta.");
+    }
+
+    $id_utilizador = $_SESSION["id"];
+    $id_jogo = intval($_POST["id_jogo"]);
+    $comentario = trim($_POST["comentario"]);
+
+    if ($comentario === "") {
+        die("Comentário vazio.");
+    }
+
+    $stmt = $conn->prepare("
+        INSERT INTO comentarios (comentario, id_utilizador, id_jogo)
+        VALUES (?, ?, ?)
+    ");
+
+    if (!$stmt) {
+        die("Erro prepare: " . $conn->error);
+    }
+
+    $stmt->bind_param("sii", $comentario, $id_utilizador, $id_jogo);
+
+    if (!$stmt->execute()) {
+        die("Erro execute: " . $stmt->error);
+    }
+
+    header("Location: jogo.php?id=" . $id_jogo);
+    exit();
+}
 
 $nome = $_SESSION["nome"] ?? "";
 $email = $_SESSION["email"] ?? "";
@@ -16,12 +52,10 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
-
     $jogo = $result->fetch_assoc();
 } else {
     die("Jogo não encontrado.");
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="pt">
@@ -199,37 +233,124 @@ if ($result->num_rows > 0) {
 
                 </section>
 
+                <?php
+
+                $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+                if ($page < 1) $page = 1;
+
+                $limit = 10;
+                $offset = ($page - 1) * $limit;
+                $stmt = $conn->prepare("SELECT c.comentario, c.data_comentario, u.nome, u.avatar_url
+                    FROM comentarios c
+                    JOIN users u ON c.id_utilizador = u.id_utilizador
+                    WHERE c.id_jogo = ?
+                    ORDER BY c.data_comentario DESC
+                    LIMIT ? OFFSET ?
+                ");
+
+                $stmt->bind_param("iii", $id, $limit, $offset);
+                $stmt->execute();
+
+                $result = $stmt->get_result();
+
+                $stmt2 = $conn->prepare("SELECT COUNT(*) as total
+                    FROM comentarios
+                    WHERE id_jogo = ?
+                ");
+
+                $stmt2->bind_param("i", $id);
+                $stmt2->execute();
+
+                $total = $stmt2->get_result()->fetch_assoc()['total'];
+
+                $total_pages = ceil($total / $limit);
+                ?>
+
+                <h2>Comentários</h2>
+
                 <section class="comments">
-                    <h2>Comentários <span>(2 comentário)</span></h2>
 
-                    <div class="comment">
-                        <div class="avatar"></div>
+                    <?php if ($result->num_rows > 0) { ?>
 
-                        <div>
-                            <h3>Joaquim Ronaldo</h3>
-                            <p>
-                                Gosto muito do jogo é muito Crimson e também muito Desert.
-                            </p>
+                        <?php while ($c = $result->fetch_assoc()) { ?>
+
+                            <div class="comment">
+                                <div class="avatar">
+                                    <?php if (!empty($c["avatar_url"])) { ?>
+                                        <img src="<?= htmlspecialchars($c["avatar_url"]) ?>" alt="avatar">
+                                    <?php } else { ?>
+                                        <div class="avatar-placeholder">👤</div>
+                                    <?php } ?>
+                                </div>
+
+                                <div>
+                                    <h3><?= htmlspecialchars($c["nome"]) ?></h3>
+
+                                    <p><?= nl2br(htmlspecialchars($c["comentario"])) ?></p>
+
+                                <small>
+                                    <?= date("d/m/Y H:i", strtotime($c["data_comentario"])) ?>
+                                </small>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="comment">
-                        <div class="avatar"></div>
+                    <?php } ?>
 
-                        <div>
-                            <h3>Carlos Sá</h3>
-                            <p>
-                                Teve coisas do jogo que não gostei principalmente
-                                a história, mas a gameplay no geral é muito boa.
-                            </p>
-                        </div>
-                    </div>
+                <?php } else { ?>
 
-                </section>
+                <p class="no-comments">
+                    Ainda não existem comentários. Sê o primeiro a comentar!
+                </p>
 
-            </div>
+            <?php } ?>
 
-            </div>
+        </section>
+
+
+<?php if ($total_pages > 1) { ?>
+
+<div class="pagination">
+
+    <?php if ($page > 1) { ?>
+        <a href="?id=<?= $id ?>&page=<?= $page - 1 ?>">← Anterior</a>
+    <?php } ?>
+
+    <?php for ($i = 1; $i <= $total_pages; $i++) { ?>
+
+        <a href="?id=<?= $id ?>&page=<?= $i ?>"
+           class="<?= ($i == $page) ? 'active' : '' ?>">
+            <?= $i ?>
+        </a>
+
+    <?php } ?>
+
+    <?php if ($page < $total_pages) { ?>
+        <a href="?id=<?= $id ?>&page=<?= $page + 1 ?>">Seguinte →</a>
+    <?php } ?>
+
+</div>
+
+<?php } ?>
+
+
+<!-- FORMULÁRIO COMENTÁRIO -->
+<?php if (isset($_SESSION["id"])) { ?>
+
+    <form method="POST" class="comment-form">
+        <input type="hidden" name="id_jogo" value="<?= $id ?>">
+
+        <textarea name="comentario" placeholder="Escreve um comentário..." required></textarea>
+
+        <button type="submit">Enviar</button>
+    </form>
+
+<?php } else { ?>
+
+    <p class="no-comments">
+        <a href="login.php">Faz login</a> para comentar.
+    </p>
+
+<?php } ?>
 
         </section>
 
