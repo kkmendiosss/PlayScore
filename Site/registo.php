@@ -1,6 +1,6 @@
 <?php
 include "conexao.php";
-
+$nome = $_SESSION["nome"] ?? "";
 $mensagem = "";
 $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
 if (isset($_POST["registar"])) {
