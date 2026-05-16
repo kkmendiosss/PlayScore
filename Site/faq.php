@@ -36,10 +36,10 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
         <a href="#">Sobre Nós</a>
 
         <div class="dropdown-content">
-          <a href="#">Contactos</a>
-          <a href="regras.html">Regras da Comunidade</a>
-          <a href="#">Politicas e privacidade</a>
-          <a href="faq.html">FAQ</a>
+          <a href="contactos.php">Contactos</a>
+          <a href="regras.php">Regras da Comunidade</a>
+          <a href="politicas.php">Politicas e privacidade</a>
+          <a href="faq.php">FAQ</a>
         </div>
 
       </div>
@@ -49,9 +49,9 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
         <a href="#">Informação</a>
 
         <div class="dropdown-content">
-          <a href="#">Jogo do Ano</a>
-          <a href="franquia.html">Franquia</a>
-          <a href="lancamentos.html">Lançamentos</a>
+          <a href="jogoano.php">Jogo do Ano</a>
+          <a href="franquia.php">Franquia</a>
+          <a href="lancamentos.php">Lançamentos</a>
         </div>
 
       </div>
