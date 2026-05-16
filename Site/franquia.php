@@ -8,6 +8,7 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
 
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,9 +20,10 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
     <link rel="icon" href="img/PlayScore_Icon.png">
 </head>
+
 <body>
 
-<header class="navbar">
+    <header class="navbar">
 
         <div class="logo">
             <img src="logo/Logo.png" alt="PlayScore">
@@ -37,10 +39,10 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
                 <a href="#">Sobre Nós</a>
 
                 <div class="dropdown-content">
-                    <a href="#">Contactos</a>
-                    <a href="regras.html">Regras da Comunidade</a>
-                    <a href="#">Politicas e privacidade</a>
-                    <a href="faq.html">FAQ</a>
+                    <a href="contactos.php">Contactos</a>
+                    <a href="regras.php">Regras da Comunidade</a>
+                    <a href="politicas.php">Politicas e privacidade</a>
+                    <a href="faq.php">FAQ</a>
                 </div>
 
             </div>
@@ -50,9 +52,9 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
                 <a href="#">Informação</a>
 
                 <div class="dropdown-content">
-                    <a href="#">Jogo do Ano</a>
-                    <a href="franquia.html">Franquia</a>
-                    <a href="lancamentos.html">Lançamentos</a>
+                    <a href="jogoano.php">Jogo do Ano</a>
+                    <a href="franquia.php">Franquia</a>
+                    <a href="lancamentos.php">Lançamentos</a>
                 </div>
 
             </div>
@@ -99,70 +101,70 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
 
     </header>
 
-    
+
     <div class="page-wrapper">
-    
-    <header class="franchise-header">
-        <h1>EXPANSÃO DE FRANQUIA</h1>
-        <p>Seja dono de um nó oficial da rede PlayScore. Implemente a tecnologia de rating na sua região.</p>
-    </header>
+
+        <header class="franchise-header">
+            <h1>EXPANSÃO DE FRANQUIA</h1>
+            <p>Seja dono de um nó oficial da rede PlayScore. Implemente a tecnologia de rating na sua região.</p>
+        </header>
 
         <section class="portfolio-section">
-        <h2>PORTFÓLIO DE JOGOS</h2>
-        <div class="games-container">
-            <div class="game-card">
-                <img src="img/Franquia/FZ.jpg" alt="Forza">
-                <h4>Forza</h4>
+            <h2>PORTFÓLIO DE JOGOS</h2>
+            <div class="games-container">
+                <div class="game-card">
+                    <img src="img/Franquia/FZ.jpg" alt="Forza">
+                    <h4>Forza</h4>
+                </div>
+                <div class="game-card">
+                    <img src="img/Franquia/Capa_de_Forza_Horizon_2.png" alt="Forza 2">
+                    <h4>Forza 2</h4>
+                </div>
+                <div class="game-card">
+                    <img src="img/Franquia/Capa_de_Forza_Horizon_3.jpeg" alt="Forza 3">
+                    <h4>Forza 3</h4>
+                </div>
             </div>
-            <div class="game-card">
-                <img src="img/Franquia/Capa_de_Forza_Horizon_2.png" alt="Forza 2">
-                <h4>Forza 2</h4>
+        </section>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>O QUE OFERECEMOS</h3>
+                <ul>
+                    <li>Direito de uso exclusivo do Algoritmo Heurístico V4.0.</li>
+                    <li>Proteção de território.</li>
+                    <li>Suporte técnico operacional.</li>
+                </ul>
             </div>
-            <div class="game-card">
-                <img src="img/Franquia/Capa_de_Forza_Horizon_3.jpeg" alt="Forza 3">
-                <h4>Forza 3</h4>
+
+            <div class="info-card">
+                <h3>ROI ESTIMADO</h3>
+                <p>Retorno de Investimento previsto entre 12 a 18 meses, com margem líquida superior a 25%.</p>
+            </div>
+
+            <div class="info-card">
+                <h3>ESTRUTURA FÍSICA</h3>
+                <p>Projetos arquitetónicos modulares para Lounges de Performance e Centros de Dados.</p>
+            </div>
+
+            <div class="info-card">
+                <h3>VANTAGENS DO FRANQUEADO</h3>
+                <p>Acesso ao Marketplace de Dados global e software de gestão proprietário.</p>
             </div>
         </div>
-    </section>
 
-    <div class="info-grid">
-        <div class="info-card">
-            <h3>O QUE OFERECEMOS</h3>
-            <ul>
-                <li>Direito de uso exclusivo do Algoritmo Heurístico V4.0.</li>
-                <li>Proteção de território.</li>
-                <li>Suporte técnico operacional.</li>
-            </ul>
-        </div>
 
-        <div class="info-card">
-            <h3>ROI ESTIMADO</h3>
-            <p>Retorno de Investimento previsto entre 12 a 18 meses, com margem líquida superior a 25%.</p>
-        </div>
 
-        <div class="info-card">
-            <h3>ESTRUTURA FÍSICA</h3>
-            <p>Projetos arquitetónicos modulares para Lounges de Performance e Centros de Dados.</p>
-        </div>
-
-        <div class="info-card">
-            <h3>VANTAGENS DO FRANQUEADO</h3>
-            <p>Acesso ao Marketplace de Dados global e software de gestão proprietário.</p>
-        </div>
     </div>
-
-
-
-</div>
-</div>
-<footer>
+    </div>
+    <footer>
         <div class="footer-content">
             <div class="footer-column brand-col">
                 <div class="logo">
                     <img src="logo/Logo.png" alt="PlayScore">
                 </div>
                 <p class="footer-desc">
-                   Ajudamos a transformar dados em decisões mais inteligentes.<br>
+                    Ajudamos a transformar dados em decisões mais inteligentes.<br>
                 </p>
             </div>
 
@@ -190,6 +192,7 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
             <p>© 2026 PLAYSCORE NETWORK. TODOS OS DIREITOS RESERVADOS.</p>
         </div>
     </footer>
-<script src="js/headerfooter.js"></script>
+    <script src="js/headerfooter.js"></script>
 </body>
+
 </html>
