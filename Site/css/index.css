@@ -82,6 +82,20 @@ body{
 
 /* MAIN */
 
+.banner{
+    margin-top: 10px;
+    background: linear-gradient(to right, #ff007f 0%, transparent 100%);
+    background-repeat: no-repeat;
+    background-size: 50% 100%;
+    padding:20px 40px;
+}
+
+.banner h1{
+    font-size:46px;
+    font-family:'Kode Mono', sans-serif;
+}
+
+
 .container{
     width:100%;
     padding:50px 80px;

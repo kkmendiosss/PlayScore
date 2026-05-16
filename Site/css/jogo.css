@@ -12,7 +12,9 @@ body{
 
 
 .banner{
-    background:linear-gradient(to right, #5f0b7e, transparent);
+    background: linear-gradient(to right, #ff007f 0%, transparent 100%);
+    background-repeat: no-repeat;
+    background-size: 50% 100%;
     padding:20px 40px;
 }
 
@@ -79,7 +81,7 @@ body{
 .details h2{
     font-size:40px;
     margin-bottom:20px;
-    font-family:'Abel', sans-serif;
+    font-family:'Kode Mono', sans-serif;
 }
 
 .about p{
