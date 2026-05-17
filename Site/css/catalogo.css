@@ -1,0 +1,201 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.fundo {
+    background-color: #171717; 
+    color: white;
+    font-family: 'Kode Mono', monospace;
+}
+
+.catalogo-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.catalogo-titulo {
+    color: #00ffff;
+    text-align: center;
+    font-size: 2.5rem;
+    text-decoration: underline;
+    text-underline-offset: 12px;
+    text-decoration-thickness: 3px; 
+    margin-bottom: 50px;
+    width: 100%;
+}
+
+.catalogo-ferramentas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.pesquisa-wrapper {
+    position: relative;
+    width: 300px;
+}
+
+.pesquisa-wrapper input {
+    width: 100%;
+    padding: 10px 40px 10px 15px;
+    border-radius: 20px;
+    border: none;
+    background-color: #555555;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+}
+
+.pesquisa-wrapper button {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.filtros-wrapper {
+    display: flex;
+    gap: 30px;
+}
+
+.filtro-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 5px 0;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.filtro-item:hover {
+    opacity: 0.8;   
+    border: none;     
+}
+
+.filtro-label {
+    color: #00ffff;
+    font-family: 'Kode Mono', monospace;
+    font-size: 1rem;
+    pointer-events: none;
+}
+
+.seta-rosa {
+    color: #ff00ff;
+    font-size: 0.7rem;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.filtro-item select {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    appearance: none;
+}
+
+.filtro-item select option {
+    background-color: #171717;
+    color: white;
+    font-family: 'Kode Mono', monospace;
+    padding: 10px;
+}
+
+.jogos-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.jogo-card {
+    width: 100%;
+    aspect-ratio: 3 / 4; 
+    border-radius: 10px;
+    overflow: hidden;
+    border: 3px solid #333;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+}
+
+.jogo-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.3);
+}
+
+.jogo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sem-resultados {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #aaa;
+}
+
+.paginacao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-paginacao {
+    color: #00ffff;
+    text-decoration: none;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-paginacao:hover {
+    color: white;
+}
+
+.pagina-atual {
+    border: 1px solid #ff00ff;
+    padding: 2px 8px;
+    color: #00ffff;
+    font-weight: bold;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .jogos-grid {
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 15px;
+    }
+
+    .catalogo-ferramentas {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .pesquisa-wrapper {
+        width: 100%;
+    }
+
+    .filtros-wrapper {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
