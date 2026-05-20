@@ -101,7 +101,7 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
 
     <section class="hero">
 
-        <img src="https://media.gq-magazine.co.uk/photos/645b5c3c8223a5c3801b8b26/16:9/w_1920,c_limit/100-best-games-hp-b.jpg" alt="Banner Principal" class="hero-image">
+        <img src="https://sempretopgames.com.br/wp-content/uploads/2024/10/Melhores-Jogos-de-Videogames.jpg" alt="Banner Principal" class="hero-image">
 
         <div class="overlay"></div>
 
