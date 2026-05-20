@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <nav class="nav-links" id="navLinks">
 
             <a href="index.php">Início</a>
-            <a href="#">Catalogo</a>
+            <a href="catalogo.php">Catalogo</a>
 
             <div class="dropdown">
 
@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <a href="#">Informação</a>
 
                 <div class="dropdown-content">
-                    <a href="jogoano.php">Jogo do Ano</a>
+                    <a href="jogodoano.php">Jogo do Ano</a>
                     <a href="franquia.php">Franquia</a>
                     <a href="lancamentos.php">Lançamentos</a>
                 </div>
@@ -211,11 +211,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="footer-column nav-col">
                 <h3>Navegação</h3>
-                <a href="#">Início</a><a href="#">Sobre Nós</a><a href="#">Catálogo</a>
+                <a href="index.php">Início</a><a href="sobrenos.php">Sobre Nós</a><a href="catalogo.php">Catálogo</a>
             </div>
             <div class="footer-column legal-col">
                 <h3>Legalidade</h3>
-                <a href="#">Regras</a><a href="#">Privacidade</a><a href="#">Contactos</a>
+                <a href="regras.php">Regras</a><a href="politicas.php">Privacidade</a><a href="contactos.php">Contactos</a>
             </div>
             <div class="footer-social">
                 <span>Discord</span><span>Twitter</span><span>LinkedIn</span>
