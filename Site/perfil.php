@@ -339,16 +339,16 @@ $total_favoritos =
 
             <div class="footer-column nav-col">
                 <h3>Navegação</h3>
-                <a href="#">Início</a>
-                <a href="#">Sobre Nós</a>
-                <a href="#">Catalogo</a>
+                <a href="index.php">Início</a>
+                <a href="sobrenos.php">Sobre Nós</a>
+                <a href="catalogo.php">Catalogo</a>
             </div>
 
             <div class="footer-column legal-col">
                 <h3>Legalidade</h3>
-                <a href="#">Regras da Comunidade</a>
-                <a href="#">Política de privacidade</a>
-                <a href="#">Contactos</a>
+                <a href="regras.php">Regras da Comunidade</a>
+                <a href="politicas.php">Política de privacidade</a>
+                <a href="contactos.php">Contactos</a>
             </div>
 
             <div class="footer-social">
