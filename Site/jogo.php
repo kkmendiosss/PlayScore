@@ -2,13 +2,13 @@
 session_start();
 include "conexao.php";
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["comentario"])) {
 
     if (!isset($_SESSION["id"])) {
         die("Não estás logado.");
     }
 
-    if (!isset($_POST["comentario"], $_POST["id_jogo"])) {
+    if (!isset($_POST["id_jogo"])) {
         die("Dados em falta.");
     }
 
@@ -39,22 +39,123 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     exit();
 }
 
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["classificacao"])) {
+
+    if (!isset($_SESSION["id"])) {
+        die("Tens de estar logado.");
+    }
+
+    $id_utilizador = $_SESSION["id"];
+    $id_jogo = intval($_POST["id_jogo"]);
+    $voto = intval($_POST["classificacao"]);
+
+    if ($voto < 1 || $voto > 5) {
+        die("Voto inválido.");
+    }
+
+    // 🔥 VERIFICAR SE JÁ VOTOU
+    $check = $conn->prepare("
+        SELECT id 
+        FROM avaliacoes 
+        WHERE id_utilizador = ? AND id_jogo = ?
+    ");
+    $check->bind_param("ii", $id_utilizador, $id_jogo);
+    $check->execute();
+    $exists = $check->get_result()->fetch_assoc();
+
+    if ($exists) {
+
+        // 🔄 UPDATE VOTO
+        $stmt = $conn->prepare("
+            UPDATE avaliacoes 
+            SET classificacao = ?
+            WHERE id_utilizador = ? AND id_jogo = ?
+        ");
+        $stmt->bind_param("iii", $voto, $id_utilizador, $id_jogo);
+        $stmt->execute();
+
+    } else {
+
+        // ➕ INSERT VOTO
+        $stmt = $conn->prepare("
+            INSERT INTO avaliacoes (id_utilizador, id_jogo, classificacao)
+            VALUES (?, ?, ?)
+        ");
+        $stmt->bind_param("iii", $id_utilizador, $id_jogo, $voto);
+        $stmt->execute();
+    }
+
+    // 📊 RECALCULAR MÉDIA E TOTAL
+    $avg = $conn->prepare("
+        SELECT AVG(classificacao) AS media, COUNT(*) AS total
+        FROM avaliacoes
+        WHERE id_jogo = ?
+    ");
+    $avg->bind_param("i", $id_jogo);
+    $avg->execute();
+    $data = $avg->get_result()->fetch_assoc();
+
+    $media = $data["media"];
+    $total = $data["total"];
+
+    // 🎯 ATUALIZAR JOGO
+    $update = $conn->prepare("
+        UPDATE jogos 
+        SET classificacao = ?, num_votos = ?
+        WHERE id_jogo = ?
+    ");
+    $update->bind_param("dii", $media, $total, $id_jogo);
+    $update->execute();
+
+    // 🔔 REDIRECIONAR COM TOAST
+    header("Location: jogo.php?id=" . $id_jogo . "&rated=1");
+    exit();
+}
+
 $nome = $_SESSION["nome"] ?? "";
 $email = $_SESSION["email"] ?? "";
 $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
 
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-$stmt = $conn->prepare("SELECT * FROM jogos WHERE id_jogo = ?");
-$stmt->bind_param("i", $id);
-$stmt->execute();
+$stmt_jogo = $conn->prepare("SELECT jogos.*, generos.nome AS nome_genero
+    FROM jogos
+    LEFT JOIN generos ON jogos.id_genero = generos.id_genero
+    WHERE jogos.id_jogo = ?
+");
 
-$result = $stmt->get_result();
+$stmt_jogo->bind_param("i", $id);
+$stmt_jogo->execute();
+$result = $stmt_jogo->get_result();
 
 if ($result->num_rows > 0) {
     $jogo = $result->fetch_assoc();
 } else {
     die("Jogo não encontrado.");
+}
+
+$user_vote = null;
+
+if (isset($_SESSION["id"])) {
+
+    $stmt_vote = $conn->prepare("
+        SELECT classificacao 
+        FROM avaliacoes 
+        WHERE id_utilizador = ? AND id_jogo = ?
+    ");
+
+    $stmt_vote->bind_param("ii", $_SESSION["id"], $id);
+    $stmt_vote->execute();
+
+    $res = $stmt_vote->get_result()->fetch_assoc();
+
+    if ($res) {
+        $user_vote = $res["classificacao"];
+    }
+}
+
+if (!$jogo) {
+    die("Jogo não encontrado (ID: $id)");
 }
 ?>
 <!DOCTYPE html>
@@ -171,9 +272,38 @@ if ($result->num_rows > 0) {
 
                     <h2>Playscore</h2>
 
-                    <div class="score">
-                        <?= $jogo['classificacao'] ?>/5
+                    <div class="rating-box">
+
+                    <div class="rating-info">
+                        ⭐ <strong><?= number_format($jogo['classificacao'], 1) ?></strong>/5
+                        <span>(<?= $jogo['num_votos'] ?> votos)</span>
                     </div>
+
+                    <form method="POST" action="jogo.php?id=<?= $jogo['id_jogo'] ?>">
+
+                        <input type="hidden" name="id_jogo" value="<?= $jogo['id_jogo'] ?>">
+
+                        <div class="stars">
+
+                            <?php for ($i = 5; $i >= 1; $i--): ?>
+                                <input 
+                                    type="radio" 
+                                    name="classificacao" 
+                                    value="<?= $i ?>" 
+                                    id="star<?= $i ?>"
+                                    <?= ($user_vote == $i) ? 'checked' : '' ?>
+                                >
+                                <label for="star<?= $i ?>">★</label>
+                                <?php endfor; ?>
+
+                            </div>
+
+                            <button type="submit">Guardar avaliação</button>
+
+                        </form>
+                    </div>
+
+                    <div id="toast" class="toast">Avaliação guardada!</div>
 
                     <p>
                         <strong>Desenvolvedor:</strong><br>
@@ -194,6 +324,11 @@ if ($result->num_rows > 0) {
                     <p>
                         <strong>Lançamento:</strong><br>
                         <?= $jogo['data_lancamento'] ?>
+                    </p>
+
+                    <p>
+                        <strong>Gênero:</strong><br>
+                        <?= $jogo['nome_genero'] ?>
                     </p>
 
                     <a href="#" class="favorite">Favoritar</a>
@@ -396,7 +531,7 @@ if ($result->num_rows > 0) {
         © 2026 PLAYSCORE NETWORK. TODOS OS DIREITOS RESERVADOS.
     </div>
 
-    <script src="jogo.js"></script>
+    <script src="js/jogo.js"></script>
 </body>
 
 </html>
