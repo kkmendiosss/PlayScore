@@ -10,13 +10,14 @@ if (isset($_POST["entrar"])) {
     $password = $_POST["password"];
 
     $sql = "SELECT * FROM users WHERE email = '$email' LIMIT 1";
+
     $resultado = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($resultado) == 1) {
 
         $user = mysqli_fetch_assoc($resultado);
 
-        if ($password == $user["password_hash"]) {
+        if (password_verify($password, $user["password_hash"])) {
 
             $_SESSION["id"] = $user["id_utilizador"];
             $_SESSION["nome"] = $user["nome"];
@@ -26,9 +27,11 @@ if (isset($_POST["entrar"])) {
             header("Location: index.php");
             exit();
         } else {
+
             $erro = "Palavra-passe errada.";
         }
     } else {
+
         $erro = "Conta não encontrada.";
     }
 }
@@ -55,13 +58,13 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
     <header class="navbar">
 
         <div class="logo">
-            <img src="logo/Logo.png" alt="PlayScore">
+            <a href="index.php"><img src="logo/Logo.png" alt="PlayScore"></a>
         </div>
 
         <nav class="nav-links" id="navLinks">
 
             <a href="index.php">Início</a>
-            <a href="#">Catalogo</a>
+            <a href="catalogo.php">Catalogo</a>
 
             <div class="dropdown">
 
@@ -81,7 +84,7 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
                 <a href="#">Informação</a>
 
                 <div class="dropdown-content">
-                    <a href="jogoano.php">Jogo do Ano</a>
+                    <a href="jogodoano.php">Jogo do Ano</a>
                     <a href="franquia.php">Franquia</a>
                     <a href="lancamentos.php">Lançamentos</a>
                 </div>
@@ -175,16 +178,16 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
 
             <div class="footer-column nav-col">
                 <h3>Navegação</h3>
-                <a href="#">Início</a>
-                <a href="#">Sobre Nós</a>
-                <a href="#">Catalogo</a>
+                <a href="index.php">Início</a>
+                <a href="sobrenos.php">Sobre Nós</a>
+                <a href="catalogo.php">Catalogo</a>
             </div>
 
             <div class="footer-column legal-col">
                 <h3>Legalidade</h3>
                 <a href="regras.html">Regras da Comunidade</a>
-                <a href="#">Política de privacidade</a>
-                <a href="#">Contactos</a>
+                <a href="politicas.php">Política de privacidade</a>
+                <a href="contactos.php">Contactos</a>
             </div>
 
             <div class="footer-social">

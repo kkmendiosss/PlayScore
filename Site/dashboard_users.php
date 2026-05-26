@@ -35,7 +35,7 @@ $resultado = mysqli_query($conn, $sql);
 <head>
     <meta charset="UTF-8">
     <title>Backoffice - Users</title>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="css/backoffice.css">
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
@@ -70,16 +70,20 @@ $resultado = mysqli_query($conn, $sql);
         </aside>
 
         <main class="main-content">
-
             <div class="topbar">
                 <div>
                     <h1>Users</h1>
                     <p>Gestão dos utilizadores registados</p>
                 </div>
 
-                <span>Admin: <?php echo $nome_admin; ?></span>
-            </div>
+                <div class="topbar-actions">
+                    <a href="dashboard_adicionar_user.php" class="add-btn">
+                        + Adicionar
+                    </a>
 
+                    <span>Admin: <?php echo $nome_admin; ?></span>
+                </div>
+            </div>
             <section class="table-card">
 
                 <table>
@@ -119,15 +123,26 @@ $resultado = mysqli_query($conn, $sql);
                                 </td>
 
                                 <td class="actions">
-                                    <a href="ver_user.php?id=<?php echo $user["id_utilizador"]; ?>" class="btn view">Ver</a>
 
-                                    <a href="editar_user.php?id=<?php echo $user["id_utilizador"]; ?>" class="btn edit">Editar</a>
+                                    <a href="dashboard_ver_user.php?id=<?php echo $user["id_utilizador"]; ?>"
+                                        class="btn view"
+                                        title="Ver">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </a>
+
+                                    <a href="dashboard_editar_user.php?id=<?php echo $user["id_utilizador"]; ?>"
+                                        class="btn edit"
+                                        title="Editar">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </a>
 
                                     <a href="dashboard_users.php?eliminar=<?php echo $user["id_utilizador"]; ?>"
                                         class="btn delete"
+                                        title="Eliminar"
                                         onclick="return confirm('Tens a certeza que queres eliminar este utilizador?');">
-                                        Eliminar
+                                        <i class="fa-solid fa-trash"></i>
                                     </a>
+
                                 </td>
                             </tr>
 

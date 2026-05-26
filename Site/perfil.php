@@ -104,13 +104,13 @@ $total_favoritos =
     <header class="navbar">
 
         <div class="logo">
-            <img src="logo/Logo.png" alt="PlayScore">
+            <a href="index.php"><img src="logo/Logo.png" alt="PlayScore"></a>
         </div>
 
         <nav class="nav-links" id="navLinks">
 
             <a href="index.php">Início</a>
-            <a href="#">Catalogo</a>
+            <a href="catalogo.php">Catalogo</a>
 
             <div class="dropdown">
 
@@ -130,7 +130,7 @@ $total_favoritos =
                 <a href="#">Informação</a>
 
                 <div class="dropdown-content">
-                    <a href="jogoano.php">Jogo do Ano</a>
+                    <a href="jogodoano.php">Jogo do Ano</a>
                     <a href="franquia.php">Franquia</a>
                     <a href="lancamentos.php">Lançamentos</a>
                 </div>
@@ -326,7 +326,41 @@ $total_favoritos =
         </section>
 
     </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column brand-col">
+                <div class="logo">
+                    <img src="logo/Logo.png" alt="PlayScore">
+                </div>
+                <p class="footer-desc">
+                    Ajudamos a transformar dados em decisões mais inteligentes.<br>
+                </p>
+            </div>
 
+            <div class="footer-column nav-col">
+                <h3>Navegação</h3>
+                <a href="index.php">Início</a>
+                <a href="sobrenos.php">Sobre Nós</a>
+                <a href="catalogo.php">Catalogo</a>
+            </div>
+
+            <div class="footer-column legal-col">
+                <h3>Legalidade</h3>
+                <a href="regras.php">Regras da Comunidade</a>
+                <a href="politicas.php">Política de privacidade</a>
+                <a href="contactos.php">Contactos</a>
+            </div>
+
+            <div class="footer-social">
+                <span>Discord</span>
+                <span>Twitter</span>
+                <span>LinkedIn</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 PLAYSCORE NETWORK. TODOS OS DIREITOS RESERVADOS.</p>
+        </div>
+    </footer>
     <script>
         document.getElementById("toggleBioEdit").onclick = function() {
 

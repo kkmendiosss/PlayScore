@@ -4,6 +4,18 @@ include "conexao.php";
 $nome = $_SESSION["nome"] ?? "";
 $email = $_SESSION["email"] ?? "";
 $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
+
+$sql_avaliacoes = "SELECT COUNT(classificacao) AS total FROM jogos";
+$result_avaliacoes = mysqli_query($conn, $sql_avaliacoes);
+$total_avaliacoes = mysqli_fetch_assoc($result_avaliacoes)["total"];
+
+$sql_comentarios = "SELECT COUNT(*) AS total FROM comentarios";
+$result_comentarios = mysqli_query($conn, $sql_comentarios);
+$total_comentarios = mysqli_fetch_assoc($result_comentarios)["total"];
+
+$sql_jogos = "SELECT COUNT(*) AS total FROM jogos";
+$result_jogos = mysqli_query($conn, $sql_jogos);
+$total_jogos = mysqli_fetch_assoc($result_jogos)["total"];
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -24,13 +36,13 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
     <header class="navbar">
 
         <div class="logo">
-            <img src="logo/Logo.png" alt="PlayScore">
+            <a href="index.php"><img src="logo/Logo.png" alt="PlayScore"></a>
         </div>
 
         <nav class="nav-links" id="navLinks">
 
             <a href="index.php">Início</a>
-            <a href="#">Catalogo</a>
+            <a href="catalogo.php">Catalogo</a>
 
             <div class="dropdown">
 
@@ -50,7 +62,7 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
                 <a href="#">Informação</a>
 
                 <div class="dropdown-content">
-                    <a href="jogoano.php">Jogo do Ano</a>
+                    <a href="jogodoano.php">Jogo do Ano</a>
                     <a href="franquia.php">Franquia</a>
                     <a href="lancamentos.php">Lançamentos</a>
                 </div>
@@ -101,7 +113,7 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
 
     <section class="hero">
 
-        <img src="https://media.gq-magazine.co.uk/photos/645b5c3c8223a5c3801b8b26/16:9/w_1920,c_limit/100-best-games-hp-b.jpg" alt="Banner Principal" class="hero-image">
+        <img src="https://sempretopgames.com.br/wp-content/uploads/2024/10/Melhores-Jogos-de-Videogames.jpg" alt="Banner Principal" class="hero-image">
 
         <div class="overlay"></div>
 
@@ -132,18 +144,20 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
 
                     <div class="game-card">
                         <a href="jogo.php?id=2">
-                            <img src="https://store-images.s-microsoft.com/image/apps.45738.13616283370123336.55bc585b-1fc2-4652-8965-61111d6975e0.5236f2e9-a0f4-4fc1-8aba-dbf96b812b95" alt="">
+                            <img src="https://images.igdb.com/igdb/image/upload/t_cover_big_2x/co8yd0.jpg" alt="">
                         </a>
                     </div>
 
                     <div class="game-card">
                         <a href="jogo.php?id=3">
-                            <img src="https://store-images.s-microsoft.com/image/apps.60342.13547047233571036.013c5ec3-a5d7-4e8a-83e7-470299116376.2346f664-c01a-4b06-a92c-4819a43e8f75" alt="">
+                            <img src="https://images.igdb.com/igdb/image/upload/t_cover_big_2x/cobkt6.jpg" alt="">
                         </a>
                     </div>
 
-                    <div class="game-card" data-id="pragmata">
-                        <img src="https://upload.wikimedia.org/wikipedia/en/8/89/Pragmata_cover.jpg" alt="">
+                    <div class="game-card">
+                        <a href="jogo.php?id=4">
+                            <img src="https://images.igdb.com/igdb/image/upload/t_cover_big_2x/co65ac.jpg" alt="">
+                        </a>
                     </div>
 
                 </div>
@@ -153,22 +167,23 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
             </div>
         </section>
 
-        <!-- STATS -->
         <section class="stats">
+
             <div class="stat-box">
                 <h3>Avaliações</h3>
-                <span>000</span>
+                <span><?php echo $total_avaliacoes; ?></span>
             </div>
 
             <div class="stat-box">
                 <h3>Comentários</h3>
-                <span>000</span>
+                <span><?php echo $total_comentarios; ?></span>
             </div>
 
             <div class="stat-box">
                 <h3>Jogos</h3>
-                <span>000</span>
+                <span><?php echo $total_jogos; ?></span>
             </div>
+
         </section>
 
     </main>
@@ -186,16 +201,16 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
 
             <div class="footer-column nav-col">
                 <h3>Navegação</h3>
-                <a href="#">Início</a>
-                <a href="#">Sobre Nós</a>
-                <a href="#">Catalogo</a>
+                <a href="index.php">Início</a>
+                <a href="sobrenos.php">Sobre Nós</a>
+                <a href="catalogo.php">Catalogo</a>
             </div>
 
             <div class="footer-column legal-col">
                 <h3>Legalidade</h3>
-                <a href="#">Regras da Comunidade</a>
-                <a href="#">Política de privacidade</a>
-                <a href="#">Contactos</a>
+                <a href="regras.php">Regras da Comunidade</a>
+                <a href="politicas.php">Política de privacidade</a>
+                <a href="contactos.php">Contactos</a>
             </div>
 
             <div class="footer-social">

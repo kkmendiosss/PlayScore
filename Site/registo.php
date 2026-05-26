@@ -1,15 +1,18 @@
 <?php
+session_start();
 include "conexao.php";
+
 $nome = $_SESSION["nome"] ?? "";
 $mensagem = "";
 $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
+
 if (isset($_POST["registar"])) {
 
     $nome = mysqli_real_escape_string($conn, $_POST["nome"]);
     $email = mysqli_real_escape_string($conn, $_POST["email"]);
-    $password = mysqli_real_escape_string($conn, $_POST["password"]);
 
-    // Verificar se email já existe
+    $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+
     $sql_check = "SELECT * FROM users WHERE email = '$email'";
     $result_check = mysqli_query($conn, $sql_check);
 
@@ -52,13 +55,13 @@ if (isset($_POST["registar"])) {
     <header class="navbar">
 
         <div class="logo">
-            <img src="logo/Logo.png" alt="PlayScore">
+            <a href="index.php"><img src="logo/Logo.png" alt="PlayScore"></a>
         </div>
 
         <nav class="nav-links" id="navLinks">
 
             <a href="index.php">Início</a>
-            <a href="#">Catalogo</a>
+            <a href="catalogo.php">Catalogo</a>
 
             <div class="dropdown">
 
@@ -78,7 +81,7 @@ if (isset($_POST["registar"])) {
                 <a href="#">Informação</a>
 
                 <div class="dropdown-content">
-                    <a href="jogoano.php">Jogo do Ano</a>
+                    <a href="jogodoano.php">Jogo do Ano</a>
                     <a href="franquia.php">Franquia</a>
                     <a href="lancamentos.php">Lançamentos</a>
                 </div>
@@ -184,9 +187,9 @@ if (isset($_POST["registar"])) {
 
                 <h3>Navegação</h3>
 
-                <a href="#">Início</a>
-                <a href="#">Sobre Nós</a>
-                <a href="#">Catalogo</a>
+                <a href="index.php">Início</a>
+                <a href="sobrenos.php">Sobre Nós</a>
+                <a href="catalogo.php">Catalogo</a>
 
             </div>
 
@@ -195,8 +198,8 @@ if (isset($_POST["registar"])) {
                 <h3>Legalidade</h3>
 
                 <a href="regras.html">Regras da Comunidade</a>
-                <a href="#">Política de privacidade</a>
-                <a href="#">Contactos</a>
+                <a href="politicas.php">Política de privacidade</a>
+                <a href="contactos.php">Contactos</a>
 
             </div>
 
