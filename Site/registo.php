@@ -1,15 +1,18 @@
 <?php
+session_start();
 include "conexao.php";
+
 $nome = $_SESSION["nome"] ?? "";
 $mensagem = "";
 $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
+
 if (isset($_POST["registar"])) {
 
     $nome = mysqli_real_escape_string($conn, $_POST["nome"]);
     $email = mysqli_real_escape_string($conn, $_POST["email"]);
-    $password = mysqli_real_escape_string($conn, $_POST["password"]);
 
-    // Verificar se email já existe
+    $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+
     $sql_check = "SELECT * FROM users WHERE email = '$email'";
     $result_check = mysqli_query($conn, $sql_check);
 

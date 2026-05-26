@@ -10,13 +10,14 @@ if (isset($_POST["entrar"])) {
     $password = $_POST["password"];
 
     $sql = "SELECT * FROM users WHERE email = '$email' LIMIT 1";
+
     $resultado = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($resultado) == 1) {
 
         $user = mysqli_fetch_assoc($resultado);
 
-        if ($password == $user["password_hash"]) {
+        if (password_verify($password, $user["password_hash"])) {
 
             $_SESSION["id"] = $user["id_utilizador"];
             $_SESSION["nome"] = $user["nome"];
@@ -26,9 +27,11 @@ if (isset($_POST["entrar"])) {
             header("Location: index.php");
             exit();
         } else {
+
             $erro = "Palavra-passe errada.";
         }
     } else {
+
         $erro = "Conta não encontrada.";
     }
 }
