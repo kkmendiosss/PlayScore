@@ -77,7 +77,7 @@ $resultado = mysqli_query($conn, $sql);
                 </div>
 
                 <div class="topbar-actions">
-                    <a href="adicionar_user.php" class="add-btn">
+                    <a href="dashboard_adicionar_user.php" class="add-btn">
                         + Adicionar
                     </a>
 
@@ -123,9 +123,9 @@ $resultado = mysqli_query($conn, $sql);
                                 </td>
 
                                 <td class="actions">
-                                    <a href="ver_user.php?id=<?php echo $user["id_utilizador"]; ?>" class="btn view">Ver</a>
+                                    <a href="dashboard_ver_user.php?id=<?php echo $user["id_utilizador"]; ?>" class="btn view">Ver</a>
 
-                                    <a href="editar_user.php?id=<?php echo $user["id_utilizador"]; ?>" class="btn edit">Editar</a>
+                                    <a href="dashboard_editar_user.php?id=<?php echo $user["id_utilizador"]; ?>" class="btn edit">Editar</a>
 
                                     <a href="dashboard_users.php?eliminar=<?php echo $user["id_utilizador"]; ?>"
                                         class="btn delete"

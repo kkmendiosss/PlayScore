@@ -298,6 +298,79 @@ td:nth-child(7) {
     transform: scale(0.98);
 }
 
+.view-user-card {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.view-user-header {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.view-user-avatar {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.view-user-placeholder {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: #151518;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 42px;
+    font-weight: bold;
+    color: white;
+}
+
+.view-user-header h2 {
+    font-size: 32px;
+    margin-bottom: 6px;
+}
+
+.view-user-header p {
+    color: #bdbdbd;
+    font-size: 17px;
+}
+
+.view-user-info {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.info-box {
+    background: #111113;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 20px;
+    min-width: 180px;
+}
+
+.info-box span {
+    display: block;
+    color: #9d9d9d;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.info-box strong {
+    font-size: 18px;
+    color: white;
+}
+
+.view-user-buttons {
+    display: flex;
+    gap: 15px;
+}
+
 .view {
     background: #17436f;
 }
