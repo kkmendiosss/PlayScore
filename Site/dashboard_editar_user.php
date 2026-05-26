@@ -37,13 +37,28 @@ if (isset($_POST["guardar"])) {
     $email = $_POST["email"];
     $tipo = $_POST["tipo_utilizador"];
     $avatar = $_POST["avatar_url"];
+    $password = $_POST["password"];
 
-    $sql_update = "UPDATE users SET
-        nome = '$nome',
-        email = '$email',
-        tipo_utilizador = '$tipo',
-        avatar_url = '$avatar'
-        WHERE id_utilizador = $id";
+    if (!empty($password)) {
+
+        $password_hash = password_hash($password, PASSWORD_DEFAULT);
+
+        $sql_update = "UPDATE users SET
+            nome = '$nome',
+            email = '$email',
+            tipo_utilizador = '$tipo',
+            avatar_url = '$avatar',
+            password_hash = '$password_hash'
+            WHERE id_utilizador = $id";
+    } else {
+
+        $sql_update = "UPDATE users SET
+            nome = '$nome',
+            email = '$email',
+            tipo_utilizador = '$tipo',
+            avatar_url = '$avatar'
+            WHERE id_utilizador = $id";
+    }
 
     if (mysqli_query($conn, $sql_update)) {
 
@@ -64,7 +79,7 @@ if (isset($_POST["guardar"])) {
     <title>Editar User</title>
 
     <link rel="stylesheet" href="css/backoffice.css">
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
 </head>
@@ -123,7 +138,9 @@ if (isset($_POST["guardar"])) {
                         name="email"
                         value="<?php echo $user["email"]; ?>"
                         required>
-
+                    <input type="password"
+                        name="password"
+                        placeholder="Nova Password">
                     <input type="text"
                         name="avatar_url"
                         value="<?php echo $user["avatar_url"]; ?>"

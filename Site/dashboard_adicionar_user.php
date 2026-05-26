@@ -2,23 +2,13 @@
 session_start();
 include "conexao.php";
 
-if (!isset($_SESSION["id"])) {
-    header("Location: login.php");
-    exit();
-}
-
-if ($_SESSION["tipo_utilizador"] != "admin") {
-    header("Location: index.php");
-    exit();
-}
-
-$mensagem = "";
-
 if (isset($_POST["adicionar"])) {
 
     $nome = $_POST["nome"];
     $email = $_POST["email"];
-    $password = $_POST["password"];
+
+    $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+
     $tipo = $_POST["tipo_utilizador"];
 
     $sql = "INSERT INTO users (nome, email, password_hash, tipo_utilizador)
