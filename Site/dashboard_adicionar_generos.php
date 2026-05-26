@@ -97,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <div class="generos-form-buttons">
                         <button type="submit" class="btn view">
-                            Salvar Género
+                            Salvar
                         </button>
                         <a href="dashboard_generos.php" class="btn delete">
                             Cancelar
