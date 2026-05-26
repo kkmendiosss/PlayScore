@@ -5,7 +5,7 @@ $nome = $_SESSION["nome"] ?? "";
 $email = $_SESSION["email"] ?? "";
 $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
 
-$sql_avaliacoes = "SELECT COUNT(classificacao) AS total FROM jogos";
+$sql_avaliacoes = "SELECT COUNT(*) AS total FROM avaliacoes";
 $result_avaliacoes = mysqli_query($conn, $sql_avaliacoes);
 $total_avaliacoes = mysqli_fetch_assoc($result_avaliacoes)["total"];
 
