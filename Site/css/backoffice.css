@@ -219,6 +219,67 @@ tbody tr:hover {
     border-color: #7b2ff7;
 }
 
+.generos-form-message {
+    color: #ff4fbd;
+    margin-bottom: 20px;
+    font-family: 'Kode Mono', monospace;
+}
+
+.generos-form-insert {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 500px;
+}
+
+.generos-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.generos-form-group label {
+    color: #ff4fbd;
+    font-family: 'Kode Mono', monospace;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.generos-form-group input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 12px 15px;
+    border-radius: 8px;
+    color: white;
+    font-family: 'Abel', sans-serif;
+    font-size: 16px;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.generos-form-group input:focus {
+    border-color: #ff4fbd;
+}
+
+.generos-form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.generos-form-buttons .btn {
+    font-family: 'Abel', sans-serif;
+    font-size: 16px;
+    padding: 12px 24px;
+    text-align: center;
+}
+
+.generos-form-buttons button.btn {
+    border: none;
+    cursor: pointer;
+}
+
 .topbar-actions {
     display: flex;
     align-items: center;
