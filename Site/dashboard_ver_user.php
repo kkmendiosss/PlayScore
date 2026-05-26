@@ -38,7 +38,7 @@ if (!$user) {
     <title>Ver User</title>
 
     <link rel="stylesheet" href="css/backoffice.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
 </head>
@@ -136,7 +136,7 @@ if (!$user) {
 
                     <a href="dashboard_editar_user.php?id=<?php echo $user["id_utilizador"]; ?>"
                         class="btn edit">
-                        Editar
+                        <i class="fa-solid fa-pen"></i>
                     </a>
 
                     <a href="dashboard_users.php"
