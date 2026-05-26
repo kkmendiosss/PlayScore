@@ -4,6 +4,18 @@ include "conexao.php";
 $nome = $_SESSION["nome"] ?? "";
 $email = $_SESSION["email"] ?? "";
 $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
+
+$sql_avaliacoes = "SELECT COUNT(classificacao) AS total FROM jogos";
+$result_avaliacoes = mysqli_query($conn, $sql_avaliacoes);
+$total_avaliacoes = mysqli_fetch_assoc($result_avaliacoes)["total"];
+
+$sql_comentarios = "SELECT COUNT(*) AS total FROM comentarios";
+$result_comentarios = mysqli_query($conn, $sql_comentarios);
+$total_comentarios = mysqli_fetch_assoc($result_comentarios)["total"];
+
+$sql_jogos = "SELECT COUNT(*) AS total FROM jogos";
+$result_jogos = mysqli_query($conn, $sql_jogos);
+$total_jogos = mysqli_fetch_assoc($result_jogos)["total"];
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -24,7 +36,7 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
     <header class="navbar">
 
         <div class="logo">
-            <img src="logo/Logo.png" alt="PlayScore">
+            <a href="index.php"><img src="logo/Logo.png" alt="PlayScore"></a>
         </div>
 
         <nav class="nav-links" id="navLinks">
@@ -155,22 +167,23 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
             </div>
         </section>
 
-        <!-- STATS -->
         <section class="stats">
+
             <div class="stat-box">
                 <h3>Avaliações</h3>
-                <span>000</span>
+                <span><?php echo $total_avaliacoes; ?></span>
             </div>
 
             <div class="stat-box">
                 <h3>Comentários</h3>
-                <span>000</span>
+                <span><?php echo $total_comentarios; ?></span>
             </div>
 
             <div class="stat-box">
                 <h3>Jogos</h3>
-                <span>000</span>
+                <span><?php echo $total_jogos; ?></span>
             </div>
+
         </section>
 
     </main>

@@ -55,7 +55,7 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
     <header class="navbar">
 
         <div class="logo">
-            <img src="logo/Logo.png" alt="PlayScore">
+            <a href="index.php"><img src="logo/Logo.png" alt="PlayScore"></a>
         </div>
 
         <nav class="nav-links" id="navLinks">
