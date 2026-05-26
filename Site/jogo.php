@@ -275,7 +275,7 @@ if (!$jogo) {
                     <div class="rating-box">
 
                     <div class="rating-info">
-                        ⭐ <strong><?= number_format($jogo['classificacao'], 1) ?></strong>/5
+                        ⭐ <strong><?= number_format($jogo['classificacao'] ?? 0, 1) ?></strong>/5
                         <span>(<?= $jogo['num_votos'] ?> votos)</span>
                     </div>
 

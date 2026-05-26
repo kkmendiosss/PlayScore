@@ -80,8 +80,14 @@ $resultado = mysqli_query($conn, $sql);
                     <h1>Jogos</h1>
                     <p>Gestão dos jogos registados</p>
                 </div>
+                
+                 <div class="topbar-actions">
+                <a href="dashboard_adicionar_jogos.php" class="add-btn">
+                    + Adicionar
+                </a>
 
                 <span>Admin: <?php echo $nome_admin; ?></span>
+            </div>
             </div>
 
             <section class="table-card">
