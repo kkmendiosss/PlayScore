@@ -295,6 +295,86 @@ footer{
     color:#666;
 }
 
+.rating-box {
+    padding: 40px;
+    border-radius: 10px;
+    color: #fff;
+    width: fit-content;
+}
+
+.rating-info {
+    font-size: 16px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.rating-info strong {
+    color: #ffd700;
+    font-size: 18px;
+}
+
+.stars {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.stars input {
+    display: none;
+}
+
+.stars label {
+    font-size: 32px;
+    color: #444;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.stars label:hover,
+.stars label:hover ~ label {
+    color: #ffcc00;
+}
+
+.stars input:checked ~ label {
+    color: #ffd700;
+}
+
+.rating-box button {
+    background: #ffcc00;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #111;
+    width: 100%;
+    transition: 0.2s;
+}
+
+.rating-box button:hover {
+    opacity: 0.9;
+}
+
+/* toast simples */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #222;
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 8px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: 0.3s;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 @media(max-width:900px){
 
