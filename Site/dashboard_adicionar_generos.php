@@ -8,9 +8,24 @@ if (!isset($_SESSION["id"]) || $_SESSION["tipo_utilizador"] != "admin") {
 }
 
 $nome_admin = $_SESSION["nome"] ?? "Admin";
+$mensagem = "";
 
-$sql = "SELECT * FROM generos ORDER BY id_genero DESC";
-$resultado = mysqli_query($conn, $sql);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nome_genero = mysqli_real_escape_string($conn, $_POST["nome"]);
+
+    if (!empty($nome_genero)) {
+        $sql = "INSERT INTO generos (nome) VALUES ('$nome_genero')";
+        
+        if (mysqli_query($conn, $sql)) {
+            header("Location: dashboard_generos.php");
+            exit();
+        } else {
+            $mensagem = "Erro ao adicionar género: " . mysqli_error($conn);
+        }
+    } else {
+        $mensagem = "Por favor, preencha o nome do género.";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +33,7 @@ $resultado = mysqli_query($conn, $sql);
 
 <head>
     <meta charset="UTF-8">
-    <title>Backoffice - Géneros</title>
+    <title>Backoffice - Adicionar Género</title>
     <link rel="stylesheet" href="css/backoffice.css">
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
@@ -58,36 +73,39 @@ $resultado = mysqli_query($conn, $sql);
 
             <div class="topbar">
                 <div>
-                    <h1>Géneros</h1>
-                    <p>Gestão dos géneros registados</p>
+                    <h1>Adicionar Género</h1>
+                    <p>Insira um novo género no sistema</p>
                 </div>
 
                 <div class="topbar-actions">
-                    <a href="dashboard_adicionar_generos.php" class="add-btn">
-                        + Adicionar
-                    </a>
-
                     <span>Admin: <?php echo $nome_admin; ?></span>
                 </div>
             </div>
 
             <section class="table-card">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nome</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php while ($genero = mysqli_fetch_assoc($resultado)) { ?>
-                            <tr>
-                                <td><?php echo $genero["id_genero"]; ?></td>
-                                <td><?php echo $genero["nome"]; ?></td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
+                
+                <?php if (!empty($mensagem)): ?>
+                    <p class="form-message"><?php echo $mensagem; ?></p>
+                <?php endif; ?>
+
+                <form action="dashboard_adicionar_generos.php" method="POST" class="generos-form-insert">
+    
+                    <div class="generos-form-group">
+                        <label for="nome">Nome do Género</label>
+                        <input type="text" id="nome" name="nome" required placeholder="Ex: Ação, Aventura...">
+                    </div>
+
+                    <div class="generos-form-buttons">
+                        <button type="submit" class="btn view">
+                            Salvar Género
+                        </button>
+                        <a href="dashboard_generos.php" class="btn delete">
+                            Cancelar
+                        </a>
+                    </div>
+
+                </form>
+
             </section>
 
         </main>
