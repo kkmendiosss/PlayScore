@@ -65,7 +65,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["classificacao"])) {
 
     if ($exists) {
 
-        // 🔄 UPDATE VOTO
         $stmt = $conn->prepare("
             UPDATE avaliacoes 
             SET classificacao = ?
@@ -76,7 +75,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["classificacao"])) {
 
     } else {
 
-        // ➕ INSERT VOTO
         $stmt = $conn->prepare("
             INSERT INTO avaliacoes (id_utilizador, id_jogo, classificacao)
             VALUES (?, ?, ?)
@@ -85,7 +83,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["classificacao"])) {
         $stmt->execute();
     }
 
-    // 📊 RECALCULAR MÉDIA E TOTAL
     $avg = $conn->prepare("
         SELECT AVG(classificacao) AS media, COUNT(*) AS total
         FROM avaliacoes
@@ -98,7 +95,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["classificacao"])) {
     $media = $data["media"];
     $total = $data["total"];
 
-    // 🎯 ATUALIZAR JOGO
     $update = $conn->prepare("
         UPDATE jogos 
         SET classificacao = ?, num_votos = ?
@@ -107,7 +103,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["classificacao"])) {
     $update->bind_param("dii", $media, $total, $id_jogo);
     $update->execute();
 
-    // 🔔 REDIRECIONAR COM TOAST
     header("Location: jogo.php?id=" . $id_jogo . "&rated=1");
     exit();
 }
@@ -337,7 +332,6 @@ if (!$jogo) {
 
             </aside>
 
-            <!-- MAIN CONTENT -->
             <div class="details">
 
                 <section class="about">
@@ -350,7 +344,6 @@ if (!$jogo) {
 
                 </section>
 
-                <!-- TRAILER -->
                 <section class="trailer">
 
                     <h2>Trailer</h2>
@@ -467,8 +460,6 @@ if (!$jogo) {
 
 <?php } ?>
 
-
-<!-- FORMULÁRIO COMENTÁRIO -->
 <?php if (isset($_SESSION["id"])) { ?>
 
     <form method="POST" class="comment-form">
