@@ -70,16 +70,20 @@ $resultado = mysqli_query($conn, $sql);
         </aside>
 
         <main class="main-content">
-
             <div class="topbar">
                 <div>
                     <h1>Users</h1>
                     <p>Gestão dos utilizadores registados</p>
                 </div>
 
-                <span>Admin: <?php echo $nome_admin; ?></span>
-            </div>
+                <div class="topbar-actions">
+                    <a href="adicionar_user.php" class="add-btn">
+                        + Adicionar
+                    </a>
 
+                    <span>Admin: <?php echo $nome_admin; ?></span>
+                </div>
+            </div>
             <section class="table-card">
 
                 <table>
