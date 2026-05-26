@@ -10,6 +10,13 @@ if (!isset($_SESSION["id"]) || $_SESSION["tipo_utilizador"] != "admin") {
 $nome_admin = $_SESSION["nome"] ?? "Admin";
 $mensagem = "";
 
+$generos = mysqli_query($conn, "SELECT id_genero, nome FROM generos");
+$franquias = mysqli_query($conn, "SELECT id_franquia, nome FROM franquias");
+
+if (!$generos || !$franquias) {
+    die("Erro ao carregar dados: " . mysqli_error($conn));
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $titulo = mysqli_real_escape_string($conn, $_POST["titulo"]);
@@ -20,8 +27,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $capa_url = mysqli_real_escape_string($conn, $_POST["capa_url"]);
     $trailer_url = mysqli_real_escape_string($conn, $_POST["trailer_url"]);
     $plataforma = mysqli_real_escape_string($conn, $_POST["plataforma"]);
+
     $id_genero = intval($_POST["id_genero"]);
-    $id_franquia = intval($_POST["id_franquia"]);
+
+    $id_franquia = !empty($_POST["id_franquia"]) 
+        ? intval($_POST["id_franquia"]) 
+        : "NULL";
 
     if (!empty($titulo) && !empty($desenvolvedor) && !empty($editor)) {
 
@@ -171,12 +182,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
 
                 <div class="generos-form-group">
-                    <label for="id_genero">ID Género</label>
-                    <input type="number" name="id_genero">
+                    <label>Género</label>
+                    <select name="id_genero" required>
+
+                    <option value="">Escolhe um género</option>
+
+                    <?php while ($g = $generos->fetch_assoc()): ?>
+                    <option value="<?= $g['id_genero'] ?>">
+                        <?= $g['nome'] ?>
+                    </option>
+                    <?php endwhile; ?>
+
+                    </select>
                 </div>
 
                 <div class="generos-form-group">
-                    <label for="id_franquia">ID Franquia</label>
+                    <label>ID Franquia</label>
                     <input type="number" name="id_franquia">
                 </div>
 
