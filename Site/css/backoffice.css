@@ -196,14 +196,14 @@ tbody tr:hover {
     white-space: nowrap;
     margin:0;
 }
-.add-user-form {
+.add-form {
     display: flex;
     flex-direction: column;
     gap: 18px;
 }
 
-.add-user-form input,
-.add-user-form select {
+.add-form input,
+.add-form select {
     background: #111113;
     border: 1px solid rgba(255,255,255,0.08);
     padding: 14px;
@@ -213,8 +213,8 @@ tbody tr:hover {
     font-size: 16px;
 }
 
-.add-user-form input:focus,
-.add-user-form select:focus {
+.add-form input:focus,
+.add-form select:focus {
     outline: none;
     border-color: #7b2ff7;
 }
@@ -256,26 +256,26 @@ tbody tr:hover {
     transform: scale(0.98);
 }
 
-.view-user-card {
+.view-card {
     display: flex;
     flex-direction: column;
     gap: 30px;
 }
 
-.view-user-header {
+.view-header {
     display: flex;
     align-items: center;
     gap: 25px;
 }
 
-.view-user-avatar {
+.view-avatar {
     width: 110px;
     height: 110px;
     border-radius: 50%;
     object-fit: cover;
 }
 
-.view-user-placeholder {
+.view-placeholder {
     width: 110px;
     height: 110px;
     border-radius: 50%;
@@ -288,17 +288,17 @@ tbody tr:hover {
     color: white;
 }
 
-.view-user-header h2 {
+.view-header h2 {
     font-size: 32px;
     margin-bottom: 6px;
 }
 
-.view-user-header p {
+.view-header p {
     color: #bdbdbd;
     font-size: 17px;
 }
 
-.view-user-info {
+.view-info {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
@@ -324,7 +324,7 @@ tbody tr:hover {
     color: white;
 }
 
-.view-user-buttons {
+.view-buttons {
     display: flex;
     gap: 15px;
 }

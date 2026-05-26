@@ -80,18 +80,18 @@ if (!$user) {
                 </div>
             </div>
 
-            <section class="table-card view-user-card">
+            <section class="table-card view-card">
 
-                <div class="view-user-header">
+                <div class="view-header">
 
                     <?php if (!empty($user["avatar_url"])) { ?>
 
                         <img src="<?php echo $user["avatar_url"]; ?>"
-                            class="view-user-avatar">
+                            class="view-avatar">
 
                     <?php } else { ?>
 
-                        <div class="view-user-placeholder">
+                        <div class="view-placeholder">
                             ?
                         </div>
 
@@ -111,7 +111,7 @@ if (!$user) {
 
                 </div>
 
-                <div class="view-user-info">
+                <div class="view-info">
 
                     <div class="info-box">
                         <span>ID</span>
@@ -132,7 +132,7 @@ if (!$user) {
 
                 </div>
 
-                <div class="view-user-buttons">
+                <div class="view-buttons">
 
                     <a href="dashboard_editar_user.php?id=<?php echo $user["id_utilizador"]; ?>"
                         class="btn edit">

@@ -91,7 +91,7 @@ if (isset($_POST["adicionar"])) {
                     <p><?php echo $mensagem; ?></p>
                 <?php } ?>
 
-                <form method="POST" class="add-user-form">
+                <form method="POST" class="add-form">
 
                     <input type="text"
                         name="nome"
