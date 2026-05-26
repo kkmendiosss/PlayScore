@@ -11,19 +11,29 @@ $nome_admin = $_SESSION["nome"] ?? "Admin";
 $mensagem = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nome_genero = mysqli_real_escape_string($conn, $_POST["nome"]);
+    $nome_genero = trim($_POST["nome"]);
+    
+    $nome_genero_seguro = mysqli_real_escape_string($conn, $nome_genero);
 
     if (!empty($nome_genero)) {
-        $sql = "INSERT INTO generos (nome) VALUES ('$nome_genero')";
         
-        if (mysqli_query($conn, $sql)) {
-            header("Location: dashboard_generos.php");
-            exit();
+        $sql_verificar = "SELECT * FROM generos WHERE nome = '$nome_genero_seguro'";
+        $resultado_verificar = mysqli_query($conn, $sql_verificar);
+        
+        if (mysqli_num_rows($resultado_verificar) > 0) {
+            $mensagem = "Erro: Esse género já se encontra registado!";
         } else {
-            $mensagem = "Erro ao adicionar género: " . mysqli_error($conn);
+            $sql = "INSERT INTO generos (nome) VALUES ('$nome_genero_seguro')";
+            
+            if (mysqli_query($conn, $sql)) {
+                header("Location: dashboard_generos.php");
+                exit();
+            } else {
+                $mensagem = "Erro ao adicionar género: " . mysqli_error($conn);
+            }
         }
     } else {
-        $mensagem = "Por favor, preencha o nome do género.";
+        $mensagem = "Erro: O nome do género não pode estar vazio.";
     }
 }
 ?>
@@ -85,10 +95,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <section class="table-card">
                 
                 <?php if (!empty($mensagem)): ?>
-                    <p class="form-message"><?php echo $mensagem; ?></p>
+                    <p class="generos-form-message"><?php echo $mensagem; ?></p>
                 <?php endif; ?>
 
-                <form action="dashboard_adicionar_generos.php" method="POST" class="generos-form-insert">
+                <form action="dashboard_adicionar_generos.php" method="POST" class="generos-form-insert" onsubmit="return validarFormulario()">
     
                     <div class="generos-form-group">
                         <label for="nome">Nome do Género</label>
@@ -111,6 +121,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </main>
 
     </div>
+
+    <script src="js/dashboard.js"></script>                    
 
 </body>
 
