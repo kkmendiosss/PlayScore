@@ -64,7 +64,7 @@ if (isset($_POST["guardar"])) {
     <title>Editar User</title>
 
     <link rel="stylesheet" href="css/backoffice.css">
-
+    
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
 </head>
