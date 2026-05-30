@@ -258,6 +258,10 @@ if (!$jogo) {
             <!-- SIDEBAR -->
             <aside class="sidebar">
 
+            <a href="franquia.php?id=<?php echo $jogo['id_franquia']; ?>">
+    Ver franquia
+</a>
+
                 <img
                     src="<?= $jogo['capa_url'] ?>"
                     class="game-cover"
