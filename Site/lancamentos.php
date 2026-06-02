@@ -1,9 +1,11 @@
 <?php
 session_start();
 include "conexao.php";
+
 $nome = $_SESSION["nome"] ?? "";
-$email = $_SESSION["email"] ?? "";
-$tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
+$tipo = $_SESSION["tipo_utilizador"] ?? "";
+
+$resultado = mysqli_query($conn, "SELECT * FROM lancamentos ORDER BY data");
 ?>
 
 <!DOCTYPE html>
@@ -115,57 +117,58 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
     <main class="container">
 
         <section class="calendar">
+
             <h2 class="calendar-title">Calendário</h2>
 
-            <div class="month">Abril 2026</div>
+            <?php
+            $ultimoMes = "";
+            $ultimaData = "";
 
-            <!-- DIA -->
+            while ($lancamento = mysqli_fetch_assoc($resultado)) {
+
+                $timestamp = strtotime($lancamento["data"]);
+
+                $mes = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"][date("n", $timestamp) - 1] . " " . date("Y", $timestamp);
+                $dia = date("d", $timestamp);
+                $diaSemana = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"][date("w", $timestamp)];
+
+                if ($ultimaData != $lancamento["data"]) {
+
+                    if ($ultimaData != "") {
+                        echo '</div></div>';
+                    }
+
+                    $ultimaData = $lancamento["data"];
+
+                    if ($ultimoMes != $mes) {
+                        $ultimoMes = $mes;
+                        echo '<div class="month">' . $mes . '</div>';
+                    }
+
+                    echo '
             <div class="day">
                 <div class="date">
-                    <span class="number">21</span>
+                    <span class="number">' . $dia . '</span>
                     <br>
-                    <span class="weekday">Terça-feira</span>
+                    <span class="weekday">' . $diaSemana . '</span>
                 </div>
 
                 <div class="events">
-                    <div class="event">Albion Online (Xbox Series X/S)</div>
-                    <div class="event">Vampire Crawlers The Turbo Wildcard from Vampire Survivors (PC, Nintendo Switch, PS5, Xbox Series X/S)</div>
-                </div>
+            ';
+                }
+
+                echo '
+            <div class="event">
+                ' . $lancamento["nome"] . '
+                (' . $lancamento["plataformas"] . ')
             </div>
+        ';
+            }
 
-            <div class="day">
-                <div class="date">
-                    <span class="number">22</span>
-                    <br>
-                    <span class="weekday">Quarta-feira</span>
-                </div>
-
-                <div class="events">
-                    <div class="event">Clockwork Ambrosia (PC)</div>
-                    <div class="event">Masters of Albion (PC)</div>
-                    <div class="event">Tides of Tomorrow (PC, PS5, Xbox Series X/S)</div>
-                </div>
-            </div>
-
-            <div class="day">
-                <div class="date">
-                    <span class="number">23</span>
-                    <br>
-                    <span class="weekday">Quinta-feira</span>
-                </div>
-
-                <div class="events">
-                    <div class="event">Kiln (PC, PS5, Xbox Series X/S)</div>
-                    <div class="event">Kingdom’s Return Time-Eating Fruit and the Ancient Monster (PC, Nintendo Switch 1 e 2, PS5, Xbox Series X/S)</div>
-                    <div class="event">Neverness to Everness (PC, PS5, mobile)</div>
-                    <div class="event">Outbound (PC, Nintendo Switch 1 e 2, PS5, Xbox Series X/S)</div>
-                    <div class="event">Sudden Strike 5 (PC, PS5, Xbox Series X/S)</div>
-                    <div class="event">Matsurika no Kei kEi Tenmei Kashokuden (Switch)</div>
-                    <div class="event">Elminage ORIGINAL Priestess of Darkness and the Ring of the Gods (Nintendo Switch)</div>
-                </div>
-            </div>
-
-            <div class="ver-mais">Ver mais</div>
+            if ($ultimaData != "") {
+                echo '</div></div>';
+            }
+            ?>
 
         </section>
 
