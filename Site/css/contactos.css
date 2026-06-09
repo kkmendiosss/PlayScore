@@ -16,20 +16,17 @@ body {
     padding: 0;
 }
 
-/*Fonts*/
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Kode Mono', monospace;
     font-weight: 700;
 }
 
-/* CONTAINER PRINCIPAL */
 .page-wrapper {
     max-width: 1000px;
     margin: 120px auto 80px;
     padding: 0 20px;
 }
 
-/* CABEÇALHO DA PÁGINA */
 .page-header {
     text-align: center;
     margin-bottom: 60px;
@@ -49,7 +46,6 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.6;
 }
 
-/* LAYOUT DOS CONTACTOS*/
 .contact-container {
     display: flex;
     gap: 30px;
@@ -57,7 +53,6 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 60px;
 }
 
-/* CAIXAS DE INFORMAÇÃO E FORMULÁRIO */
 .contact-info, .contact-form-box {
     background-color: var(--card-bg);
     border: 1px solid var(--border-color);
@@ -85,7 +80,6 @@ h1, h2, h3, h4, h5, h6 {
     color: #fff;
 }
 
-/* ESTILOS DO FORMULÁRIO */
 .form-group {
     margin-bottom: 20px;
 }
@@ -97,7 +91,6 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1rem;
 }
 
-/* Inputs e Textarea*/
 .form-group input, 
 .form-group select, 
 .form-group textarea {
@@ -112,7 +105,6 @@ h1, h2, h3, h4, h5, h6 {
     box-sizing: border-box; 
 }
 
-/*Block de resize da caixa de textow*/
 .form-group textarea {
     resize: none; 
 }
@@ -123,7 +115,7 @@ h1, h2, h3, h4, h5, h6 {
     outline: none;
     border-color: var(--neon-blue);
 }
-/*butão submeter*/
+
 .submit-btn {
     background-color: var(--neon-purple);
     color: #fff;
@@ -200,7 +192,6 @@ h1, h2, h3, h4, h5, h6 {
     font-style: italic;
 }
 
-/* BOTÃO FECHAR*/
 .btn-feito {
     background-color: transparent;
     color: #fff;
