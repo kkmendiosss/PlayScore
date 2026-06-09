@@ -2,33 +2,32 @@
 session_start();
 include "conexao.php";
 
-$nome = $_SESSION["nome"] ?? "";
-$tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
-
-if ($nome == "" || $tipo != "admin") {
+if (!isset($_SESSION["id"])) {
     header("Location: login.php");
-    exit;
+    exit();
+}
+
+if ($_SESSION["tipo_utilizador"] != "admin") {
+    header("Location: index.php");
+    exit();
 }
 
 if (!isset($_GET["id"])) {
     header("Location: dashboard_franquia.php");
-    exit;
+    exit();
 }
 
 $id = (int) $_GET["id"];
 
-$stmt = $conn->prepare("SELECT * FROM franquias WHERE id_franquia = ?");
-$stmt->bind_param("i", $id);
-$stmt->execute();
-$resultado = $stmt->get_result();
+$sql = "SELECT * FROM franquias WHERE id_franquia = $id";
+$resultado = mysqli_query($conn, $sql);
 
-if ($resultado->num_rows == 0) {
+$franquia = mysqli_fetch_assoc($resultado);
+
+if (!$franquia) {
     header("Location: dashboard_franquia.php");
-    exit;
+    exit();
 }
-
-$franquia = $resultado->fetch_assoc();
-$stmt->close();
 ?>
 
 <!DOCTYPE html>
@@ -36,95 +35,122 @@ $stmt->close();
 
 <head>
     <meta charset="UTF-8">
-    <title>Ver Franquia | Dashboard</title>
-    <link rel="stylesheet" href="css/dashboard.css">
-    <link rel="stylesheet" href="../css/ver_franquia.css">
-    <link rel="icon" href="img/PlayScore_Icon.png">
+    <title>Ver Franquia</title>
+
+    <link rel="stylesheet" href="css/backoffice.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<div class="dashboard-layout">
+    <div class="backoffice">
 
-    <aside class="sidebar">
-        <div class="sidebar-logo">
-            <img src="logo/Logo.png" alt="PlayScore">
-        </div>
+        <aside class="sidebar">
 
-        <h2>Dashboard</h2>
-
-        <a href="dashboard.php">Dashboard</a>
-        <a href="dashboard_favoritos.php">Favoritos</a>
-        <a href="dashboard_generos.php">Géneros</a>
-        <a href="dashboard_contactos.php">Contactos</a>
-        <a href="dashboard_franquia.php" class="active">Franquias</a>
-        <a href="dashboard_jogos.php">Jogos</a>
-        <a href="dashboard_jogodoano.php">Jogo do Ano</a>
-        <a href="dashboard_lancamentos.php">Lançamentos</a>
-        <a href="dashboard_comentarios.php">Comentários</a>
-        <a href="dashboard_users.php">Users</a>
-        <a href="index.php">Voltar ao site</a>
-    </aside>
-
-    <main class="dashboard-content">
-
-        <div class="page-top">
-            <div>
-                <h1>Ver Franquia</h1>
-                <p style="color:#aaa;">Detalhes da franquia registada</p>
+            <div class="sidebar-logo">
+                <img src="logo/Logo.png" alt="PlayScore">
             </div>
 
-            <a href="dashboard_franquia.php" class="btn-voltar">Voltar</a>
-        </div>
+            <h2>Dashboard</h2>
+            <a href="dashboard.php">Dashboard</a>
 
-        <section class="franquia-view-card">
+            <nav class="sidebar-menu">
+                <a href="dashboard_favoritos.php">Favoritos</a>
+                <a href="dashboard_generos.php">Géneros</a>
+                <a href="dashboard_contactos.php">Contactos</a>
+                <a href="dashboard_franquia.php">Franquias</a>
+                <a href="dashboard_jogos.php">Jogos</a>
+                <a href="dashboard_jogoano.php">Jogo do Ano</a>
+                <a href="dashboard_lancamento.php">Lançamentos</a>
+                <a href="dashboard_comentarios.php">Comentários</a>
+                <a href="dashboard_users.php">Users</a>
+            </nav>
 
-            <?php if (!empty($franquia["capa_url"])) { ?>
-                <img src="<?php echo htmlspecialchars($franquia["capa_url"]); ?>" alt="Imagem da franquia">
-            <?php } ?>
+            <a href="index.php" class="back-site">Voltar ao site</a>
 
-            <div class="info-row">
-                <span>ID</span>
-                <p><?php echo $franquia["id_franquia"]; ?></p>
+        </aside>
+
+        <main class="main-content">
+
+            <div class="topbar">
+                <div>
+                    <h1>Ver Franquia</h1>
+                    <p>Informações da franquia</p>
+                </div>
             </div>
 
-            <div class="info-row">
-                <span>Nome do Projeto</span>
-                <p><?php echo htmlspecialchars($franquia["nome"]); ?></p>
-            </div>
+            <section class="table-card view-card">
 
-            <div class="info-row">
-                <span>Descrição</span>
-                <p><?php echo nl2br(htmlspecialchars($franquia["descricao"])); ?></p>
-            </div>
+                <div class="view-header">
 
-            <div class="info-row">
-                <span>Caminho da Imagem</span>
-                <p><?php echo htmlspecialchars($franquia["capa_url"]); ?></p>
-            </div>
+                    <?php if (!empty($franquia["capa_url"])) { ?>
 
-            <div class="actions">
-                <a 
-                    href="dashboard_editar_franquia.php?id=<?php echo $franquia["id_franquia"]; ?>" 
-                    class="btn-editar"
-                >
-                    Editar
-                </a>
+                        <img src="<?php echo $franquia["capa_url"]; ?>"
+                            class="view-avatar">
 
-                <a 
-                    href="dashboard_franquia.php?apagar_id=<?php echo $franquia["id_franquia"]; ?>" 
-                    class="btn-eliminar"
-                    onclick="return confirm('Tens a certeza que queres eliminar esta franquia?');"
-                >
-                    Eliminar
-                </a>
-            </div>
+                    <?php } else { ?>
 
-        </section>
+                        <div class="view-placeholder">
+                            <i class="fa-solid fa-gamepad"></i>
+                        </div>
 
-    </main>
+                    <?php } ?>
 
-</div>
+                    <div>
+
+                        <h2>
+                            <?php echo htmlspecialchars($franquia["nome"]); ?>
+                        </h2>
+
+                        <p>
+                            Franquia de Jogos
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="view-info">
+
+                    <div class="info-box">
+                        <span>ID</span>
+                        <strong><?php echo $franquia["id_franquia"]; ?></strong>
+                    </div>
+
+                    <div class="info-box">
+                        <span>Nome</span>
+                        <strong><?php echo htmlspecialchars($franquia["nome"]); ?></strong>
+                    </div>
+
+                    <div class="info-box">
+                        <span>Descrição</span>
+                        <strong><?php echo htmlspecialchars($franquia["descricao"]); ?></strong>
+                    </div>
+
+                </div>
+
+                <div class="view-buttons">
+
+                    <a href="dashboard_editar_franquia.php?id=<?php echo $franquia["id_franquia"]; ?>"
+                        class="btn edit">
+                        <i class="fa-solid fa-pen"></i>
+                    </a>
+
+                    <a href="dashboard_franquia.php"
+                        class="btn view">
+                        Voltar
+                    </a>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
 
 </body>
+
 </html>

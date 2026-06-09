@@ -75,20 +75,21 @@ $resultado = mysqli_query($conn, $sql);
 
     <div class="backoffice">
 
-       <aside class="sidebar">
+        <aside class="sidebar">
 
             <div class="sidebar-logo">
                 <img src="logo/Logo.png" alt="PlayScore">
             </div>
 
             <h2>Dashboard</h2>
+
             <a href="dashboard.php">Dashboard</a>
 
             <nav class="sidebar-menu">
                 <a href="dashboard_favoritos.php">Favoritos</a>
                 <a href="dashboard_generos.php">Géneros</a>
                 <a href="dashboard_contactos.php">Contactos</a>
-                <a href="dashboard_franquia.php">Franquias</a>
+                <a href="dashboard_franquia.php" class="active">Franquias</a>
                 <a href="dashboard_jogos.php">Jogos</a>
                 <a href="dashboard_jogoano.php">Jogo do Ano</a>
                 <a href="dashboard_lancamento.php">Lançamentos</a>

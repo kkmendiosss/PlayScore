@@ -2,98 +2,67 @@
 session_start();
 include "conexao.php";
 
-$nome = $_SESSION["nome"] ?? "";
-$tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
-
-if ($nome == "" || $tipo != "admin") {
+if (!isset($_SESSION["id"])) {
     header("Location: login.php");
-    exit;
+    exit();
+}
+
+if ($_SESSION["tipo_utilizador"] != "admin") {
+    header("Location: index.php");
+    exit();
 }
 
 if (!isset($_GET["id"])) {
     header("Location: dashboard_franquia.php");
-    exit;
+    exit();
 }
 
-$id = (int) $_GET["id"];
-$erros = [];
+$id = (int)$_GET["id"];
 
+$sql = "SELECT * FROM franquias WHERE id_franquia = $id";
+$resultado = mysqli_query($conn, $sql);
 
-$stmt = $conn->prepare("SELECT * FROM franquias WHERE id_franquia = ?");
-$stmt->bind_param("i", $id);
-$stmt->execute();
-$resultado = $stmt->get_result();
+$franquia = mysqli_fetch_assoc($resultado);
 
-if ($resultado->num_rows == 0) {
+if (!$franquia) {
     header("Location: dashboard_franquia.php");
-    exit;
+    exit();
 }
 
-$franquia = $resultado->fetch_assoc();
-$stmt->close();
+$mensagem = "";
 
-// Atualizar dados
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $novo_nome = trim($_POST["nome"] ?? "");
-    $nova_descricao = trim($_POST["descricao"] ?? "");
-    $nova_imagem = $franquia["capa_url"];
+if (isset($_POST["guardar"])) {
 
-    if ($novo_nome == "") {
-        $erros[] = "O nome do projeto é obrigatório.";
+    $nome = $_POST["nome"];
+    $descricao = $_POST["descricao"];
+
+    $capa_url = $franquia["capa_url"];
+
+    if (!empty($_FILES["capa_file"]["name"])) {
+
+        $nomeImagem = $_FILES["capa_file"]["name"];
+
+        move_uploaded_file(
+            $_FILES["capa_file"]["tmp_name"],
+            "img/Franquia/uploads/" . $nomeImagem
+        );
+
+        $capa_url = "img/Franquia/uploads/" . $nomeImagem;
     }
 
-    if ($nova_descricao == "") {
-        $erros[] = "A descrição é obrigatória.";
-    }
+    $sql_update = "UPDATE franquias SET
+        nome = '$nome',
+        descricao = '$descricao',
+        capa_url = '$capa_url'
+        WHERE id_franquia = $id";
 
-    if (isset($_FILES["capa_file"]) && $_FILES["capa_file"]["error"] == 0) {
-        $ficheiro = $_FILES["capa_file"];
-        $extensoes_permitidas = ["jpg", "jpeg", "png", "gif", "webp"];
-        $extensao = strtolower(pathinfo($ficheiro["name"], PATHINFO_EXTENSION));
+    if (mysqli_query($conn, $sql_update)) {
 
-        if (!in_array($extensao, $extensoes_permitidas)) {
-            $erros[] = "Formato inválido. Usa JPG, JPEG, PNG, GIF ou WEBP.";
-        } else {
-            $pasta_destino = "img/Franquia/uploads/";
+        header("Location: dashboard_franquia.php");
+        exit();
+    } else {
 
-            if (!is_dir($pasta_destino)) {
-                mkdir($pasta_destino, 0777, true);
-            }
-
-            $nome_unico = uniqid("franquia_", true) . "." . $extensao;
-            $caminho_final = $pasta_destino . $nome_unico;
-
-            if (move_uploaded_file($ficheiro["tmp_name"], $caminho_final)) {
-
-               
-                if (!empty($franquia["capa_url"]) && file_exists($franquia["capa_url"])) {
-                    unlink($franquia["capa_url"]);
-                }
-
-                $nova_imagem = $caminho_final;
-            } else {
-                $erros[] = "Erro ao carregar a nova imagem.";
-            }
-        }
-    }
-
-    if (empty($erros)) {
-        $stmt_update = $conn->prepare("
-            UPDATE franquias 
-            SET nome = ?, descricao = ?, capa_url = ?
-            WHERE id_franquia = ?
-        ");
-
-        $stmt_update->bind_param("sssi", $novo_nome, $nova_descricao, $nova_imagem, $id);
-
-        if ($stmt_update->execute()) {
-            header("Location: dashboard_franquia.php");
-            exit;
-        } else {
-            $erros[] = "Erro ao atualizar a franquia.";
-        }
-
-        $stmt_update->close();
+        $mensagem = "Erro ao atualizar franquia.";
     }
 }
 ?>
@@ -103,102 +72,93 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <head>
     <meta charset="UTF-8">
-    <title>Editar Franquia | Dashboard</title>
-    <link rel="stylesheet" href="css/dashboard.css">
-    <link rel="stylesheet" href="css/editar_franquia.css">
-    <link rel="icon" href="img/PlayScore_Icon.png">
+    <title>Editar Franquia</title>
+
+    <link rel="stylesheet" href="css/backoffice.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<div class="dashboard-layout">
+    <div class="backoffice">
 
-    <aside class="sidebar">
-        <div class="sidebar-logo">
-            <img src="logo/Logo.png" alt="PlayScore">
-        </div>
+        <aside class="sidebar">
 
-        <h2>Dashboard</h2>
-
-        <a href="dashboard.php">Dashboard</a>
-        <a href="dashboard_favoritos.php">Favoritos</a>
-        <a href="dashboard_generos.php">Géneros</a>
-        <a href="dashboard_contactos.php">Contactos</a>
-        <a href="dashboard_franquia.php" class="active">Franquias</a>
-        <a href="dashboard_jogos.php">Jogos</a>
-        <a href="dashboard_jogodoano.php">Jogo do Ano</a>
-        <a href="dashboard_lancamentos.php">Lançamentos</a>
-        <a href="dashboard_comentarios.php">Comentários</a>
-        <a href="dashboard_users.php">Users</a>
-        <a href="index.php">Voltar ao site</a>
-    </aside>
-
-    <main class="dashboard-content">
-
-        <div class="page-top">
-            <div>
-                <h1>Editar Franquia</h1>
-                <p style="color:#aaa;">Alterar dados da franquia registada</p>
+            <div class="sidebar-logo">
+                <img src="logo/Logo.png" alt="PlayScore">
             </div>
 
-            <a href="dashboard_franquia.php" class="btn-voltar">Voltar</a>
-        </div>
+            <h2>Dashboard</h2>
+            <a href="dashboard.php">Dashboard</a>
 
-        <section class="edit-card">
+            <nav class="sidebar-menu">
+                <a href="dashboard_favoritos.php">Favoritos</a>
+                <a href="dashboard_generos.php">Géneros</a>
+                <a href="dashboard_contactos.php">Contactos</a>
+                <a href="dashboard_franquia.php">Franquias</a>
+                <a href="dashboard_jogos.php">Jogos</a>
+                <a href="dashboard_jogoano.php">Jogo do Ano</a>
+                <a href="dashboard_lancamento.php">Lançamentos</a>
+                <a href="dashboard_comentarios.php">Comentários</a>
+                <a href="dashboard_users.php">Users</a>
+            </nav>
 
-            <?php if (!empty($erros)) { ?>
-                <div class="erro-box">
-                    <ul>
-                        <?php foreach ($erros as $erro) { ?>
-                            <li><?php echo htmlspecialchars($erro); ?></li>
-                        <?php } ?>
-                    </ul>
+            <a href="index.php" class="back-site">Voltar ao site</a>
+
+        </aside>
+
+        <main class="main-content">
+
+            <div class="topbar">
+                <div>
+                    <h1>Editar Franquia</h1>
+                    <p>Editar franquia</p>
                 </div>
-            <?php } ?>
+            </div>
 
-            <?php if (!empty($franquia["capa_url"])) { ?>
-                <img class="preview-img" src="<?php echo htmlspecialchars($franquia["capa_url"]); ?>" alt="Imagem atual">
-            <?php } ?>
+            <section class="table-card">
 
-            <form method="POST" enctype="multipart/form-data">
+                <?php if (!empty($mensagem)) { ?>
+                    <p><?php echo $mensagem; ?></p>
+                <?php } ?>
 
-                <div class="form-group">
-                    <label for="nome">Nome do Projeto</label>
-                    <input 
-                        type="text" 
-                        id="nome" 
-                        name="nome" 
-                        value="<?php echo htmlspecialchars($franquia["nome"]); ?>" 
-                        required
-                    >
-                </div>
+                <form method="POST" class="add-form" enctype="multipart/form-data">
 
-                <div class="form-group">
-                    <label for="descricao">Descrição</label>
-                    <textarea id="descricao" name="descricao" required><?php echo htmlspecialchars($franquia["descricao"]); ?></textarea>
-                </div>
+                    <input type="text"
+                        name="nome"
+                        value="<?php echo htmlspecialchars($franquia["nome"]); ?>"
+                        placeholder="Nome da franquia"
+                        required>
 
-                <div class="form-group">
-                    <label for="capa_file">Nova Imagem</label>
-                    <input 
-                        type="file" 
-                        id="capa_file" 
-                        name="capa_file" 
-                        accept="image/*"
-                    >
-                </div>
+                    <textarea
+                        name="descricao"
+                        rows="5"
+                        placeholder="Descrição da franquia"
+                        required><?php echo htmlspecialchars($franquia["descricao"]); ?></textarea>
 
-                <button type="submit" class="btn-guardar">
-                    Guardar Alterações
-                </button>
+                    <?php if (!empty($franquia["capa_url"])) { ?>
 
-            </form>
+                        <img src="<?php echo $franquia["capa_url"]; ?>"
+                            style="max-width:200px;margin-bottom:10px;">
 
-        </section>
+                    <?php } ?>
 
-    </main>
+                    <input type="file" name="capa_file">
 
-</div>
+                    <button type="submit" name="guardar" class="add-btn">
+                        Guardar Alterações
+                    </button>
+
+                </form>
+
+            </section>
+
+        </main>
+
+    </div>
 
 </body>
+
 </html>
