@@ -2,7 +2,6 @@
 session_start();
 include "conexao.php";
 
-// 1. Segurança: Acesso apenas para Administradores
 if (!isset($_SESSION["id"]) || $_SESSION["tipo_utilizador"] != "admin") {
     header("Location: login.php");
     exit();
@@ -10,13 +9,11 @@ if (!isset($_SESSION["id"]) || $_SESSION["tipo_utilizador"] != "admin") {
 
 $mensagem = "";
 
-// 2. Lógica de Inserção com Upload de Imagem
 if (isset($_POST["adicionar"])) {
     $nome = trim($_POST["nome"]);
     $descricao = trim($_POST["descricao"]);
     $capa_url = "";
 
-    // Upload do Ficheiro
     if (isset($_FILES['capa_file']) && $_FILES['capa_file']['error'] == 0) {
         $ext = strtolower(pathinfo($_FILES['capa_file']['name'], PATHINFO_EXTENSION));
         $nome_unico = uniqid("franquia_", true) . "." . $ext;
@@ -29,7 +26,6 @@ if (isset($_POST["adicionar"])) {
         }
     }
 
-    // Inserir na base de dados
     if (!empty($capa_url)) {
         $stmt = $conn->prepare("INSERT INTO franquias (nome, descricao, capa_url) VALUES (?, ?, ?)");
         $stmt->bind_param("sss", $nome, $descricao, $capa_url);

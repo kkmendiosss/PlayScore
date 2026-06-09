@@ -2,13 +2,11 @@
 session_start();
 include "conexao.php";
 
-// Verifica se o utilizador está logado
 if (!isset($_SESSION["id"])) {
     header("Location: login.php");
     exit();
 }
 
-// Verifica se tem permissões de administrador
 if ($_SESSION["tipo_utilizador"] != "admin") {
     header("Location: index.php");
     exit();
@@ -16,13 +14,9 @@ if ($_SESSION["tipo_utilizador"] != "admin") {
 
 $nome_admin = $_SESSION["nome"] ?? "Admin";
 
-// ==========================================
-// 1. LÓGICA PARA APAGAR DA BD
-// ==========================================
 if (isset($_GET["eliminar"])) {
     $id = (int) $_GET["eliminar"];
 
-    // Apaga a imagem física da pasta para não acumular lixo
     $stmt_img = $conn->prepare("SELECT capa_url FROM franquias WHERE id_franquia = ?");
 
     if ($stmt_img) {
@@ -39,7 +33,6 @@ if (isset($_GET["eliminar"])) {
         $stmt_img->close();
     }
 
-    // Apaga o registo da base de dados
     $stmt_delete = $conn->prepare("DELETE FROM franquias WHERE id_franquia = ?");
 
     if ($stmt_delete) {
@@ -52,9 +45,6 @@ if (isset($_GET["eliminar"])) {
     exit();
 }
 
-// ==========================================
-// 2. LÓGICA PARA LER DA BD
-// ==========================================
 $sql = "SELECT * FROM franquias ORDER BY id_franquia DESC";
 $resultado = mysqli_query($conn, $sql);
 ?>

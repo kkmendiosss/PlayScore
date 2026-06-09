@@ -147,7 +147,7 @@ $jogos = $stmt_jogos->get_result();
             if ($d['ultima'] && $d['ultima'] != $d['primeira']) {
                 echo date("Y", strtotime($d['ultima']));
             } else {
-                echo "Presente"; // Ou "Atual"
+                echo "Presente";
             }
         } else {
             echo "Sem dados";
