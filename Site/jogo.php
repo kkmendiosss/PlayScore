@@ -113,10 +113,10 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
 
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-$stmt_jogo = $conn->prepare("SELECT jogos.*, generos.nome AS nome_genero
+$stmt_jogo = $conn->prepare("
+    SELECT *
     FROM jogos
-    LEFT JOIN generos ON jogos.id_genero = generos.id_genero
-    WHERE jogos.id_jogo = ?
+    WHERE id_jogo = ?
 ");
 
 $stmt_jogo->bind_param("i", $id);
@@ -127,6 +127,24 @@ if ($result->num_rows > 0) {
     $jogo = $result->fetch_assoc();
 } else {
     die("Jogo não encontrado.");
+}
+
+$generos = [];
+
+$stmt_gen = $conn->prepare("
+    SELECT g.nome
+    FROM generos g
+    INNER JOIN jogo_genero jg ON g.id_genero = jg.id_genero
+    WHERE jg.id_jogo = ?
+");
+
+$stmt_gen->bind_param("i", $id);
+$stmt_gen->execute();
+
+$res_gen = $stmt_gen->get_result();
+
+while ($row = $res_gen->fetch_assoc()) {
+    $generos[] = $row["nome"];
 }
 
 $user_vote = null;
@@ -323,9 +341,11 @@ if (!$jogo) {
                         <?= $jogo['data_lancamento'] ?>
                     </p>
 
-                    <p>
-                        <strong>Gênero:</strong><br>
-                        <?= $jogo['nome_genero'] ?>
+                    <p class="generos-line">
+                        <strong>Género:</strong>
+                        <span class="generos-tags">
+                            <?= !empty($generos) ? implode(", ", $generos) : "Sem género" ?>
+                        </span>
                     </p>
 
                     <a href="#" class="favorite">Favoritar</a>

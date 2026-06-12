@@ -263,7 +263,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="generos-form-group">
                     <label>ID Franquia</label>
-                    <input type="number" name="id_franquia">
+                    <input type="text" name="nome">
                 </div>
 
                 <div class="generos-form-buttons">
