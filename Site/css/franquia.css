@@ -119,6 +119,34 @@
     font-size: 22px;
 }
 
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 25px;
+}
+
+.pagination a {
+    padding: 8px 13px;
+    border-radius: 6px;
+    background-color: #222;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.pagination a:hover {
+    background-color: #444;
+}
+
+.pagination .active-page {
+    background-color: #e63946;
+    color: #fff;
+    font-weight: bold;
+}
+
 @media (max-width: 900px) {
     .franquia-topo {
         grid-template-columns: 1fr;
