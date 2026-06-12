@@ -59,7 +59,6 @@ if (isset($_POST["guardar"])) {
     $data_lancamento = $_POST["data_lancamento"];
     $trailer_url = mysqli_real_escape_string($conn, $_POST["trailer_url"]);
 
-    // 📸 CAPA (mantém a antiga se não enviar nova)
     $capa_url = $jogo['capa_url'];
 
     if (isset($_FILES["capa"]) && $_FILES["capa"]["error"] == 0) {
@@ -78,12 +77,14 @@ if (isset($_POST["guardar"])) {
         }
     }
 
-    // 🏷️ FRANQUIA
     $id_franquia = !empty($_POST["id_franquia"])
         ? intval($_POST["id_franquia"])
         : "NULL";
 
-    // 🔧 UPDATE JOGO (SEM géneros aqui)
+    $plataforma = isset($_POST["plataforma"])
+        ? implode(", ", $_POST["plataforma"])
+        : "";
+
     $sql_update = "UPDATE jogos SET
         titulo = '$titulo',
         desenvolvedor = '$desenvolvedor',
@@ -92,15 +93,14 @@ if (isset($_POST["guardar"])) {
         data_lancamento = '$data_lancamento',
         capa_url = '$capa_url',
         trailer_url = '$trailer_url',
+        plataforma = '$plataforma',
         id_franquia = $id_franquia
         WHERE id_jogo = $id";
 
     if (mysqli_query($conn, $sql_update)) {
 
-        // 🧹 apagar géneros antigos
         mysqli_query($conn, "DELETE FROM jogo_genero WHERE id_jogo = $id");
 
-        // 🎯 inserir novos géneros (ARRAY)
         if (!empty($_POST["id_genero"]) && is_array($_POST["id_genero"])) {
 
             foreach ($_POST["id_genero"] as $id_genero) {
