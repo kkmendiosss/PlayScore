@@ -45,8 +45,36 @@ if (isset($_GET["eliminar"])) {
     exit();
 }
 
-$sql = "SELECT * FROM franquias ORDER BY id_franquia DESC";
-$resultado = mysqli_query($conn, $sql);
+
+
+$por_pagina = 10;
+
+$pagina_atual = isset($_GET["pagina"]) ? (int) $_GET["pagina"] : 1;
+
+if ($pagina_atual < 1) {
+    $pagina_atual = 1;
+}
+
+$offset = ($pagina_atual - 1) * $por_pagina;
+
+
+$sql_total = "SELECT COUNT(*) AS total FROM franquias";
+$resultado_total = mysqli_query($conn, $sql_total);
+$total_registos = 0;
+
+if ($resultado_total) {
+    $linha_total = mysqli_fetch_assoc($resultado_total);
+    $total_registos = (int) $linha_total["total"];
+}
+
+$total_paginas = ceil($total_registos / $por_pagina);
+
+
+$sql = "SELECT * FROM franquias ORDER BY id_franquia DESC LIMIT ? OFFSET ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("ii", $por_pagina, $offset);
+$stmt->execute();
+$resultado = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -200,6 +228,37 @@ $resultado = mysqli_query($conn, $sql);
                     </tbody>
 
                 </table>
+
+                <?php if ($total_paginas > 1) { ?>
+
+                    <div class="pagination">
+
+                        <?php if ($pagina_atual > 1) { ?>
+                            <a href="dashboard_franquia.php?pagina=<?php echo $pagina_atual - 1; ?>">
+                                Anterior
+                            </a>
+                        <?php } ?>
+
+                        <?php for ($i = 1; $i <= $total_paginas; $i++) { ?>
+
+                            <a 
+                                href="dashboard_franquia.php?pagina=<?php echo $i; ?>" 
+                                class="<?php echo $i == $pagina_atual ? 'active-page' : ''; ?>"
+                            >
+                                <?php echo $i; ?>
+                            </a>
+
+                        <?php } ?>
+
+                        <?php if ($pagina_atual < $total_paginas) { ?>
+                            <a href="dashboard_franquia.php?pagina=<?php echo $pagina_atual + 1; ?>">
+                                Seguinte
+                            </a>
+                        <?php } ?>
+
+                    </div>
+
+                <?php } ?>
 
             </section>
 
