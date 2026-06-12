@@ -44,3 +44,9 @@
     font-family: 'Kode Mono', monospace;
     margin-bottom: 10px;
 }
+.plataformas-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 10px;
+}
