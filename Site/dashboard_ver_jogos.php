@@ -19,7 +19,6 @@ if (!isset($_GET["id"])) {
 
 $id = intval($_GET["id"]);
 
-/* 🔥 JOGO */
 $stmt = $conn->prepare("SELECT * FROM jogos WHERE id_jogo = ?");
 $stmt->bind_param("i", $id);
 $stmt->execute();
@@ -32,16 +31,9 @@ if (!$jogo) {
     exit();
 }
 
-/* 🎮 GÉNEROS */
 $generos = [];
 
-$stmt_gen = $conn->prepare("
-    SELECT g.nome
-    FROM generos g
-    INNER JOIN jogo_genero jg ON g.id_genero = jg.id_genero
-    WHERE jg.id_jogo = ?
-");
-
+$stmt_gen = $conn->prepare("SELECT g.nome FROM generos g INNER JOIN jogo_genero jg ON g.id_genero = jg.id_genero WHERE jg.id_jogo = ?");
 $stmt_gen->bind_param("i", $id);
 $stmt_gen->execute();
 
@@ -51,7 +43,6 @@ while ($row = $res_gen->fetch_assoc()) {
     $generos[] = $row["nome"];
 }
 
-/* 🎮 PLATAFORMAS */
 $plataformas = !empty($jogo["plataforma"])
     ? explode(", ", $jogo["plataforma"])
     : [];
@@ -63,6 +54,10 @@ $plataformas = !empty($jogo["plataforma"])
     <meta charset="UTF-8">
     <title>Ver Jogo</title>
     <link rel="stylesheet" href="css/backoffice.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
+</head>
 </head>
 
 <body>
@@ -95,52 +90,61 @@ $plataformas = !empty($jogo["plataforma"])
 
     </aside>
 
-    <div class="ver-jogo">
+    <main class="jogo-detalhe-main">
 
-    <h1><?= htmlspecialchars($jogo["titulo"]) ?></h1>
+    <h1 class="jogo-detalhe-titulo">
+        <?= htmlspecialchars($jogo["titulo"]) ?>
+    </h1>
 
-    <div class="ver-jogo-layout">
+    <div class="jogo-detalhe-layout">
 
-        <div class="left">
-
-            <img src="<?= $jogo["capa_url"] ?>">
-
-            <p><strong>Desenvolvedor:</strong> <?= $jogo["desenvolvedor"] ?></p>
-            <p><strong>Editor:</strong> <?= $jogo["editor"] ?></p>
-            <p><strong>Data:</strong> <?= $jogo["data_lancamento"] ?></p>
-
+        <!-- LADO ESQUERDO -->
+        <div class="jogo-detalhe-left">
+            <img class="jogo-detalhe-capa" src="<?= $jogo["capa_url"] ?>">
+            <a class="jogo-detalhe-voltar" href="dashboard_jogos.php">⬅ Voltar</a>
         </div>
 
-        <div class="right">
+        <!-- LADO DIREITO -->
+        <div class="jogo-detalhe-right">
 
-            <p><strong>Descrição:</strong><br>
+            <p class="jogo-detalhe-info"><strong>Desenvolvedor:</strong> <?= $jogo["desenvolvedor"] ?></p>
+            <p class="jogo-detalhe-info"><strong>Editor:</strong> <?= $jogo["editor"] ?></p>
+            <p class="jogo-detalhe-info"><strong>Data:</strong> <?= $jogo["data_lancamento"] ?></p>
+
+            <p class="jogo-detalhe-descricao">
+                <strong>Descrição:</strong><br>
                 <?= nl2br($jogo["descricao"]) ?>
             </p>
 
-            <p><strong>Géneros:</strong></p>
-            <div class="tags">
+            <p class="jogo-detalhe-subtitulo"><strong>Género:</strong></p>
+            <div class="jogo-detalhe-tags">
                 <?php foreach ($generos as $g) { ?>
-                    <span class="tag"><?= htmlspecialchars($g) ?></span>
+                    <span class="jogo-detalhe-tag"><?= htmlspecialchars($g) ?></span>
                 <?php } ?>
             </div>
 
-            <p><strong>Plataformas:</strong></p>
-            <div class="tags">
+            <p class="jogo-detalhe-subtitulo"><strong>Plataformas:</strong></p>
+            <div class="jogo-detalhe-tags">
                 <?php foreach ($plataformas as $p) { ?>
-                    <span class="tag"><?= htmlspecialchars($p) ?></span>
+                    <span class="jogo-detalhe-tag"><?= htmlspecialchars($p) ?></span>
                 <?php } ?>
             </div>
 
-            <p>
+            <p class="jogo-detalhe-trailer">
                 <strong>Trailer:</strong><br>
-                <a href="<?= $jogo["trailer_url"] ?>" target="_blank">Ver Trailer</a>
+                <iframe
+                    src="<?= $jogo['trailer_url'] ?>"
+                    title="Trailer"
+                    frameborder="0"
+                    allowfullscreen>
+                </iframe>
             </p>
 
         </div>
 
     </div>
 
-</div>
+</main>
 
 </div>
 

@@ -432,78 +432,91 @@ tbody tr:hover {
     transform: scale(1.03);
 }
 
-.ver-jogo {
-    padding: 40px;
-    background: #121212;
-    color: #fff;
+.jogo-detalhe-main {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 20px;
+    color: #e6e6e6;
+    font-family: Arial, sans-serif;
+    background: transparent;
+    box-shadow: none;
 }
 
-.ver-jogo h1 {
-    font-size: 32px;
-    margin-bottom: 25px;
-}
-
-.ver-jogo-layout {
+.jogo-detalhe-layout {
     display: flex;
-    gap: 50px;
+    gap: 70px;
     align-items: flex-start;
 }
 
-.left {
-    width: 260px;
+.jogo-detalhe-left {
+    width: 280px;
+    flex-shrink: 0;
 }
 
-.left img {
+.jogo-detalhe-capa {
     width: 100%;
     border-radius: 12px;
-    margin-bottom: 15px;
 }
 
-.left p {
-    margin: 8px 0;
-}
-
-.right {
+.jogo-detalhe-right {
     flex: 1;
 }
 
-.right p {
-    margin: 12px 0;
-    line-height: 1.6;
+.jogo-detalhe-info {
+    margin-bottom: 12px;
+    color: #cfcfcf;
 }
 
-.tags {
+.jogo-detalhe-descricao {
+    margin-top: 25px;
+    line-height: 1.8;
+    color: #ddd;
+}
+
+.jogo-detalhe-subtitulo {
+    margin-top: 40px;
+    font-size: 18px;
+}
+
+.jogo-detalhe-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin: 10px 0 20px;
+    margin-top: 12px;
+    margin-bottom: 25px;
 }
 
-.tag {
-    padding: 6px 12px;
-    background: #1a1a1a;
-    border: 1px solid #333;
+.jogo-detalhe-tag {
+    background: #f107a3;
+    padding: 7px 12px;
     border-radius: 20px;
-    font-size: 12px;
 }
 
-a {
-    color: #00bfff;
-    text-decoration: none;
+.jogo-detalhe-trailer iframe {
+    width: 100%;
+    max-width: 900px;
+    height: 500px;
+    border-radius: 12px;
+    display: block;
+    margin-top: 15px;
 }
 
-a:hover {
+.jogo-detalhe-trailer a:hover {
     text-decoration: underline;
 }
 
-@media (max-width: 900px) {
-    .ver-jogo-layout {
-        flex-direction: column;
-    }
+.jogo-detalhe-voltar {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 10px 14px;
+    background: #f107a3;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
 
-    .left {
-        width: 100%;
-    }
+.jogo-detalhe-voltar:hover {
+    background: #555;
 }
 
 .add-btn {
