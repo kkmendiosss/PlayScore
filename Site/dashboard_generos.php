@@ -9,7 +9,29 @@ if (!isset($_SESSION["id"]) || $_SESSION["tipo_utilizador"] != "admin") {
 
 $nome_admin = $_SESSION["nome"] ?? "Admin";
 
-$sql = "SELECT * FROM generos ORDER BY id_genero DESC";
+if (isset($_GET["eliminar"])) {
+    $id = mysqli_real_escape_string($conn, $_GET["eliminar"]);
+    $sql_delete = "DELETE FROM generos WHERE id_genero = '$id'";
+    
+    if (mysqli_query($conn, $sql_delete)) {
+        header("Location: dashboard_generos.php");
+        exit();
+    }
+}
+
+$por_pagina = 10;
+$pagina = $_GET["pagina"] ?? 1;
+$pagina = max(1, intval($pagina));
+
+$inicio = ($pagina - 1) * $por_pagina;
+
+$sql_total = "SELECT COUNT(*) AS total FROM generos";
+$resultado_total = mysqli_query($conn, $sql_total);
+$total_linhas = mysqli_fetch_assoc($resultado_total)["total"];
+
+$total_paginas = ceil($total_linhas / $por_pagina);
+
+$sql = "SELECT * FROM generos ORDER BY id_genero ASC LIMIT $inicio, $por_pagina";
 $resultado = mysqli_query($conn, $sql);
 ?>
 
@@ -77,6 +99,7 @@ $resultado = mysqli_query($conn, $sql);
                         <tr>
                             <th>ID</th>
                             <th>Nome</th>
+                            <th class="actions-title">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -84,10 +107,47 @@ $resultado = mysqli_query($conn, $sql);
                             <tr>
                                 <td><?php echo $genero["id_genero"]; ?></td>
                                 <td><?php echo $genero["nome"]; ?></td>
+                                <td class="actions">
+                                    
+                                    <a href="dashboard_editar_generos.php?id=<?php echo $genero["id_genero"]; ?>" class="btn edit">
+                                        Editar
+                                    </a>
+
+                                    <a href="dashboard_generos.php?eliminar=<?php echo $genero["id_genero"]; ?>" 
+                                       class="btn delete" 
+                                       onclick="return confirm('Tens a certeza que queres eliminar este género?');">
+                                        Eliminar
+                                    </a>
+
+                                </td>
                             </tr>
                         <?php } ?>
                     </tbody>
                 </table>
+
+                <div class="pagination">
+
+                    <?php if ($pagina > 1) { ?>
+                        <a href="dashboard_generos.php?pagina=<?php echo $pagina - 1; ?>">
+                            Anterior
+                        </a>
+                    <?php } ?>
+
+                    <?php for ($i = 1; $i <= $total_paginas; $i++) { ?>
+                        <a href="dashboard_generos.php?pagina=<?php echo $i; ?>"
+                            class="<?php echo ($i == $pagina) ? 'active' : ''; ?>">
+                            <?php echo $i; ?>
+                        </a>
+                    <?php } ?>
+
+                    <?php if ($pagina < $total_paginas) { ?>
+                        <a href="dashboard_generos.php?pagina=<?php echo $pagina + 1; ?>">
+                            Próxima
+                        </a>
+                    <?php } ?>
+
+                </div>
+
             </section>
 
         </main>
