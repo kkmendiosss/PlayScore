@@ -176,11 +176,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="text" name="trailer_url">
                 </div>
 
-                <div class="generos-form-group">
-                    <label for="plataforma">Plataforma</label>
-                    <input type="text" name="plataforma">
-                </div>
+                <div class="generos-form-group plataformas">
+                    <label>Plataformas</label>
 
+                    <div class="plataformas-grid">
+
+                        <label class="plataforma-card">
+                            <span>PC</span>
+                            <input type="checkbox" name="plataforma[]" value="PC">
+                        </label>
+
+                        <label class="plataforma-card">
+                            <span>PlayStation 5</span>
+                            <input type="checkbox" name="plataforma[]" value="PlayStation 5">
+                        </label>
+
+                        <label class="plataforma-card">
+                            <span>Xbox Series X/S</span>
+                            <input type="checkbox" name="plataforma[]" value="Xbox Series X/S">
+                        </label>
+
+                        <label class="plataforma-card">
+                            <span>Nintendo Switch</span>
+                            <input type="checkbox" name="plataforma[]" value="Nintendo Switch">
+                        </label>
+
+                        <label class="plataforma-card">
+                            <span>Mobile</span>
+                            <input type="checkbox" name="plataforma[]" value="Mobile">
+                        </label>
+
+                    </div>
+                </div>
                 <div class="generos-form-group">
                     <label>Género</label>
                     <select name="id_genero" required>
