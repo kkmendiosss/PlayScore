@@ -432,6 +432,80 @@ tbody tr:hover {
     transform: scale(1.03);
 }
 
+.ver-jogo {
+    padding: 40px;
+    background: #121212;
+    color: #fff;
+}
+
+.ver-jogo h1 {
+    font-size: 32px;
+    margin-bottom: 25px;
+}
+
+.ver-jogo-layout {
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+}
+
+.left {
+    width: 260px;
+}
+
+.left img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.left p {
+    margin: 8px 0;
+}
+
+.right {
+    flex: 1;
+}
+
+.right p {
+    margin: 12px 0;
+    line-height: 1.6;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px 0 20px;
+}
+
+.tag {
+    padding: 6px 12px;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+a {
+    color: #00bfff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+    .ver-jogo-layout {
+        flex-direction: column;
+    }
+
+    .left {
+        width: 100%;
+    }
+}
+
 .add-btn {
     background-color: #f107a3;
     color: white;
