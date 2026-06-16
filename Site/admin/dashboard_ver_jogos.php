@@ -98,13 +98,11 @@ $plataformas = !empty($jogo["plataforma"])
 
     <div class="jogo-detalhe-layout">
 
-        <!-- LADO ESQUERDO -->
         <div class="jogo-detalhe-left">
             <img class="jogo-detalhe-capa" src="<?= $jogo["capa_url"] ?>">
             <a class="jogo-detalhe-voltar" href="dashboard_jogos.php">⬅ Voltar</a>
         </div>
 
-        <!-- LADO DIREITO -->
         <div class="jogo-detalhe-right">
 
             <p class="jogo-detalhe-info"><strong>Desenvolvedor:</strong> <?= $jogo["desenvolvedor"] ?></p>
