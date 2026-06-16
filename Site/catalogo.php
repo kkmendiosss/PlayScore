@@ -43,13 +43,15 @@ $resultado_jogos = mysqli_query($conn, $query_jogos);
 $query_generos = "SELECT id_genero, nome FROM generos ORDER BY nome ASC";
 $resultado_generos = mysqli_query($conn, $query_generos);
 
-function construirUrlPaginacao($pag, $q, $gen, $ord) {
+function construirUrlPaginacao($pag, $q, $gen, $ord)
+{
     return "?pagina=$pag&q=" . urlencode($q) . "&genero=$gen&ordem=$ord";
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-PT">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,6 +63,7 @@ function construirUrlPaginacao($pag, $q, $gen, $ord) {
     <link rel="stylesheet" href="css/headerfooter.css">
     <link rel="stylesheet" href="js/headerfooter.js">
 </head>
+
 <body class="fundo">
 
     <header class="navbar">
@@ -114,7 +117,7 @@ function construirUrlPaginacao($pag, $q, $gen, $ord) {
                     <a href="perfil.php">Perfil</a>
 
                     <?php if ($tipo == "admin") { ?>
-                        <a href="dashboard.php">Dashboard</a>
+                        <a href="admin/dashboard.php">Dashboard</a>
                     <?php } ?>
 
                     <a href="logout.php">Sair</a>
@@ -142,11 +145,11 @@ function construirUrlPaginacao($pag, $q, $gen, $ord) {
     </header>
 
     <main class="catalogo-container">
-        
+
         <h1 class="catalogo-titulo">Catálogo</h1>
 
         <form action="catalogo.php" method="GET" class="catalogo-ferramentas">
-            
+
             <div class="pesquisa-wrapper">
                 <input type="text" name="q" placeholder="Pesquisar..." value="<?= htmlspecialchars($pesquisa) ?>">
                 <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -157,7 +160,7 @@ function construirUrlPaginacao($pag, $q, $gen, $ord) {
                     <span class="filtro-label">Filtro: Género <span class="seta-rosa">▼</span></span>
                     <select name="genero" onchange="this.form.submit()">
                         <option value="">Todos</option>
-                        <?php while($genero = mysqli_fetch_assoc($resultado_generos)): ?>
+                        <?php while ($genero = mysqli_fetch_assoc($resultado_generos)): ?>
                             <option value="<?= $genero['id_genero'] ?>" <?= ($filtro_genero == $genero['id_genero']) ? 'selected' : '' ?>>
                                 <?= htmlspecialchars($genero['nome']) ?>
                             </option>
@@ -179,11 +182,11 @@ function construirUrlPaginacao($pag, $q, $gen, $ord) {
 
         <div class="jogos-grid">
             <?php if (mysqli_num_rows($resultado_jogos) > 0): ?>
-                <?php while($jogo = mysqli_fetch_assoc($resultado_jogos)): ?>
+                <?php while ($jogo = mysqli_fetch_assoc($resultado_jogos)): ?>
                     <div class="jogo-card">
                         <a href="jogo.php?id=<?= $jogo['id_jogo'] ?>">
-                            <?php 
-                                $capa = !empty($jogo['capa_url']) ? $jogo['capa_url'] : 'imagens/sem_capa.jpg'; 
+                            <?php
+                            $capa = !empty($jogo['capa_url']) ? $jogo['capa_url'] : 'imagens/sem_capa.jpg';
                             ?>
                             <img src="<?= htmlspecialchars($capa) ?>" alt="<?= htmlspecialchars($jogo['titulo']) ?>">
                         </a>
@@ -251,4 +254,5 @@ function construirUrlPaginacao($pag, $q, $gen, $ord) {
     </footer>
 
 </body>
+
 </html>

@@ -251,10 +251,27 @@ $jogos = $stmt_jogos->get_result();
 </main>
 
 <footer>
-    <div class="footer-bottom">
-        <p>© 2026 PLAYSCORE NETWORK. TODOS OS DIREITOS RESERVADOS.</p>
-    </div>
-</footer>
+        <div class="footer-content">
+            <div class="footer-column brand-col">
+                <div class="logo"><img src="logo/Logo.png" alt="PlayScore"></div>
+                <p class="footer-desc">Transformamos dados em decisões inteligentes.</p>
+            </div>
+            <div class="footer-column nav-col">
+                <h3>Navegação</h3>
+                <a href="index.php">Início</a><a href="sobrenos.php">Sobre Nós</a><a href="catalogo.php">Catálogo</a>
+            </div>
+            <div class="footer-column legal-col">
+                <h3>Legalidade</h3>
+                <a href="regras.php">Regras</a><a href="politicas.php">Privacidade</a><a href="contactos.php">Contactos</a>
+            </div>
+            <div class="footer-social">
+                <span>Discord</span><span>Twitter</span><span>LinkedIn</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 PLAYSCORE NETWORK. TODOS OS DIREITOS RESERVADOS.</p>
+        </div>
+    </footer>
 
 <script src="js/headerfooter.js"></script>
 

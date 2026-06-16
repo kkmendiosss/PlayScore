@@ -72,7 +72,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["classificacao"])) {
         ");
         $stmt->bind_param("iii", $voto, $id_utilizador, $id_jogo);
         $stmt->execute();
-
     } else {
 
         $stmt = $conn->prepare("
@@ -238,7 +237,7 @@ if (!$jogo) {
                     <a href="perfil.php">Perfil</a>
 
                     <?php if ($tipo == "admin") { ?>
-                        <a href="dashboard.php">Dashboard</a>
+                        <a href="admin/dashboard.php">Dashboard</a>
                     <?php } ?>
 
                     <a href="logout.php">Sair</a>
@@ -275,9 +274,9 @@ if (!$jogo) {
 
             <!-- SIDEBAR -->
             <aside class="sidebar">
-            <a class="btn-franquia" href="franquia.php?id=<?php echo $jogo['id_franquia']; ?>">
-             Ver franquia
-            </a>
+                <a class="btn-franquia" href="franquia.php?id=<?php echo $jogo['id_franquia']; ?>">
+                    Ver franquia
+                </a>
                 <img
                     src="<?= $jogo['capa_url'] ?>"
                     class="game-cover"
@@ -289,26 +288,25 @@ if (!$jogo) {
 
                     <div class="rating-box">
 
-                    <div class="rating-info">
-                        ⭐ <strong><?= number_format($jogo['classificacao'] ?? 0, 1) ?></strong>/5
-                        <span>(<?= $jogo['num_votos'] ?> votos)</span>
-                    </div>
+                        <div class="rating-info">
+                            ⭐ <strong><?= number_format($jogo['classificacao'] ?? 0, 1) ?></strong>/5
+                            <span>(<?= $jogo['num_votos'] ?> votos)</span>
+                        </div>
 
-                    <form method="POST" action="jogo.php?id=<?= $jogo['id_jogo'] ?>">
+                        <form method="POST" action="jogo.php?id=<?= $jogo['id_jogo'] ?>">
 
-                        <input type="hidden" name="id_jogo" value="<?= $jogo['id_jogo'] ?>">
+                            <input type="hidden" name="id_jogo" value="<?= $jogo['id_jogo'] ?>">
 
-                        <div class="stars">
+                            <div class="stars">
 
-                            <?php for ($i = 5; $i >= 1; $i--): ?>
-                                <input 
-                                    type="radio" 
-                                    name="classificacao" 
-                                    value="<?= $i ?>" 
-                                    id="star<?= $i ?>"
-                                    <?= ($user_vote == $i) ? 'checked' : '' ?>
-                                >
-                                <label for="star<?= $i ?>">★</label>
+                                <?php for ($i = 5; $i >= 1; $i--): ?>
+                                    <input
+                                        type="radio"
+                                        name="classificacao"
+                                        value="<?= $i ?>"
+                                        id="star<?= $i ?>"
+                                        <?= ($user_vote == $i) ? 'checked' : '' ?>>
+                                    <label for="star<?= $i ?>">★</label>
                                 <?php endfor; ?>
 
                             </div>
@@ -438,67 +436,67 @@ if (!$jogo) {
 
                                     <p><?= nl2br(htmlspecialchars($c["comentario"])) ?></p>
 
-                                <small>
-                                    <?= date("d/m/Y H:i", strtotime($c["data_comentario"])) ?>
-                                </small>
+                                    <small>
+                                        <?= date("d/m/Y H:i", strtotime($c["data_comentario"])) ?>
+                                    </small>
+                                </div>
                             </div>
-                        </div>
+
+                        <?php } ?>
+
+                    <?php } else { ?>
+
+                        <p class="no-comments">
+                            Ainda não existem comentários. Sê o primeiro a comentar!
+                        </p>
 
                     <?php } ?>
 
+                </section>
+
+
+                <?php if ($total_pages > 1) { ?>
+
+                    <div class="pagination">
+
+                        <?php if ($page > 1) { ?>
+                            <a href="?id=<?= $id ?>&page=<?= $page - 1 ?>">← Anterior</a>
+                        <?php } ?>
+
+                        <?php for ($i = 1; $i <= $total_pages; $i++) { ?>
+
+                            <a href="?id=<?= $id ?>&page=<?= $i ?>"
+                                class="<?= ($i == $page) ? 'active' : '' ?>">
+                                <?= $i ?>
+                            </a>
+
+                        <?php } ?>
+
+                        <?php if ($page < $total_pages) { ?>
+                            <a href="?id=<?= $id ?>&page=<?= $page + 1 ?>">Seguinte →</a>
+                        <?php } ?>
+
+                    </div>
+
+                <?php } ?>
+
+                <?php if (isset($_SESSION["id"])) { ?>
+
+                    <form method="POST" class="comment-form">
+                        <input type="hidden" name="id_jogo" value="<?= $id ?>">
+
+                        <textarea name="comentario" placeholder="Escreve um comentário..." required></textarea>
+
+                        <button type="submit">Enviar</button>
+                    </form>
+
                 <?php } else { ?>
 
-                <p class="no-comments">
-                    Ainda não existem comentários. Sê o primeiro a comentar!
-                </p>
+                    <p class="no-comments">
+                        <a href="login.php">Faz login</a> para comentar.
+                    </p>
 
-            <?php } ?>
-
-        </section>
-
-
-<?php if ($total_pages > 1) { ?>
-
-<div class="pagination">
-
-    <?php if ($page > 1) { ?>
-        <a href="?id=<?= $id ?>&page=<?= $page - 1 ?>">← Anterior</a>
-    <?php } ?>
-
-    <?php for ($i = 1; $i <= $total_pages; $i++) { ?>
-
-        <a href="?id=<?= $id ?>&page=<?= $i ?>"
-           class="<?= ($i == $page) ? 'active' : '' ?>">
-            <?= $i ?>
-        </a>
-
-    <?php } ?>
-
-    <?php if ($page < $total_pages) { ?>
-        <a href="?id=<?= $id ?>&page=<?= $page + 1 ?>">Seguinte →</a>
-    <?php } ?>
-
-</div>
-
-<?php } ?>
-
-<?php if (isset($_SESSION["id"])) { ?>
-
-    <form method="POST" class="comment-form">
-        <input type="hidden" name="id_jogo" value="<?= $id ?>">
-
-        <textarea name="comentario" placeholder="Escreve um comentário..." required></textarea>
-
-        <button type="submit">Enviar</button>
-    </form>
-
-<?php } else { ?>
-
-    <p class="no-comments">
-        <a href="login.php">Faz login</a> para comentar.
-    </p>
-
-<?php } ?>
+                <?php } ?>
 
         </section>
 
