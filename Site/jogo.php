@@ -282,6 +282,8 @@ if (!$jogo) {
                     class="game-cover"
                     alt="<?php echo $jogo['titulo']; ?>">
 
+                <div class="info-box">
+
                     <h2>Playscore</h2>
 
                     <div class="rating-box">
