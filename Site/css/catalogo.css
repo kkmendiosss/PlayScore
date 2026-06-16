@@ -66,6 +66,7 @@
 .filtros-wrapper {
     display: flex;
     gap: 30px;
+    align-items: center;
 }
 
 .filtro-item {
@@ -114,6 +115,83 @@
     color: white;
     font-family: 'Kode Mono', monospace;
     padding: 10px;
+}
+
+.filtro-dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.filtro-btn {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 5px 0;
+    transition: opacity 0.2s;
+}
+
+.filtro-btn:hover {
+    opacity: 0.8;
+}
+
+.lista-checkbox-generos {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #171717;
+    border: 1px solid #333;
+    border-top: 2px solid #ff00ff;
+    padding: 12px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 100;
+    min-width: 180px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.7);
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.lista-checkbox-generos.ativo {
+    display: block;
+}
+
+.checkbox-opcao {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    gap: 10px;
+}
+
+.checkbox-opcao input[type="checkbox"] {
+    cursor: pointer;
+    accent-color: #ff00ff;
+}
+
+.checkbox-opcao label {
+    color: white;
+    font-family: 'Kode Mono', monospace;
+    font-size: 0.9rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.btn-aplicar-filtros {
+    width: 100%;
+    background-color: #ff00ff;
+    color: black;
+    border: none;
+    padding: 6px;
+    margin-top: 10px;
+    font-family: 'Kode Mono', monospace;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-radius: 3px;
+}
+
+.btn-aplicar-filtros:hover {
+    background-color: #cc00cc;
 }
 
 .jogos-grid {

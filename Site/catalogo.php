@@ -11,7 +11,7 @@ if ($pagina_atual < 1) $pagina_atual = 1;
 $offset = ($pagina_atual - 1) * $limite_por_pagina;
 
 $pesquisa = isset($_GET['q']) ? mysqli_real_escape_string($conn, $_GET['q']) : '';
-$filtro_genero = isset($_GET['genero']) ? (int)$_GET['genero'] : '';
+$filtro_genero = isset($_GET['generos']) ? array_map('intval', (array)$_GET['generos']) : [];
 $ordenacao = isset($_GET['ordem']) ? $_GET['ordem'] : '';
 
 $where_sql = "WHERE 1=1";
@@ -20,7 +20,15 @@ if (!empty($pesquisa)) {
     $where_sql .= " AND titulo LIKE '%$pesquisa%'";
 }
 if (!empty($filtro_genero)) {
-    $where_sql .= " AND id_genero = $filtro_genero";
+    $generos_ids = implode(',', $filtro_genero);
+    $total_selecionados = count($filtro_genero);
+    
+    $where_sql .= " AND id_jogo IN (
+        SELECT id_jogo FROM jogo_genero
+        WHERE id_genero IN ($generos_ids)
+        GROUP BY id_jogo 
+        HAVING COUNT(DISTINCT id_genero) = $total_selecionados
+    )";
 }
 
 $order_sql = "ORDER BY id_jogo DESC";
@@ -43,9 +51,16 @@ $resultado_jogos = mysqli_query($conn, $query_jogos);
 $query_generos = "SELECT id_genero, nome FROM generos ORDER BY nome ASC";
 $resultado_generos = mysqli_query($conn, $query_generos);
 
-function construirUrlPaginacao($pag, $q, $gen, $ord)
+function construirUrlPaginacao($pag, $q, $gen_array, $ord)
 {
-    return "?pagina=$pag&q=" . urlencode($q) . "&genero=$gen&ordem=$ord";
+    $url = "?pagina=$pag&q=" . urlencode($q);
+    if (!empty($gen_array)) {
+        foreach ($gen_array as $gen) {
+            $url .= "&generos[]=" . (int)$gen;
+        }
+    }
+    $url .= "&ordem=$ord";
+    return $url;
 }
 ?>
 
@@ -156,20 +171,24 @@ function construirUrlPaginacao($pag, $q, $gen, $ord)
             </div>
 
             <div class="filtros-wrapper">
-                <div class="filtro-item">
-                    <span class="filtro-label">Filtro: Género <span class="seta-rosa">▼</span></span>
-                    <select name="genero" onchange="this.form.submit()">
-                        <option value="">Todos</option>
-                        <?php while ($genero = mysqli_fetch_assoc($resultado_generos)): ?>
-                            <option value="<?= $genero['id_genero'] ?>" <?= ($filtro_genero == $genero['id_genero']) ? 'selected' : '' ?>>
-                                <?= htmlspecialchars($genero['nome']) ?>
-                            </option>
+                <div class="filtro-dropdown-container" id="filtro-genero-container">
+                    <div class="filtro-btn" onclick="toggleDropdown(event)">
+                        <span class="filtro-label">Filtro: Género<span class="seta-rosa">▼</span></span>
+                    </div>
+                    <div class="lista-checkbox-generos" id="dropdown-generos">
+                        <?php mysqli_data_seek($resultado_generos, 0); while ($genero = mysqli_fetch_assoc($resultado_generos)): ?>
+                            <div class="checkbox-opcao">
+                                <input type="checkbox" name="generos[]" id="gen_<?= $genero['id_genero'] ?>" value="<?= $genero['id_genero'] ?>" <?= in_array((int)$genero['id_genero'], $filtro_genero) ? 'checked' : '' ?>>
+                                <label for="gen_<?= $genero['id_genero'] ?>">
+                                    <?= htmlspecialchars($genero['nome']) ?>
+                                </label>
+                            </div>
                         <?php endwhile; ?>
-                    </select>
+                        <button type="submit" class="btn-aplicar-filtros">Aplicar</button>
+                    </div>
                 </div>
-
                 <div class="filtro-item">
-                    <span class="filtro-label">Ordenar por <span class="seta-rosa">▼</span></span>
+                    <span class="filtro-label">Ordenar por<span class="seta-rosa">▼</span></span>
                     <select name="ordem" onchange="this.form.submit()">
                         <option value="">Padrão</option>
                         <option value="az" <?= ($ordenacao == 'az') ? 'selected' : '' ?>>A - Z</option>
@@ -185,10 +204,7 @@ function construirUrlPaginacao($pag, $q, $gen, $ord)
                 <?php while ($jogo = mysqli_fetch_assoc($resultado_jogos)): ?>
                     <div class="jogo-card">
                         <a href="jogo.php?id=<?= $jogo['id_jogo'] ?>">
-                            <?php
-                            $capa = !empty($jogo['capa_url']) ? $jogo['capa_url'] : 'imagens/sem_capa.jpg';
-                            ?>
-                            <img src="<?= htmlspecialchars($capa) ?>" alt="<?= htmlspecialchars($jogo['titulo']) ?>">
+                            <img src="uploads/<?= htmlspecialchars($jogo['capa_url']) ?>" alt="<?= htmlspecialchars($jogo['titulo']) ?>">
                         </a>
                     </div>
                 <?php endwhile; ?>
@@ -253,6 +269,8 @@ function construirUrlPaginacao($pag, $q, $gen, $ord)
         </div>
     </footer>
 
+    <script src="js/catalogo.js"></script>
+    
 </body>
 
 </html>
