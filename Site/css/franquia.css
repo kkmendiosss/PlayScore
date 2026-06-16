@@ -1,40 +1,80 @@
-.franquia-page {
-    background: #0b0f19;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #0b0f19;
     color: white;
-    min-height: 100vh;
-    padding: 60px 8%;
+    overflow-x: hidden;
+}
+
+body {
     font-family: 'Abel', sans-serif;
 }
 
-.franquia-topo {
+.franquia-page {
+    width: 100%;
+    max-width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 60px 8%;
+    background-color: #0b0f19;
+    color: white;
+    font-family: 'Abel', sans-serif;
+    overflow-x: hidden;
+}
+
+.franquia-page * {
+    max-width: 100%;
+}
+
+.franquia-page .franquia-topo {
+    width: 100%;
     display: grid;
-    grid-template-columns: 360px 1fr;
+    grid-template-columns: 360px minmax(0, 1fr);
     gap: 40px;
     margin-bottom: 60px;
 }
 
-.franquia-imagem img,
-.placeholder-img {
+.franquia-page .franquia-imagem {
+    width: 100%;
+    min-width: 0;
+}
+
+.franquia-page .franquia-imagem img,
+.franquia-page .placeholder-img {
     width: 100%;
     height: 460px;
     object-fit: cover;
     border-radius: 18px;
-    background: #111827;
+    background-color: #111827;
+    display: block;
 }
 
-.franquia-info {
-    background: #111827;
+.franquia-page .franquia-info {
+    width: 100%;
+    min-width: 0;
+    background-color: #111827;
     border-radius: 18px;
     padding: 40px;
 }
 
-.franquia-info h1 {
+.franquia-page .franquia-info h1 {
     font-size: 52px;
     color: #00d4ff;
     margin-bottom: 20px;
+    word-break: break-word;
 }
 
-.franquia-meta {
+.franquia-page .franquia-meta {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
@@ -42,92 +82,132 @@
     color: #cbd5e1;
 }
 
-.franquia-info p {
+.franquia-page .franquia-info p {
     font-size: 20px;
     line-height: 1.7;
     color: #d1d5db;
+    word-break: break-word;
 }
 
-.jogos-franquia h2 {
+.franquia-page .jogos-franquia {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.franquia-page .jogos-franquia h2 {
     font-size: 36px;
     margin-bottom: 20px;
+    color: white;
 }
 
-.filtros {
+.franquia-page .filtros {
+    width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 30px;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
-.filtros select,
-.view-buttons button {
-    background: #111827;
+.franquia-page .filtros select,
+.franquia-page .view-buttons button {
+    background-color: #111827;
     color: white;
     border: 1px solid #334155;
     padding: 12px 16px;
     border-radius: 10px;
+    outline: none;
+    cursor: pointer;
 }
 
-.jogos-grid {
+.franquia-page .jogos-grid {
+    width: 100%;
+    max-width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 220px));
     justify-content: start;
     gap: 20px;
+    overflow-x: hidden;
 }
 
-.jogo-card {
-    background: #111827;
+.franquia-page .jogo-card {
+    width: 100%;
+    min-width: 0;
+    background-color: #111827;
     border-radius: 18px;
     overflow: hidden;
     border: 1px solid #263244;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.jogo-img img {
+.franquia-page .jogo-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 18px rgba(0, 212, 255, 0.18);
+}
+
+.franquia-page .jogo-img {
+    width: 100%;
+}
+
+.franquia-page .jogo-img img {
     width: 100%;
     height: 260px;
     object-fit: cover;
+    display: block;
 }
 
-.jogo-conteudo {
+.franquia-page .jogo-conteudo {
     padding: 20px;
 }
 
-.jogo-conteudo h3 {
+.franquia-page .jogo-conteudo h3 {
     color: #00d4ff;
     font-size: 24px;
     margin-bottom: 12px;
+    word-break: break-word;
 }
 
-.jogo-conteudo p {
+.franquia-page .jogo-conteudo p {
     color: #cbd5e1;
     margin-bottom: 8px;
+    word-break: break-word;
 }
 
-.btn-ver-jogo {
+.franquia-page .btn-ver-jogo {
     display: inline-block;
     margin-top: 15px;
-    background: #00d4ff;
+    background-color: #00d4ff;
     color: #020617;
     padding: 10px 18px;
     border-radius: 10px;
     text-decoration: none;
     font-weight: bold;
+    transition: 0.2s ease;
 }
 
-.sem-jogos {
+.franquia-page .btn-ver-jogo:hover {
+    background-color: white;
+    color: #020617;
+}
+
+.franquia-page .sem-jogos {
     color: #94a3b8;
     font-size: 22px;
 }
 
-.pagination {
+.franquia-page .pagination {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 8px;
     margin-top: 25px;
+    flex-wrap: wrap;
 }
 
-.pagination a {
+.franquia-page .pagination a {
     padding: 8px 13px;
     border-radius: 6px;
     background-color: #222;
@@ -137,22 +217,58 @@
     transition: 0.2s;
 }
 
-.pagination a:hover {
+.franquia-page .pagination a:hover {
     background-color: #444;
 }
 
-.pagination .active-page {
+.franquia-page .pagination .active-page {
     background-color: #e63946;
     color: #fff;
     font-weight: bold;
 }
 
 @media (max-width: 900px) {
-    .franquia-topo {
+    .franquia-page {
+        padding: 40px 5%;
+    }
+
+    .franquia-page .franquia-topo {
         grid-template-columns: 1fr;
     }
 
-    .franquia-info h1 {
+    .franquia-page .franquia-info h1 {
         font-size: 38px;
+    }
+
+    .franquia-page .franquia-imagem img,
+    .franquia-page .placeholder-img {
+        height: 380px;
+    }
+}
+
+@media (max-width: 600px) {
+    .franquia-page {
+        padding: 30px 20px;
+    }
+
+    .franquia-page .franquia-info {
+        padding: 25px;
+    }
+
+    .franquia-page .franquia-info h1 {
+        font-size: 32px;
+    }
+
+    .franquia-page .franquia-info p {
+        font-size: 17px;
+    }
+
+    .franquia-page .jogos-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+    }
+
+    .franquia-page .jogo-img img {
+        height: 220px;
     }
 }
