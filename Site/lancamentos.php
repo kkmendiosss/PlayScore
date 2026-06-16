@@ -77,7 +77,7 @@ $resultado = mysqli_query($conn, "SELECT * FROM lancamentos ORDER BY data");
                     <a href="perfil.php">Perfil</a>
 
                     <?php if ($tipo == "admin") { ?>
-                        <a href="dashboard.php">Dashboard</a>
+                        <a href="/admin/dashboard.php">Dashboard</a>
                     <?php } ?>
 
                     <a href="logout.php">Sair</a>

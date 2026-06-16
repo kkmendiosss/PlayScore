@@ -72,7 +72,7 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
                     <a href="perfil.php">Perfil</a>
 
                     <?php if ($tipo == "admin") { ?>
-                        <a href="dashboard.php">Dashboard</a>
+                        <a href="/admin/dashboard.php">Dashboard</a>
                     <?php } ?>
 
                     <a href="logout.php">Sair</a>
