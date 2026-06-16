@@ -10,24 +10,53 @@ if (!isset($_SESSION["id"]) || $_SESSION["tipo_utilizador"] != "admin") {
 $mensagem = "";
 
 if (isset($_POST["adicionar"])) {
+
     $nome = trim($_POST["nome"]);
     $descricao = trim($_POST["descricao"]);
     $capa_url = "";
 
-    if (isset($_FILES['capa_file']) && $_FILES['capa_file']['error'] == 0) {
-        $ext = strtolower(pathinfo($_FILES['capa_file']['name'], PATHINFO_EXTENSION));
-        $nome_unico = uniqid("franquia_", true) . "." . $ext;
-        $pasta = "../img/Franquia/uploads/";
-        
-        if (!is_dir($pasta)) mkdir($pasta, 0777, true);
-        
-        if (move_uploaded_file($_FILES['capa_file']['tmp_name'], $pasta . $nome_unico)) {
-            $capa_url = $pasta . $nome_unico;
+    if (
+        isset($_FILES["capa_file"]) &&
+        $_FILES["capa_file"]["error"] === UPLOAD_ERR_OK
+    ) {
+
+        $ext = strtolower(
+            pathinfo($_FILES["capa_file"]["name"], PATHINFO_EXTENSION)
+        );
+
+        $permitidas = ["jpg", "jpeg", "png", "webp", "gif"];
+
+        if (in_array($ext, $permitidas)) {
+
+            $nome_unico = uniqid("franquia_", true) . "." . $ext;
+            $pastaFisica = "../img/Franquia/uploads/";
+
+            if (!is_dir($pastaFisica)) {
+                mkdir($pastaFisica, 0777, true);
+            }
+
+            if (
+                move_uploaded_file(
+                    $_FILES["capa_file"]["tmp_name"],
+                    $pastaFisica . $nome_unico
+                )
+            ) {
+                $capa_url = "img/Franquia/uploads/" . $nome_unico;
+            } else {
+                $mensagem = "Erro ao fazer upload da imagem.";
+            }
+        } else {
+            $mensagem = "Formato de imagem inválido.";
         }
     }
 
     if (!empty($capa_url)) {
-        $stmt = $conn->prepare("INSERT INTO franquias (nome, descricao, capa_url) VALUES (?, ?, ?)");
+
+        $stmt = $conn->prepare(
+            "INSERT INTO franquias (nome, descricao, capa_url)
+             VALUES (?, ?, ?)"
+        );
+
         $stmt->bind_param("sss", $nome, $descricao, $capa_url);
 
         if ($stmt->execute()) {
@@ -36,7 +65,9 @@ if (isset($_POST["adicionar"])) {
         } else {
             $mensagem = "Erro ao inserir na base de dados.";
         }
-    } else {
+
+        $stmt->close();
+    } elseif (empty($mensagem)) {
         $mensagem = "Erro: É necessário carregar uma imagem válida.";
     }
 }
@@ -44,6 +75,7 @@ if (isset($_POST["adicionar"])) {
 
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <title>Adicionar Franquia | Dashboard</title>
@@ -51,6 +83,7 @@ if (isset($_POST["adicionar"])) {
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="backoffice">
         <aside class="sidebar">
@@ -59,7 +92,7 @@ if (isset($_POST["adicionar"])) {
             <nav class="sidebar-menu">
                 <a href="dashboard_franquia.php">Franquias</a>
                 <a href="dashboard_jogos.php">Jogos</a>
-                </nav>
+            </nav>
         </aside>
 
         <main class="main-content">
@@ -71,7 +104,7 @@ if (isset($_POST["adicionar"])) {
                 <?php if ($mensagem) echo "<p style='color:red;'>$mensagem</p>"; ?>
 
                 <form method="POST" class="add-form" enctype="multipart/form-data" style="display:flex; flex-direction:column; gap:15px; max-width:500px;">
-                    
+
                     <label>Nome da Franquia:</label>
                     <input type="text" name="nome" required style="padding:10px;">
 
@@ -89,4 +122,5 @@ if (isset($_POST["adicionar"])) {
         </main>
     </div>
 </body>
+
 </html>

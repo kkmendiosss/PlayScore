@@ -33,35 +33,50 @@ $mensagem = "";
 
 if (isset($_POST["guardar"])) {
 
-    $nome = $_POST["nome"];
-    $descricao = $_POST["descricao"];
+    $nome = mysqli_real_escape_string($conn, $_POST["nome"]);
+    $descricao = mysqli_real_escape_string($conn, $_POST["descricao"]);
 
     $capa_url = $franquia["capa_url"];
 
-    if (!empty($_FILES["capa_file"]["name"])) {
+    if (
+        isset($_FILES["capa_file"]) &&
+        $_FILES["capa_file"]["error"] === UPLOAD_ERR_OK
+    ) {
 
-        $nomeImagem = $_FILES["capa_file"]["name"];
+        $pastaFisica = dirname(__DIR__) . "/img/Franquia/uploads/";
 
-        move_uploaded_file(
-            $_FILES["capa_file"]["tmp_name"],
-            "img/Franquia/uploads/" . $nomeImagem
+        if (!is_dir($pastaFisica)) {
+            mkdir($pastaFisica, 0777, true);
+        }
+
+        $extensao = strtolower(
+            pathinfo($_FILES["capa_file"]["name"], PATHINFO_EXTENSION)
         );
 
-        $capa_url = "img/Franquia/uploads/" . $nomeImagem;
+        $nomeImagem = uniqid("franquia_", true) . "." . $extensao;
+
+        $destino = $pastaFisica . $nomeImagem;
+
+        if (move_uploaded_file($_FILES["capa_file"]["tmp_name"], $destino)) {
+            $capa_url = "img/Franquia/uploads/" . $nomeImagem;
+        } else {
+            $mensagem = "Erro ao fazer upload da imagem.";
+        }
     }
 
-    $sql_update = "UPDATE franquias SET
-        nome = '$nome',
-        descricao = '$descricao',
-        capa_url = '$capa_url'
-        WHERE id_franquia = $id";
+    $sql_update = "
+        UPDATE franquias
+        SET
+            nome = '$nome',
+            descricao = '$descricao',
+            capa_url = '$capa_url'
+        WHERE id_franquia = $id
+    ";
 
     if (mysqli_query($conn, $sql_update)) {
-
         header("Location: dashboard_franquia.php");
         exit();
     } else {
-
         $mensagem = "Erro ao atualizar franquia.";
     }
 }

@@ -18,7 +18,6 @@ if (isset($_GET["eliminar"])) {
     $id = (int) $_GET["eliminar"];
 
     $stmt_img = $conn->prepare("SELECT capa_url FROM franquias WHERE id_franquia = ?");
-
     if ($stmt_img) {
         $stmt_img->bind_param("i", $id);
         $stmt_img->execute();
@@ -26,15 +25,27 @@ if (isset($_GET["eliminar"])) {
         $resultado_img = $stmt_img->get_result();
         $imagem = $resultado_img->fetch_assoc();
 
-        if ($imagem && !empty($imagem["capa_url"]) && file_exists($imagem["capa_url"])) {
-            unlink($imagem["capa_url"]);
+        if ($imagem && !empty($imagem["capa_url"])) {
+
+            $capa = $imagem["capa_url"];
+
+            // se já vier com path completo da BD
+            $caminho1 = __DIR__ . "/../" . $capa;
+
+            // fallback caso seja só nome
+            $caminho2 = __DIR__ . "/../img/Franquia/uploads/" . $capa;
+
+            if (file_exists($caminho1)) {
+                unlink($caminho1);
+            } elseif (file_exists($caminho2)) {
+                unlink($caminho2);
+            }
         }
 
         $stmt_img->close();
     }
 
     $stmt_delete = $conn->prepare("DELETE FROM franquias WHERE id_franquia = ?");
-
     if ($stmt_delete) {
         $stmt_delete->bind_param("i", $id);
         $stmt_delete->execute();
@@ -163,12 +174,11 @@ $resultado = $stmt->get_result();
 
                                     <td>
                                         <?php if (!empty($franquia["capa_url"])) { ?>
-                                            <img 
-                                                src="<?php echo htmlspecialchars($franquia["capa_url"]); ?>" 
-                                                class="table-avatar-jogo" 
+                                            <img
+                                                src="<?php echo htmlspecialchars($franquia["capa_url"]); ?>"
+                                                class="table-avatar-jogo"
                                                 alt="Capa da franquia"
-                                                style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;"
-                                            >
+                                                style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
                                         <?php } else { ?>
                                             <div class="avatar-placeholder">?</div>
                                         <?php } ?>
@@ -180,32 +190,29 @@ $resultado = $stmt->get_result();
 
                                     <td>
                                         <?php
-                                            $desc = htmlspecialchars($franquia["descricao"]);
-                                            echo strlen($desc) > 50 ? substr($desc, 0, 50) . "..." : $desc;
+                                        $desc = htmlspecialchars($franquia["descricao"]);
+                                        echo strlen($desc) > 50 ? substr($desc, 0, 50) . "..." : $desc;
                                         ?>
                                     </td>
 
                                     <td class="actions">
 
-                                        <a 
-                                            href="dashboard_ver_franquia.php?id=<?php echo (int) $franquia["id_franquia"]; ?>" 
-                                            class="btn view"
-                                        >
+                                        <a
+                                            href="dashboard_ver_franquia.php?id=<?php echo (int) $franquia["id_franquia"]; ?>"
+                                            class="btn view">
                                             Ver
                                         </a>
 
-                                        <a 
-                                            href="dashboard_editar_franquia.php?id=<?php echo (int) $franquia["id_franquia"]; ?>" 
-                                            class="btn edit"
-                                        >
+                                        <a
+                                            href="dashboard_editar_franquia.php?id=<?php echo (int) $franquia["id_franquia"]; ?>"
+                                            class="btn edit">
                                             Editar
                                         </a>
 
-                                        <a 
-                                            href="dashboard_franquia.php?eliminar=<?php echo (int) $franquia["id_franquia"]; ?>" 
-                                            class="btn delete" 
-                                            onclick="return confirm('Tens a certeza que queres eliminar esta franquia do sistema?');"
-                                        >
+                                        <a
+                                            href="dashboard_franquia.php?eliminar=<?php echo (int) $franquia["id_franquia"]; ?>"
+                                            class="btn delete"
+                                            onclick="return confirm('Tens a certeza que queres eliminar esta franquia do sistema?');">
                                             Eliminar
                                         </a>
 
@@ -241,10 +248,9 @@ $resultado = $stmt->get_result();
 
                         <?php for ($i = 1; $i <= $total_paginas; $i++) { ?>
 
-                            <a 
-                                href="dashboard_franquia.php?pagina=<?php echo $i; ?>" 
-                                class="<?php echo $i == $pagina_atual ? 'active-page' : ''; ?>"
-                            >
+                            <a
+                                href="dashboard_franquia.php?pagina=<?php echo $i; ?>"
+                                class="<?php echo $i == $pagina_atual ? 'active-page' : ''; ?>">
                                 <?php echo $i; ?>
                             </a>
 
