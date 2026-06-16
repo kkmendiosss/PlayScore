@@ -95,7 +95,7 @@ $jogos = $stmt_jogos->get_result();
                 <div class="user-dropdown-content">
                     <a href="perfil.php">Perfil</a>
                     <?php if ($tipo == "admin") { ?>
-                        <a href="/admin/dashboard.php">Dashboard</a>
+                        <a href="admin/dashboard.php">Dashboard</a>
                     <?php } ?>
                     <a href="logout.php">Sair</a>
                 </div>
