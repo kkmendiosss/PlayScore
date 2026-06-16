@@ -1,0 +1,91 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    background-color: #070708;
+    color: #ffffff;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+
+
+
+.hero {
+    margin-bottom: 60px;
+    font-family: Abel;
+}
+
+.title {
+    margin-top: 50px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    padding: 20px 30px;
+    background: linear-gradient(90deg, #F80082, transparent);
+    display: inline-block;
+    width: 700px;
+    font-family: Kode Mono;
+}
+
+
+.politicas-container {
+    width: 85%;
+    max-width: 1200px;
+    margin: 0 auto 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+
+.politica-card h2 {
+    font-family: "Kode Mono", monospace;
+    color: #ffffff;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
+.politica-card p,
+.politica-card li {
+    font-family: "Abel", sans-serif;
+    color: #d4d4d4;
+    font-size: 1.15rem;
+    line-height: 1.8;
+}
+
+.politica-card ul {
+    margin-top: 15px;
+    padding-left: 25px;
+}
+
+.politica-card li {
+    margin-bottom: 12px;
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.2rem;
+    }
+
+    .politica-card {
+        padding: 25px;
+    }
+
+    .politica-card h2 {
+        font-size: 1.3rem;
+    }
+
+    .politica-card p,
+    .politica-card li {
+        font-size: 1rem;
+    }
+}

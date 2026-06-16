@@ -278,11 +278,9 @@ if (!$jogo) {
                     Ver franquia
                 </a>
                 <img
-                    src="<?= $jogo['capa_url'] ?>"
+                    src="uploads/<?php echo $jogo['capa_url']; ?>"
                     class="game-cover"
-                    alt="<?= $jogo['titulo'] ?>">
-
-                <div class="info-box">
+                    alt="<?php echo $jogo['titulo']; ?>">
 
                     <h2>Playscore</h2>
 

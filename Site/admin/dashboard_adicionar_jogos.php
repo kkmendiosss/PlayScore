@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "conexao.php";
+include "../conexao.php";
 
 if (!isset($_SESSION["id"]) || $_SESSION["tipo_utilizador"] != "admin") {
     header("Location: login.php");
@@ -25,12 +25,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $descricao = mysqli_real_escape_string($conn, $_POST["descricao"]);
     $data_lancamento = $_POST["data_lancamento"];
 
-    // 📸 CAPA
     $capa_url = "";
 
     if (isset($_FILES["capa"]) && $_FILES["capa"]["error"] == 0) {
 
-        $pasta = "uploads/capas/";
+        $pasta = "../uploads/capas/";
 
         if (!is_dir($pasta)) {
             mkdir($pasta, 0777, true);
@@ -46,19 +45,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $trailer_url = mysqli_real_escape_string($conn, $_POST["trailer_url"]);
 
-    // 🎮 PLATAFORMAS (ARRAY → STRING)
     $plataforma = isset($_POST["plataforma"])
         ? implode(", ", $_POST["plataforma"])
         : "";
 
-    // 🏷️ FRANQUIA
     $id_franquia = !empty($_POST["id_franquia"])
         ? intval($_POST["id_franquia"])
         : "NULL";
 
     if (!empty($titulo) && !empty($desenvolvedor) && !empty($editor)) {
 
-        // ➕ INSERIR JOGO
         $sql = "INSERT INTO jogos (
             titulo,
             desenvolvedor,
@@ -89,10 +85,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (mysqli_query($conn, $sql)) {
 
-            // 🎯 ID do jogo criado
             $id_jogo = mysqli_insert_id($conn);
 
-            // 🎯 GÉNEROS (ARRAY)
             if (!empty($_POST["id_genero"])) {
 
                 foreach ($_POST["id_genero"] as $id_genero) {
@@ -125,7 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Backoffice - Adicionar Jogo</title>
-    <link rel="stylesheet" href="css/backoffice.css">
+    <link rel="stylesheet" href="../css/backoffice.css">
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
 </head>
@@ -137,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <aside class="sidebar">
 
         <div class="sidebar-logo">
-            <img src="logo/Logo.png" alt="PlayScore">
+            <img src="../logo/Logo.png" alt="PlayScore">
         </div>
 
         <h2>Dashboard</h2>
@@ -156,7 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <a href="dashboard_users.php">Users</a>
         </nav>
 
-        <a href="index.php" class="back-site">Voltar ao site</a>
+        <a href="../index.php" class="back-site">Voltar ao site</a>
 
     </aside>
 

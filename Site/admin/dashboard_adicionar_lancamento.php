@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "conexao.php";
+include "../conexao.php";
 
 $mensagem = "";
 
@@ -31,7 +31,7 @@ if (isset($_POST["adicionar"])) {
     <meta charset="UTF-8">
     <title>Adicionar Lançamento</title>
 
-    <link rel="stylesheet" href="css/backoffice.css">
+    <link rel="stylesheet" href="../css/backoffice.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
@@ -44,7 +44,7 @@ if (isset($_POST["adicionar"])) {
         <aside class="sidebar">
 
             <div class="sidebar-logo">
-                <img src="logo/Logo.png" alt="PlayScore">
+                <img src="../logo/Logo.png" alt="PlayScore">
             </div>
 
             <h2>Dashboard</h2>
@@ -62,7 +62,7 @@ if (isset($_POST["adicionar"])) {
                 <a href="dashboard_users.php">Users</a>
             </nav>
 
-            <a href="index.php" class="back-site">Voltar ao site</a>
+            <a href="../index.php" class="back-site">Voltar ao site</a>
 
         </aside>
 

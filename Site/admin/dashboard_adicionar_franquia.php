@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "conexao.php";
+include "../conexao.php";
 
 if (!isset($_SESSION["id"]) || $_SESSION["tipo_utilizador"] != "admin") {
     header("Location: login.php");
@@ -17,7 +17,7 @@ if (isset($_POST["adicionar"])) {
     if (isset($_FILES['capa_file']) && $_FILES['capa_file']['error'] == 0) {
         $ext = strtolower(pathinfo($_FILES['capa_file']['name'], PATHINFO_EXTENSION));
         $nome_unico = uniqid("franquia_", true) . "." . $ext;
-        $pasta = "img/Franquia/uploads/";
+        $pasta = "../img/Franquia/uploads/";
         
         if (!is_dir($pasta)) mkdir($pasta, 0777, true);
         
@@ -47,7 +47,7 @@ if (isset($_POST["adicionar"])) {
 <head>
     <meta charset="UTF-8">
     <title>Adicionar Franquia | Dashboard</title>
-    <link rel="stylesheet" href="css/backoffice.css">
+    <link rel="stylesheet" href="../css/backoffice.css">
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
 </head>

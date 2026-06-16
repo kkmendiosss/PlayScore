@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "conexao.php";
+include "../conexao.php";
 
 if (!isset($_SESSION["id"])) {
     header("Location: login.php");
@@ -37,7 +37,7 @@ if (!$user) {
     <meta charset="UTF-8">
     <title>Ver User</title>
 
-    <link rel="stylesheet" href="css/backoffice.css">
+    <link rel="stylesheet" href="../css/backoffice.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
@@ -50,7 +50,7 @@ if (!$user) {
         <aside class="sidebar">
 
             <div class="sidebar-logo">
-                <img src="logo/Logo.png" alt="PlayScore">
+                <img src="../logo/Logo.png" alt="PlayScore">
             </div>
             <h2>Dashboard</h2>
             <a href="dashboard.php">Dashboard</a>
@@ -67,7 +67,7 @@ if (!$user) {
                 <a href="dashboard_users.php">Users</a>
             </nav>
 
-            <a href="index.php" class="back-site">Voltar ao site</a>
+            <a href="../index.php" class="back-site">Voltar ao site</a>
 
         </aside>
 
