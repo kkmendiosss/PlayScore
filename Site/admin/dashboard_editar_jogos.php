@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "conexao.php";
+include "../conexao.php";
 
 if (!isset($_SESSION["id"])) {
     header("Location: login.php");
@@ -63,7 +63,7 @@ if (isset($_POST["guardar"])) {
 
     if (isset($_FILES["capa"]) && $_FILES["capa"]["error"] == 0) {
 
-        $pasta = "uploads/capas/";
+        $pasta = "../uploads/capas/";
 
         if (!is_dir($pasta)) {
             mkdir($pasta, 0777, true);
@@ -130,7 +130,7 @@ if (isset($_POST["guardar"])) {
     <meta charset="UTF-8">
     <title>Editar Jogo</title>
 
-    <link rel="stylesheet" href="css/backoffice.css">
+    <link rel="stylesheet" href="../css/backoffice.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
@@ -143,7 +143,7 @@ if (isset($_POST["guardar"])) {
     <aside class="sidebar">
 
         <div class="sidebar-logo">
-            <img src="logo/Logo.png" alt="PlayScore">
+            <img src="../logo/Logo.png" alt="PlayScore">
         </div>
 
         <h2>Dashboard</h2>
@@ -162,8 +162,7 @@ if (isset($_POST["guardar"])) {
             <a href="dashboard_users.php">Users</a>
         </nav>
 
-        <a href="index.php" class="back-site">Voltar ao site</a>
-
+        <a href="../index.php" class="back-site">Voltar ao site</a>
     </aside>
 
     <main class="main-content">

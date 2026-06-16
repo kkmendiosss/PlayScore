@@ -1,14 +1,14 @@
 <?php
 session_start();
-include "conexao.php";
+include "../conexao.php";
 
 if (!isset($_SESSION["id"])) {
-    header("Location: login.php");
+    header("Location: ../login.php");
     exit();
 }
 
 if ($_SESSION["tipo_utilizador"] != "admin") {
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit();
 }
 
@@ -38,7 +38,7 @@ $resultado = mysqli_query($conn, $sql);
     <meta charset="UTF-8">
     <title>Backoffice - Jogos</title>
 
-    <link rel="stylesheet" href="css/backoffice.css">
+    <link rel="stylesheet" href="../css/backoffice.css">
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
 </head>
@@ -50,7 +50,7 @@ $resultado = mysqli_query($conn, $sql);
         <aside class="sidebar">
 
             <div class="sidebar-logo">
-                <img src="logo/Logo.png" alt="PlayScore">
+                <img src="../logo/Logo.png" alt="PlayScore">
             </div>
 
             <h2>Dashboard</h2>
@@ -69,7 +69,7 @@ $resultado = mysqli_query($conn, $sql);
                 <a href="dashboard_users.php">Users</a>
             </nav>
 
-            <a href="index.php" class="back-site">Voltar ao site</a>
+            <a href="../index.php" class="back-site">Voltar ao site</a>
 
         </aside>
 
