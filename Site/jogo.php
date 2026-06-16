@@ -533,9 +533,6 @@ if (!$jogo) {
                 <span>LinkedIn</span>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>© 2026 PLAYSCORE NETWORK. TODOS OS DIREITOS RESERVADOS.</p>
-        </div>
     </footer>
 
     <div class="copyright">
