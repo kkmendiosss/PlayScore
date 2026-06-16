@@ -24,18 +24,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $editor = mysqli_real_escape_string($conn, $_POST["editor"]);
     $descricao = mysqli_real_escape_string($conn, $_POST["descricao"]);
     $data_lancamento = $_POST["data_lancamento"];
-    $capa_url = mysqli_real_escape_string($conn, $_POST["capa_url"]);
+
+    // 📸 CAPA
+    $capa_url = "";
+
+    if (isset($_FILES["capa"]) && $_FILES["capa"]["error"] == 0) {
+
+        $pasta = "uploads/capas/";
+
+        if (!is_dir($pasta)) {
+            mkdir($pasta, 0777, true);
+        }
+
+        $nomeFicheiro = time() . "_" . basename($_FILES["capa"]["name"]);
+        $caminho = $pasta . $nomeFicheiro;
+
+        if (move_uploaded_file($_FILES["capa"]["tmp_name"], $caminho)) {
+            $capa_url = $caminho;
+        }
+    }
+
     $trailer_url = mysqli_real_escape_string($conn, $_POST["trailer_url"]);
-    $plataforma = mysqli_real_escape_string($conn, $_POST["plataforma"]);
 
-    $id_genero = intval($_POST["id_genero"]);
+    // 🎮 PLATAFORMAS (ARRAY → STRING)
+    $plataforma = isset($_POST["plataforma"])
+        ? implode(", ", $_POST["plataforma"])
+        : "";
 
-    $id_franquia = !empty($_POST["id_franquia"]) 
-        ? intval($_POST["id_franquia"]) 
+    // 🏷️ FRANQUIA
+    $id_franquia = !empty($_POST["id_franquia"])
+        ? intval($_POST["id_franquia"])
         : "NULL";
 
     if (!empty($titulo) && !empty($desenvolvedor) && !empty($editor)) {
 
+        // ➕ INSERIR JOGO
         $sql = "INSERT INTO jogos (
             titulo,
             desenvolvedor,
@@ -46,7 +69,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             trailer_url,
             plataforma,
             classificacao,
-            id_genero,
             id_franquia,
             num_votos,
             soma_classificacao
@@ -60,15 +82,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             '$trailer_url',
             '$plataforma',
             0,
-            $id_genero,
             $id_franquia,
             0,
             0
         )";
 
         if (mysqli_query($conn, $sql)) {
+
+            // 🎯 ID do jogo criado
+            $id_jogo = mysqli_insert_id($conn);
+
+            // 🎯 GÉNEROS (ARRAY)
+            if (!empty($_POST["id_genero"])) {
+
+                foreach ($_POST["id_genero"] as $id_genero) {
+
+                    $id_genero = intval($id_genero);
+
+                    mysqli_query($conn, "
+                        INSERT INTO jogo_genero (id_jogo, id_genero)
+                        VALUES ($id_jogo, $id_genero)
+                    ");
+                }
+            }
+
             header("Location: dashboard_jogos.php");
             exit();
+
         } else {
             $mensagem = "Erro ao adicionar jogo: " . mysqli_error($conn);
         }
@@ -139,7 +179,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <p class="form-message"><?php echo $mensagem; ?></p>
             <?php endif; ?>
 
-            <form action="dashboard_adicionar_jogos.php" method="POST" class="generos-form-insert">
+            <form action="dashboard_adicionar_jogos.php" method="POST" enctype="multipart/form-data" class="generos-form-insert">
 
                 <div class="generos-form-group">
                     <label for="titulo">Título</label>
@@ -167,8 +207,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
 
                 <div class="generos-form-group">
-                    <label for="capa_url">Capa URL</label>
-                    <input type="text" name="capa_url">
+                    <label for="capa">Capa do Jogo</label>
+                    <input type="file" name="capa" accept="image/*">
                 </div>
 
                 <div class="generos-form-group">
@@ -208,24 +248,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     </div>
                 </div>
+
                 <div class="generos-form-group">
-                    <label>Género</label>
-                    <select name="id_genero" required>
-
-                    <option value="">Escolhe um género</option>
-
-                    <?php while ($g = $generos->fetch_assoc()): ?>
-                    <option value="<?= $g['id_genero'] ?>">
-                        <?= $g['nome'] ?>
-                    </option>
-                    <?php endwhile; ?>
-
-                    </select>
+                    <label>Géneros</label>
+                    <div class="generos-grid">
+                        <?php while ($g = $generos->fetch_assoc()) { ?>
+                            <label class="genero-card">
+                                <input type="checkbox" name="id_genero[]" value="<?php echo $g['id_genero']; ?>">
+                            <span><?php echo $g['nome']; ?></span>
+                            </label>
+                        <?php } ?>
+                    </div>
                 </div>
 
                 <div class="generos-form-group">
                     <label>ID Franquia</label>
-                    <input type="number" name="id_franquia">
+                    <input type="text" name="nome">
                 </div>
 
                 <div class="generos-form-buttons">

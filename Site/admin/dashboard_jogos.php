@@ -144,12 +144,12 @@ $resultado = mysqli_query($conn, $sql);
 
                                 <td class="actions">
 
-                                    <a href="ver_jogo.php?id=<?php echo $jogo["id_jogo"]; ?>"
+                                    <a href="dashboard_ver_jogos.php?id=<?php echo $jogo["id_jogo"]; ?>"
                                         class="btn view">
                                         Ver
                                     </a>
 
-                                    <a href="editar_jogo.php?id=<?php echo $jogo["id_jogo"]; ?>"
+                                    <a href="dashboard_editar_jogos.php?id=<?php echo $jogo["id_jogo"]; ?>"
                                         class="btn edit">
                                         Editar
                                     </a>

@@ -111,6 +111,9 @@ body {
     overflow-x: auto;
 }
 
+.actions-title {
+    text-align: center;
+}
 
 table {
     width: 100%;
@@ -325,6 +328,195 @@ tbody tr:hover {
     display: flex;
     align-items: center;
     gap: 18px;
+}
+
+.generos-form-group textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 12px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    background-color: #1e1e1e;
+    color: #fff;
+    font-family: 'Abel', sans-serif;
+    font-size: 16px;
+    resize: vertical;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.generos-form-group textarea:focus {
+    border-color: #f107a3;
+    box-shadow: 0 0 8px rgba(0, 191, 255, 0.4);
+}
+
+.generos-form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    background-color: #1e1e1e;
+    color: #fff;
+    font-family: 'Abel', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.generos-form-group select:focus {
+    border-color: #00bfff;
+    box-shadow: 0 0 8px rgba(0, 191, 255, 0.4);
+}
+
+.generos-form-group select option {
+    background-color: #1e1e1e;
+    color: #fff;
+}
+
+.generos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.genero-card {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    background: #1e1e1e;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.genero-card input {
+    accent-color: #00bfff;
+}
+
+.genero-card:hover {
+    border-color: #00bfff;
+    transform: scale(1.03);
+}
+
+.plataformas-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.plataforma-card {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    background: #1e1e1e;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.plataforma-card input {
+    accent-color: #00bfff;
+}
+
+.plataforma-card:hover {
+    border-color: #00bfff;
+    transform: scale(1.03);
+}
+
+.jogo-detalhe-main {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 20px;
+    color: #e6e6e6;
+    font-family: Arial, sans-serif;
+    background: transparent;
+    box-shadow: none;
+}
+
+.jogo-detalhe-layout {
+    display: flex;
+    gap: 70px;
+    align-items: flex-start;
+}
+
+.jogo-detalhe-left {
+    width: 280px;
+    flex-shrink: 0;
+}
+
+.jogo-detalhe-capa {
+    width: 100%;
+    border-radius: 12px;
+}
+
+.jogo-detalhe-right {
+    flex: 1;
+}
+
+.jogo-detalhe-info {
+    margin-bottom: 12px;
+    color: #cfcfcf;
+}
+
+.jogo-detalhe-descricao {
+    margin-top: 25px;
+    line-height: 1.8;
+    color: #ddd;
+}
+
+.jogo-detalhe-subtitulo {
+    margin-top: 40px;
+    font-size: 18px;
+}
+
+.jogo-detalhe-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+    margin-bottom: 25px;
+}
+
+.jogo-detalhe-tag {
+    background: #f107a3;
+    padding: 7px 12px;
+    border-radius: 20px;
+}
+
+.jogo-detalhe-trailer iframe {
+    width: 100%;
+    max-width: 900px;
+    height: 500px;
+    border-radius: 12px;
+    display: block;
+    margin-top: 15px;
+}
+
+.jogo-detalhe-trailer a:hover {
+    text-decoration: underline;
+}
+
+.jogo-detalhe-voltar {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 10px 14px;
+    background: #f107a3;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.jogo-detalhe-voltar:hover {
+    background: #555;
 }
 
 .add-btn {
