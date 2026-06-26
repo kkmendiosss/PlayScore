@@ -10,7 +10,6 @@ body {
     font-family: 'Abel', sans-serif;
 }
 
-
 .banner {
     background: linear-gradient(to right, #ff007f 0%, transparent 100%);
     background-repeat: no-repeat;
@@ -100,12 +99,36 @@ body {
     line-height: 1.5;
 }
 
+.fav-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
 .favorite {
-    display: block;
-    text-align: center;
-    color: #00f0ff;
-    text-decoration: none;
-    font-weight: bold;
+    background: transparent;
+    border: 2px solid #ff007f;
+    color: #ff007f;
+
+    padding: 10px 16px;
+    border-radius: 10px;
+
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+}
+
+.favorite:hover {
+    background: #ff007f;
+    color: white;
+    transform: scale(1.05);
+}
+
+.favorite.active {
+    background: #ff007f;
+    color: white;
 }
 
 .details {
@@ -325,7 +348,7 @@ footer {
 .copyright {
     text-align: center;
     padding: 20px;
-    border-top: 1px solid #111;
+    border-top: 1px solid #000000;
     color: #666;
 }
 

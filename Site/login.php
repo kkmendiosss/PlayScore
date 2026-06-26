@@ -48,7 +48,7 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
 
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/headerfooter.css">
-
+    <link rel="icon" href="img/PlayScore_Icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
 </head>

@@ -12,6 +12,7 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FAQ</title>
+  <link rel="icon" href="img/PlayScore_Icon.png">
   <link rel="stylesheet" href="css/faq.css">
   <link rel="stylesheet" href="css/headerfooter.css">
   <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400;600&family=Abel&display=swap" rel="stylesheet">

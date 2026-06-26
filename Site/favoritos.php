@@ -1,42 +1,69 @@
 <?php
 session_start();
 include "conexao.php";
+
+if (!isset($_SESSION["id"])) {
+    die("Tens de iniciar sessão.");
+}
+
 $nome = $_SESSION["nome"] ?? "";
-$email = $_SESSION["email"] ?? "";
-$tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
+$tipo = strtolower($_SESSION["tipo_utilizador"] ?? "");
 
-$sql_avaliacoes = "SELECT COUNT(*) AS total FROM avaliacoes";
-$result_avaliacoes = mysqli_query($conn, $sql_avaliacoes);
-$total_avaliacoes = mysqli_fetch_assoc($result_avaliacoes)["total"];
+$id_utilizador = $_SESSION["id"];
 
-$sql_comentarios = "SELECT COUNT(*) AS total FROM comentarios";
-$result_comentarios = mysqli_query($conn, $sql_comentarios);
-$total_comentarios = mysqli_fetch_assoc($result_comentarios)["total"];
+$limite = 10;
 
-$sql_jogos = "SELECT COUNT(*) AS total FROM jogos";
-$result_jogos = mysqli_query($conn, $sql_jogos);
-$total_jogos = mysqli_fetch_assoc($result_jogos)["total"];
+$pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+$inicio = ($pagina - 1) * $limite;
+
+$stmt = $conn->prepare("
+    SELECT j.id_jogo, j.titulo, j.capa_url
+    FROM favoritos f
+    INNER JOIN jogos j ON j.id_jogo = f.id_jogo
+    WHERE f.id_utilizador = ?
+    ORDER BY f.data_adicao DESC
+    LIMIT ? OFFSET ?
+");
+
+$stmt->bind_param("iii", $id_utilizador, $limite, $inicio);
+$stmt->execute();
+
+$resultado = $stmt->get_result();
+$stmt->close();
+
+$total_stmt = $conn->prepare("
+    SELECT COUNT(*) as total
+    FROM favoritos
+    WHERE id_utilizador = ?
+");
+
+$total_stmt->bind_param("i", $id_utilizador);
+$total_stmt->execute();
+
+$total_result = $total_stmt->get_result()->fetch_assoc();
+$total_stmt->close();
+
+$total = $total_result["total"];
+$total_paginas = ceil($total / $limite);
+
 ?>
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlayScore</title>
+    <title>Favoritos</title>
     <link rel="icon" href="img/PlayScore_Icon.png">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/favoritos.css">
     <link rel="stylesheet" href="css/headerfooter.css">
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400;600&family=Abel&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
 </head>
-
 <body>
-
     <header class="navbar">
 
         <div class="logo">
-            <a href="index.php"><img src="logo/Logo.png" alt="PlayScore"></a>
+            <img src="logo/Logo.png" alt="PlayScore">
         </div>
 
         <nav class="nav-links" id="navLinks">
@@ -110,85 +137,56 @@ $total_jogos = mysqli_fetch_assoc($result_jogos)["total"];
         </div>
 
     </header>
-
-    <section class="hero">
-
-        <img src="https://sempretopgames.com.br/wp-content/uploads/2024/10/Melhores-Jogos-de-Videogames.jpg" alt="Banner Principal" class="hero-image">
-
-        <div class="overlay"></div>
-
-        <div class="hero-content">
-            <h1>Descobre os Melhores Jogos</h1>
-            <p>Avaliações, comentários e rankings da comunidade gamer.</p>
-
-            <button>Explorar Agora</button>
-        </div>
-
-    </section>
-
-    <!-- MAIN -->
-
+<main>
     <section class="banner">
-        <h1>Jogos Mais Votados</h1>
+        <h1>Favoritos</h1>
     </section>
 
-    <main class="container">
 
-        <section class="games-section">
+<div class="favoritos-container">
 
-            <div class="slider-container">
+<?php if ($resultado->num_rows > 0): ?>
 
-                <button class="slider-btn left" id="prevBtn">&#10094;</button>
+    <?php while ($jogo = $resultado->fetch_assoc()): ?>
 
-                <div class="games-slider" id="slider">
+        <a class="game-card" href="jogo.php?id=<?= $jogo["id_jogo"] ?>">
 
-                    <div class="game-card">
-                        <a href="jogo.php?id=2">
-                            <img src="https://images.igdb.com/igdb/image/upload/t_cover_big_2x/co8yd0.jpg" alt="">
-                        </a>
-                    </div>
-
-                    <div class="game-card">
-                        <a href="jogo.php?id=3">
-                            <img src="https://images.igdb.com/igdb/image/upload/t_cover_big_2x/cobkt6.jpg" alt="">
-                        </a>
-                    </div>
-
-                    <div class="game-card">
-                        <a href="jogo.php?id=4">
-                            <img src="https://images.igdb.com/igdb/image/upload/t_cover_big_2x/co65ac.jpg" alt="">
-                        </a>
-                    </div>
-
-                </div>
-
-                <button class="slider-btn right" id="nextBtn">&#10095;</button>
-
-            </div>
-        </section>
-
-        <section class="stats">
-
-            <div class="stat-box">
-                <h3>Avaliações</h3>
-                <span><?php echo $total_avaliacoes; ?></span>
+            <div class="image-wrap">
+                <img src="<?= str_replace('../', '', $jogo["capa_url"]) ?>">
             </div>
 
-            <div class="stat-box">
-                <h3>Comentários</h3>
-                <span><?php echo $total_comentarios; ?></span>
+            <div class="title">
+                <?= $jogo["titulo"] ?>
             </div>
 
-            <div class="stat-box">
-                <h3>Jogos</h3>
-                <span><?php echo $total_jogos; ?></span>
-            </div>
+        </a>
 
-        </section>
+    <?php endwhile; ?>
 
-    </main>
+<?php else: ?>
 
-    <footer>
+    <p>Não tens jogos nos favoritos.</p>
+
+<?php endif; ?>
+
+</div>
+
+<div class="pagination">
+
+<?php for ($i = 1; $i <= $total_paginas; $i++): ?>
+
+    <a href="favoritos.php?pagina=<?= $i ?>"
+       class="<?= ($i == $pagina) ? 'active' : '' ?>">
+        <?= $i ?>
+    </a>
+
+<?php endfor; ?>
+
+</div>
+
+</main>
+
+<footer>
         <div class="footer-content">
             <div class="footer-column brand-col">
                 <div class="logo">
@@ -219,12 +217,11 @@ $total_jogos = mysqli_fetch_assoc($result_jogos)["total"];
                 <span>LinkedIn</span>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>© 2026 PLAYSCORE NETWORK. TODOS OS DIREITOS RESERVADOS.</p>
-        </div>
-    </footer>
 
-    <script src="js/index.js"></script>
+    </footer>
+    <div class="copyright">
+        © 2026 PLAYSCORE NETWORK. TODOS OS DIREITOS RESERVADOS.
+    </div>
 </body>
 
 </html>
