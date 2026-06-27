@@ -33,7 +33,7 @@ if (isset($_GET["eliminar"])) {
             $caminho1 = __DIR__ . "/../" . $capa;
 
             // fallback caso seja só nome
-            $caminho2 = __DIR__ . "/../img/Franquia/uploads/" . $capa;
+            $caminho2 = __DIR__ . "../img/Franquia/uploads/" . $capa;
 
             if (file_exists($caminho1)) {
                 unlink($caminho1);
@@ -175,8 +175,7 @@ $resultado = $stmt->get_result();
                                     <td>
                                         <?php if (!empty($franquia["capa_url"])) { ?>
                                             <img
-                                                src="<?php echo htmlspecialchars($franquia["capa_url"]); ?>"
-                                                class="table-avatar-jogo"
+                                                src="../<?php echo htmlspecialchars(ltrim($franquia["capa_url"], "/")); ?>"                                                class="table-avatar-jogo"
                                                 alt="Capa da franquia"
                                                 style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
                                         <?php } else { ?>
