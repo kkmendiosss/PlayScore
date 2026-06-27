@@ -155,8 +155,8 @@ if (isset($_POST["guardar"])) {
 
                     <?php if (!empty($franquia["capa_url"])) { ?>
 
-                        <img src="<?php echo $franquia["capa_url"]; ?>"
-                            style="max-width:200px;margin-bottom:10px;">
+                        <img src="../<?php echo htmlspecialchars(ltrim($franquia["capa_url"], "/")); ?>"
+                        style="max-width:200px;margin-bottom:10px;">
 
                     <?php } ?>
 
