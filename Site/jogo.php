@@ -53,7 +53,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["classificacao"])) {
         die("Voto inválido.");
     }
 
-    // 🔥 VERIFICAR SE JÁ VOTOU
     $check = $conn->prepare("
         SELECT id 
         FROM avaliacoes 
@@ -106,6 +105,78 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["classificacao"])) {
     exit();
 }
 
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["favorito"])) {
+
+    if (!isset($_SESSION["id"])) {
+        die("Tens de iniciar sessão.");
+    }
+
+    $id_utilizador = $_SESSION["id"];
+    $id_jogo = intval($_POST["id_jogo"]);
+
+    $check = $conn->prepare("
+        SELECT id_favorito
+        FROM favoritos
+        WHERE id_utilizador = ? AND id_jogo = ?
+    ");
+
+    $check->bind_param("ii", $id_utilizador, $id_jogo);
+    $check->execute();
+    $res = $check->get_result();
+
+    if ($res->num_rows > 0) {
+
+        $delete = $conn->prepare("
+            DELETE FROM favoritos
+            WHERE id_utilizador = ? AND id_jogo = ?
+        ");
+
+        $delete->bind_param("ii", $id_utilizador, $id_jogo);
+        $delete->execute();
+
+    } else {
+
+        $dados = $conn->prepare("
+            SELECT capa_url
+            FROM jogos
+            WHERE id_jogo = ?
+        ");
+
+        $dados->bind_param("i", $id_jogo);
+        $dados->execute();
+        $jogoDados = $dados->get_result()->fetch_assoc();
+
+        $gen = $conn->prepare("
+            SELECT id_genero
+            FROM jogo_genero
+            WHERE id_jogo = ?
+            LIMIT 1
+        ");
+
+        $gen->bind_param("i", $id_jogo);
+        $gen->execute();
+        $genero = $gen->get_result()->fetch_assoc();
+
+        $insert = $conn->prepare("
+            INSERT INTO favoritos (id_utilizador, id_jogo, capa_url, id_genero)
+            VALUES (?, ?, ?, ?)
+        ");
+
+        $insert->bind_param(
+            "iisi",
+            $id_utilizador,
+            $id_jogo,
+            str_replace("../", "", $jogoDados["capa_url"]),
+            $genero["id_genero"]
+        );
+
+        $insert->execute();
+    }
+
+    header("Location: jogo.php?id=".$id_jogo);
+    exit();
+}
+
 $nome = $_SESSION["nome"] ?? "";
 $email = $_SESSION["email"] ?? "";
 $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
@@ -126,6 +197,22 @@ if ($result->num_rows > 0) {
     $jogo = $result->fetch_assoc();
 } else {
     die("Jogo não encontrado.");
+}
+
+$eFavorito = false;
+
+if (isset($_SESSION["id"])) {
+
+    $fav = $conn->prepare("
+        SELECT id_favorito
+        FROM favoritos
+        WHERE id_utilizador = ? AND id_jogo = ?
+    ");
+
+    $fav->bind_param("ii", $_SESSION["id"], $id);
+    $fav->execute();
+
+    $eFavorito = $fav->get_result()->num_rows > 0;
 }
 
 $generos = [];
@@ -177,7 +264,7 @@ if (!$jogo) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $jogo['titulo'] ?> - Playscore</title>
-
+    <link rel="icon" href="img/PlayScore_Icon.png">
     <link rel="stylesheet" href="css/jogo.css">
     <link rel="stylesheet" href="css/headerfooter.css">
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400;600&family=Abel&display=swap" rel="stylesheet">
@@ -345,8 +432,15 @@ if (!$jogo) {
                             <?= !empty($generos) ? implode(", ", $generos) : "Sem género" ?>
                         </span>
                     </p>
+                    <div class="fav-container">
+                        <form method="POST">
+                            <input type="hidden" name="id_jogo" value="<?= $id ?>">
 
-                    <a href="#" class="favorite">Favoritar</a>
+                            <button type="submit" name="favorito" class="favorite <?= $eFavorito ? 'active' : '' ?>">
+                                <?= $eFavorito ? "Remover dos Favoritos" : "Favoritar" ?>
+                            </button>
+                        </form>
+                    </div>
 
                 </div>
 

@@ -45,7 +45,7 @@ if (isset($_POST["registar"])) {
 
     <link rel="stylesheet" href="css/registo.css">
     <link rel="stylesheet" href="css/headerfooter.css">
-
+    <link rel="icon" href="img/PlayScore_Icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
 </head>

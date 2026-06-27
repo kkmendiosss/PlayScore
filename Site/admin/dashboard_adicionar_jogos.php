@@ -35,7 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             mkdir($pasta, 0777, true);
         }
 
-        $nomeFicheiro = time() . "_" . basename($_FILES["capa"]["name"]);
+        $ext = pathinfo($_FILES["capa"]["name"], PATHINFO_EXTENSION);
+        $nomeFicheiro = uniqid("capa_", true) . "." . $ext;
         $caminho = $pasta . $nomeFicheiro;
 
         if (move_uploaded_file($_FILES["capa"]["tmp_name"], $caminho)) {

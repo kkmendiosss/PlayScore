@@ -90,7 +90,7 @@ $total_favoritos =
 
     <link rel="stylesheet" href="css/perfil.css">
     <link rel="stylesheet" href="css/headerfooter.css">
-
+    <link rel="icon" href="img/PlayScore_Icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap"
         rel="stylesheet">
 
@@ -131,7 +131,6 @@ $total_favoritos =
 
                 <div class="dropdown-content">
                     <a href="jogodoano.php">Jogo do Ano</a>
-                    <a href="franquia.php">Franquia</a>
                     <a href="lancamentos.php">Lançamentos</a>
                 </div>
 
@@ -265,7 +264,11 @@ $total_favoritos =
             </div>
 
         </section>
-
+        <a href="favoritos.php" class="btn-favoritos">
+            Favoritos
+        </a>
+        <br>
+        <br>
         <section class="bio-section">
 
             <div class="bio-header">
