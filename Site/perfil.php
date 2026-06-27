@@ -265,7 +265,11 @@ $total_favoritos =
             </div>
 
         </section>
-
+        <a href="favoritos.php" class="btn-favoritos">
+            Favoritos
+        </a>
+        <br>
+        <br>
         <section class="bio-section">
 
             <div class="bio-header">

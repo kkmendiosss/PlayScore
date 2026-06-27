@@ -49,6 +49,7 @@ $total_paginas = ceil($total / $limite);
 ?>
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -59,6 +60,7 @@ $total_paginas = ceil($total / $limite);
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400;600&family=Abel&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <header class="navbar">
 
@@ -137,56 +139,56 @@ $total_paginas = ceil($total / $limite);
         </div>
 
     </header>
-<main>
-    <section class="banner">
-        <h1>Favoritos</h1>
-    </section>
+    <main>
+        <section class="banner">
+            <h1>Favoritos</h1>
+        </section>
 
 
-<div class="favoritos-container">
+        <div class="favoritos-container">
 
-<?php if ($resultado->num_rows > 0): ?>
+            <?php if ($resultado->num_rows > 0): ?>
 
-    <?php while ($jogo = $resultado->fetch_assoc()): ?>
+                <?php while ($jogo = $resultado->fetch_assoc()): ?>
 
-        <a class="game-card" href="jogo.php?id=<?= $jogo["id_jogo"] ?>">
+                    <a class="game-card" href="jogo.php?id=<?= $jogo["id_jogo"] ?>">
 
-            <div class="image-wrap">
-                <img src="<?= str_replace('../', '', $jogo["capa_url"]) ?>">
-            </div>
+                        <div class="image-wrap">
+                            <img src="<?= str_replace('../', '', $jogo["capa_url"]) ?>">
+                        </div>
 
-            <div class="title">
-                <?= $jogo["titulo"] ?>
-            </div>
+                        <div class="title">
+                            <?= $jogo["titulo"] ?>
+                        </div>
 
-        </a>
+                    </a>
 
-    <?php endwhile; ?>
+                <?php endwhile; ?>
 
-<?php else: ?>
+            <?php else: ?>
 
-    <p>Não tens jogos nos favoritos.</p>
+                <p>Não tens jogos nos favoritos.</p>
 
-<?php endif; ?>
+            <?php endif; ?>
 
-</div>
+        </div>
 
-<div class="pagination">
+        <div class="pagination">
 
-<?php for ($i = 1; $i <= $total_paginas; $i++): ?>
+            <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
 
-    <a href="favoritos.php?pagina=<?= $i ?>"
-       class="<?= ($i == $pagina) ? 'active' : '' ?>">
-        <?= $i ?>
-    </a>
+                <a href="favoritos.php?pagina=<?= $i ?>"
+                    class="<?= ($i == $pagina) ? 'active' : '' ?>">
+                    <?= $i ?>
+                </a>
 
-<?php endfor; ?>
+            <?php endfor; ?>
 
-</div>
+        </div>
 
-</main>
+    </main>
 
-<footer>
+    <footer>
         <div class="footer-content">
             <div class="footer-column brand-col">
                 <div class="logo">

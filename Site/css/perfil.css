@@ -140,8 +140,6 @@ body {
     line-height: 1.7;
 }
 
-/* --- Lists Grid --- */
-
 .lists-header {
     display: flex;
     justify-content: space-between;
@@ -271,4 +269,20 @@ body {
 .bio-message {
     color: #00f3fc;
     margin-bottom: 15px;
+}
+
+.btn-favoritos {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #F80082;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.btn-favoritos:hover {
+    background: #e63956;
+    transform: scale(1.05);
 }
