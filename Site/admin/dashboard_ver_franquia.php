@@ -87,9 +87,9 @@ if (!$franquia) {
 
                     <?php if (!empty($franquia["capa_url"])) { ?>
 
-                        <img src="<?php echo $franquia["capa_url"]; ?>"
-                            class="view-avatar">
-
+                       <img src="../<?php echo htmlspecialchars(ltrim($franquia["capa_url"], "/")); ?>"
+                        class="view-avatar"
+                        alt="Capa da franquia">
                     <?php } else { ?>
 
                         <div class="view-placeholder">
