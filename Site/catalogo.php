@@ -111,7 +111,6 @@ function construirUrlPaginacao($pag, $q, $gen_array, $ord)
 
                 <div class="dropdown-content">
                     <a href="jogodoano.php">Jogo do Ano</a>
-                    <a href="franquia.php">Franquia</a>
                     <a href="lancamentos.php">Lançamentos</a>
                 </div>
 
@@ -159,9 +158,11 @@ function construirUrlPaginacao($pag, $q, $gen_array, $ord)
 
     </header>
 
-    <main class="catalogo-container">
+    <div class="main-title">
+        <h1>Catálogo</h1>
+    </div>
 
-        <h1 class="catalogo-titulo">Catálogo</h1>
+    <main class="catalogo-container">
 
         <form action="catalogo.php" method="GET" class="catalogo-ferramentas">
 

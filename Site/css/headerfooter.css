@@ -99,6 +99,7 @@
     border: none;
     padding: 10px 24px;
     border-radius: 8px;
+    max-width: 150px;
     cursor: pointer;
     font-size: 0.95rem;
     font-weight: 600;
@@ -340,5 +341,21 @@ footer {
 
     .footer-desc {
         margin: 0 auto;
+    }
+
+    .btn-login {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .user-dropdown {
+        width: 100%;
+        text-align: center;
+    }
+
+    .user-dropdown-content {
+        position: static;
+        width: 100%;
     }
 }

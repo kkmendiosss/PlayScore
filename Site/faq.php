@@ -19,8 +19,7 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
   <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
 </head>
 
-<body>
-
+<body> 
   <header class="navbar">
 
         <div class="logo">

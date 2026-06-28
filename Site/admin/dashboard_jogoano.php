@@ -9,29 +9,25 @@ if (!isset($_SESSION["id"]) || $_SESSION["tipo_utilizador"] != "admin") {
 
 $nome_admin = $_SESSION["nome"] ?? "Admin";
 
-if (isset($_GET["eliminar"])) {
-    $id = mysqli_real_escape_string($conn, $_GET["eliminar"]);
-    $sql_delete = "DELETE FROM generos WHERE id_genero = '$id'";
-    
-    if (mysqli_query($conn, $sql_delete)) {
-        header("Location: dashboard_generos.php");
-        exit();
-    }
-}
-
 $por_pagina = 10;
 $pagina = $_GET["pagina"] ?? 1;
 $pagina = max(1, intval($pagina));
 
 $inicio = ($pagina - 1) * $por_pagina;
 
-$sql_total = "SELECT COUNT(*) AS total FROM generos";
+$sql_total = "SELECT COUNT(*) AS total FROM votos_utilizadores_ano";
 $resultado_total = mysqli_query($conn, $sql_total);
 $total_linhas = mysqli_fetch_assoc($resultado_total)["total"];
 
 $total_paginas = ceil($total_linhas / $por_pagina);
 
-$sql = "SELECT * FROM generos ORDER BY id_genero ASC LIMIT $inicio, $por_pagina";
+$sql = "SELECT v.ano, u.nome AS nome_utilizador, j.titulo AS titulo_jogo 
+        FROM votos_utilizadores_ano v
+        JOIN users u ON v.id_utilizador = u.id_utilizador
+        JOIN jogos j ON v.id_jogo = j.id_jogo
+        ORDER BY v.ano DESC, u.nome ASC 
+        LIMIT $inicio, $por_pagina";
+        
 $resultado = mysqli_query($conn, $sql);
 ?>
 
@@ -40,11 +36,10 @@ $resultado = mysqli_query($conn, $sql);
 
 <head>
     <meta charset="UTF-8">
-    <title>Backoffice - Géneros</title>
+    <title>Backoffice - Jogo do Ano</title>
     <link rel="stylesheet" href="../css/backoffice.css">
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
@@ -52,13 +47,11 @@ $resultado = mysqli_query($conn, $sql);
     <div class="backoffice">
 
         <aside class="sidebar">
-
             <div class="sidebar-logo">
                 <img src="../logo/Logo.png" alt="PlayScore">
             </div>
 
             <h2>Dashboard</h2>
-
             <a href="dashboard.php">Dashboard</a>
 
             <nav class="sidebar-menu">
@@ -67,7 +60,7 @@ $resultado = mysqli_query($conn, $sql);
                 <a href="dashboard_contactos.php">Contactos</a>
                 <a href="dashboard_franquia.php">Franquias</a>
                 <a href="dashboard_jogos.php">Jogos</a>
-                <a href="dashboard_jogoano.php">Jogo do Ano</a>
+                <a href="dashboard_jogoano.php" class="active">Jogo do Ano</a>
                 <a href="dashboard_lancamento.php">Lançamentos</a>
                 <a href="dashboard_comentarios.php">Comentários</a>
                 <a href="dashboard_users.php">Users</a>
@@ -80,15 +73,11 @@ $resultado = mysqli_query($conn, $sql);
 
             <div class="topbar">
                 <div>
-                    <h1>Géneros</h1>
-                    <p>Gestão dos géneros registados</p>
+                    <h1>Jogo do Ano</h1>
+                    <p>Visualização dos votos submetidos pelos utilizadores</p>
                 </div>
 
                 <div class="topbar-actions">
-                    <a href="dashboard_adicionar_generos.php" class="add-btn">
-                        + Adicionar
-                    </a>
-
                     <span>Admin: <?php echo $nome_admin; ?></span>
                 </div>
             </div>
@@ -97,56 +86,48 @@ $resultado = mysqli_query($conn, $sql);
                 <table>
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Nome</th>
-                            <th class="actions-title">Ações</th>
+                            <th>Utilizador</th>
+                            <th>Ano</th>
+                            <th>Jogo Votado</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php while ($genero = mysqli_fetch_assoc($resultado)) { ?>
-                            <tr>
-                                <td><?php echo $genero["id_genero"]; ?></td>
-                                <td><?php echo $genero["nome"]; ?></td>
-                                <td class="actions">
-                                    
-                                    <a href="dashboard_editar_generos.php?id=<?php echo $genero["id_genero"]; ?>" class="btn edit">
-                                        <i class="fa-solid fa-pen"></i>
-                                    </a>
-
-                                    <a href="dashboard_generos.php?eliminar=<?php echo $genero["id_genero"]; ?>" 
-                                       class="btn delete" 
-                                       onclick="return confirm('Tens a certeza que queres eliminar este género?');">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </a>
-
-                                </td>
-                            </tr>
+                        <?php if (mysqli_num_rows($resultado) > 0) { ?>
+                            <?php while ($voto = mysqli_fetch_assoc($resultado)) { ?>
+                                <tr>
+                                    <td><?php echo htmlspecialchars($voto["nome_utilizador"]); ?></td>
+                                    <td><?php echo $voto["ano"]; ?></td>
+                                    <td><?php echo htmlspecialchars($voto["titulo_jogo"]); ?></td>
+                                </tr>
+                            <?php } ?>
                         <?php } ?>
                     </tbody>
                 </table>
 
+                <?php if ($total_paginas > 1) { ?>
                 <div class="pagination">
 
                     <?php if ($pagina > 1) { ?>
-                        <a href="dashboard_generos.php?pagina=<?php echo $pagina - 1; ?>">
+                        <a href="dashboard_jogoano.php?pagina=<?php echo $pagina - 1; ?>">
                             Anterior
                         </a>
                     <?php } ?>
 
                     <?php for ($i = 1; $i <= $total_paginas; $i++) { ?>
-                        <a href="dashboard_generos.php?pagina=<?php echo $i; ?>"
+                        <a href="dashboard_jogoano.php?pagina=<?php echo $i; ?>"
                             class="<?php echo ($i == $pagina) ? 'active' : ''; ?>">
                             <?php echo $i; ?>
                         </a>
                     <?php } ?>
 
                     <?php if ($pagina < $total_paginas) { ?>
-                        <a href="dashboard_generos.php?pagina=<?php echo $pagina + 1; ?>">
+                        <a href="dashboard_jogoano.php?pagina=<?php echo $pagina + 1; ?>">
                             Próxima
                         </a>
                     <?php } ?>
 
                 </div>
+                <?php } ?>
 
             </section>
 

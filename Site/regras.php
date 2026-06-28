@@ -51,7 +51,6 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
 
                 <div class="dropdown-content">
                     <a href="jogodoano.php">Jogo do Ano</a>
-                    <a href="franquia.php">Franquia</a>
                     <a href="lancamentos.php">Lançamentos</a>
                 </div>
 
@@ -99,8 +98,11 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
 
     </header>
 
+    <div class="main-title">
+        <h1>Regras da Comunidade</h1>
+    </div>
+
     <main class="rules-container">
-        <h1 class="page-title">Regras da Comunidade</h1>
         <div class="rules-grid">
             <div class="rule-card card-blue">
                 <img src="img/Regras/Icon1.png" alt="Ícone 1" class="rule-icon">

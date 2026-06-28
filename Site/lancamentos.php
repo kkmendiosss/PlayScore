@@ -29,7 +29,7 @@ $resultado = mysqli_query($conn, "SELECT * FROM lancamentos ORDER BY data");
     <header class="navbar">
 
         <div class="logo">
-            <img src="logo/Logo.png" alt="PlayScore">
+            <a href="index.php"><img src="logo/Logo.png" alt="PlayScore"></a>
         </div>
 
         <nav class="nav-links" id="navLinks">
@@ -102,7 +102,6 @@ $resultado = mysqli_query($conn, "SELECT * FROM lancamentos ORDER BY data");
         </div>
 
     </header>
-
 
     <section class="hero">
         <h1 class="title">Lançamentos</h1>
@@ -209,7 +208,7 @@ $resultado = mysqli_query($conn, "SELECT * FROM lancamentos ORDER BY data");
         </div>
     </footer>
 
-    <script src="/js/headerfooter.js"></script>
+    <script src="js\headerfooter.js"></script>
 </body>
 
 </html>

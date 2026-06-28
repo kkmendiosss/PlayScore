@@ -253,9 +253,51 @@ if (isset($_POST["guardar"])) {
                         </label>
 
                         <label class="plataforma-card">
+                            <input type="checkbox" name="plataforma[]" value="PlayStation 4"
+                            <?php if (!empty($plataformas_array) && in_array("PlayStation 4", $plataformas_array)) echo "checked"; ?>>
+                            <span>PlayStation 4</span>
+                        </label>
+
+                        <label class="plataforma-card">
+                            <input type="checkbox" name="plataforma[]" value="PlayStation Vita"
+                            <?php if (!empty($plataformas_array) && in_array("PlayStation Vita", $plataformas_array)) echo "checked"; ?>>
+                            <span>PlayStation Vita</span>
+                        </label>
+
+                        <label class="plataforma-card">
+                            <input type="checkbox" name="plataforma[]" value="PlayStation 3"
+                            <?php if (!empty($plataformas_array) && in_array("PlayStation 3", $plataformas_array)) echo "checked"; ?>>
+                            <span>PlayStation 3</span>
+                        </label>
+
+                        <label class="plataforma-card">
                             <input type="checkbox" name="plataforma[]" value="Xbox Series X/S"
                             <?php if (!empty($plataformas_array) && in_array("Xbox Series X/S", $plataformas_array)) echo "checked"; ?>>
                             <span>Xbox Series X/S</span>
+                        </label>
+
+                        <label class="plataforma-card">
+                            <input type="checkbox" name="plataforma[]" value="Xbox One"
+                            <?php if (!empty($plataformas_array) && in_array("Xbox One", $plataformas_array)) echo "checked"; ?>>
+                            <span>Xbox One</span>
+                        </label>
+
+                        <label class="plataforma-card">
+                            <input type="checkbox" name="plataforma[]" value="Xbox 360"
+                            <?php if (!empty($plataformas_array) && in_array("Xbox 360", $plataformas_array)) echo "checked"; ?>>
+                            <span>Xbox 360</span>
+                        </label>
+
+                        <label class="plataforma-card">
+                            <input type="checkbox" name="plataforma[]" value="Xbox"
+                            <?php if (!empty($plataformas_array) && in_array("Xbox", $plataformas_array)) echo "checked"; ?>>
+                            <span>Xbox</span>
+                        </label>
+
+                        <label class="plataforma-card">
+                            <input type="checkbox" name="plataforma[]" value="Nintendo Switch 2"
+                            <?php if (!empty($plataformas_array) && in_array("Nintendo Switch 2", $plataformas_array)) echo "checked"; ?>>
+                            <span>Nintendo Switch 2</span>
                         </label>
 
                         <label class="plataforma-card">
