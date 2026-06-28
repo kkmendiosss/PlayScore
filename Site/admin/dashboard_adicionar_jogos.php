@@ -227,8 +227,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </label>
 
                         <label class="plataforma-card">
+                            <span>PlayStation 4</span>
+                            <input type="checkbox" name="plataforma[]" value="PlayStation 4">
+                        </label>
+
+                        <label class="plataforma-card">
+                            <span>PlayStation Vita</span>
+                            <input type="checkbox" name="plataforma[]" value="PlayStation Vita">
+                        </label>
+
+                        <label class="plataforma-card">
+                            <span>PlayStation 3</span>
+                            <input type="checkbox" name="plataforma[]" value="PlayStation 3">
+                        </label>
+
+                        <label class="plataforma-card">
                             <span>Xbox Series X/S</span>
                             <input type="checkbox" name="plataforma[]" value="Xbox Series X/S">
+                        </label>
+
+                        <label class="plataforma-card">
+                            <span>Xbox One</span>
+                            <input type="checkbox" name="plataforma[]" value="Xbox One">
+                        </label>
+
+                        <label class="plataforma-card">
+                            <span>Xbox 360</span>
+                            <input type="checkbox" name="plataforma[]" value="Xbox 360">
+                        </label>
+
+                        <label class="plataforma-card">
+                            <span>Xbox</span>
+                            <input type="checkbox" name="plataforma[]" value="Xbox">
+                        </label>
+
+                        <label class="plataforma-card">
+                            <span>Nintendo Switch 2</span>
+                            <input type="checkbox" name="plataforma[]" value="Nintendo Switch 2">
                         </label>
 
                         <label class="plataforma-card">
