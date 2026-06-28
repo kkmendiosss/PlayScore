@@ -29,61 +29,71 @@ $resultado = mysqli_query($conn, "SELECT * FROM lancamentos ORDER BY data");
     <header class="navbar">
 
         <div class="logo">
-            <img src="logo/Logo.png" alt="PlayScore">
+            <a href="index.php"><img src="logo/Logo.png" alt="PlayScore"></a>
         </div>
 
         <nav class="nav-links" id="navLinks">
 
             <a href="index.php">Início</a>
-            <a href="catalogo.php">Catálogo</a>
+            <a href="catalogo.php">Catalogo</a>
 
             <div class="dropdown">
+
                 <a href="#">Sobre Nós</a>
 
                 <div class="dropdown-content">
                     <a href="contactos.php">Contactos</a>
                     <a href="regras.php">Regras da Comunidade</a>
-                    <a href="politicas.php">Políticas e Privacidade</a>
+                    <a href="politicas.php">Politicas e privacidade</a>
                     <a href="faq.php">FAQ</a>
                 </div>
+
             </div>
 
             <div class="dropdown">
+
                 <a href="#">Informação</a>
 
                 <div class="dropdown-content">
                     <a href="jogodoano.php">Jogo do Ano</a>
                     <a href="lancamentos.php">Lançamentos</a>
                 </div>
+
             </div>
 
-            <?php if ($nome != "") { ?>
+        </nav>
 
-                <div class="user-dropdown">
+        <?php if ($nome != "") { ?>
 
-                    <button class="btn-login">
-                        <?php echo $nome; ?> ▼
-                    </button>
+            <div class="user-dropdown">
 
-                    <div class="user-dropdown-content">
-                        <a href="perfil.php">Perfil</a>
+                <button class="btn-login">
+                    <?php echo $nome; ?> ▼
+                </button>
 
-                        <?php if ($tipo == "admin") { ?>
-                            <a href="admin/dashboard.php">Dashboard</a>
-                        <?php } ?>
+                <div class="user-dropdown-content">
 
-                        <a href="logout.php">Sair</a>
-                    </div>
+                    <a href="perfil.php">Perfil</a>
+
+                    <?php if ($tipo == "admin") { ?>
+                        <a href="admin/dashboard.php">Dashboard</a>
+                    <?php } ?>
+
+                    <a href="logout.php">Sair</a>
 
                 </div>
 
-            <?php } else { ?>
+            </div>
 
-                <a href="login.php" class="btn-login">Login</a>
+        <?php } else { ?>
 
-            <?php } ?>
+            <a href="login.php">
+                <button class="btn-login">
+                    Login
+                </button>
+            </a>
 
-        </nav>
+        <?php } ?>
 
         <div class="hamburger" id="hamburger">
             <span></span>
@@ -92,7 +102,6 @@ $resultado = mysqli_query($conn, "SELECT * FROM lancamentos ORDER BY data");
         </div>
 
     </header>
-
 
     <section class="hero">
         <h1 class="title">Lançamentos</h1>
