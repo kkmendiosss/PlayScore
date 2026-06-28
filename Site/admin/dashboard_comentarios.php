@@ -12,12 +12,20 @@ if ($_SESSION["tipo_utilizador"] != "admin") {
     exit();
 }
 
+$registosPorPagina = 10;
+
+$pagina = isset($_GET["pagina"]) ? (int)$_GET["pagina"] : 1;
+
+if ($pagina < 1) {
+    $pagina = 1;
+}
+
+$inicio = ($pagina - 1) * $registosPorPagina;
+
 $nome_admin = $_SESSION["nome"] ?? "Admin";
 
-
-// ELIMINAR comentário
 if (isset($_GET["eliminar"])) {
-    $id = $_GET["eliminar"];
+    $id = (int)$_GET["eliminar"];
 
     $sql = "DELETE FROM comentarios WHERE id_comentario = $id";
     mysqli_query($conn, $sql);
@@ -26,16 +34,33 @@ if (isset($_GET["eliminar"])) {
     exit();
 }
 
+$sql = "SELECT
+c.id_comentario,
+c.comentario,
+c.data_comentario,
+u.nome AS nome_utilizador,
+j.titulo AS titulo_jogo
 
-// LISTAR comentários (com nome do user e jogo)
-$sql = "SELECT c.id_comentario, c.comentario,c.data_comentario, u.nome AS nome_utilizador,j.titulo AS titulo_jogo
-    FROM comentarios c
-    JOIN users u ON c.id_utilizador = u.id_utilizador
-    JOIN jogos j ON c.id_jogo = j.id_jogo
-    ORDER BY c.id_comentario DESC
-";
+FROM comentarios c
+
+JOIN users u
+ON c.id_utilizador = u.id_utilizador
+
+JOIN jogos j
+ON c.id_jogo = j.id_jogo
+
+ORDER BY c.id_comentario DESC
+
+LIMIT $inicio, $registosPorPagina";
 
 $resultado = mysqli_query($conn, $sql);
+
+$sqlTotal = "SELECT COUNT(*) AS total FROM comentarios";
+$resultadoTotal = mysqli_query($conn, $sqlTotal);
+
+$total = mysqli_fetch_assoc($resultadoTotal)['total'];
+
+$totalPaginas = ceil($total / $registosPorPagina);
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +69,7 @@ $resultado = mysqli_query($conn, $sql);
 <head>
     <meta charset="UTF-8">
     <title>Backoffice - Comentários</title>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="../css/backoffice.css">
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
@@ -126,10 +151,20 @@ $resultado = mysqli_query($conn, $sql);
 
                         <td class="actions">
 
+                            <a href="dashboard_ver_comentarios.php?id=<?= $comentario['id_comentario']; ?>" 
+                                class="btn view">
+                                <i class="fa-solid fa-eye"></i>
+                            </a>
+
+                            <a href="dashboard_editar_comentarios.php?id=<?= $comentario['id_comentario']; ?>"
+                                class="btn edit">
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+
                             <a href="dashboard_comentarios.php?eliminar=<?php echo $comentario["id_comentario"]; ?>"
-                               class="btn delete"
-                               onclick="return confirm('Tens a certeza que queres eliminar este comentário?');">
-                                Eliminar
+                                class="btn delete"
+                                onclick="return confirm('Tens a certeza que queres eliminar este jogo?');">
+                                <i class="fa-solid fa-trash"></i>
                             </a>
 
                         </td>
@@ -141,6 +176,28 @@ $resultado = mysqli_query($conn, $sql);
                 </tbody>
 
             </table>
+
+            <div class="pagination">
+
+            <?php if($pagina > 1){ ?>
+                <a href="?pagina=<?= $pagina-1 ?>">Anterior</a>
+            <?php } ?>
+
+            <?php for($i=1;$i<=$totalPaginas;$i++){ ?>
+
+                <?php if($i==$pagina){ ?>
+                    <span class="ativa"><?= $i ?></span>
+                <?php }else{ ?>
+                    <a href="?pagina=<?= $i ?>"><?= $i ?></a>
+                <?php } ?>
+
+            <?php } ?>
+
+            <?php if($pagina < $totalPaginas){ ?>
+                <a href="?pagina=<?= $pagina+1 ?>">Seguinte</a>
+            <?php } ?>
+
+            </div>
 
         </section>
 

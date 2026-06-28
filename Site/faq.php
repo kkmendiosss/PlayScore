@@ -23,81 +23,80 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
 
   <header class="navbar">
 
-    <div class="logo">
-      <img src="logo/Logo.png" alt="PlayScore">
-    </div>
-
-    <nav class="nav-links" id="navLinks">
-
-      <a href="index.php">Início</a>
-      <a href="catalogo.php">Catalogo</a>
-
-      <div class="dropdown">
-
-        <a href="#">Sobre Nós</a>
-
-        <div class="dropdown-content">
-          <a href="contactos.php">Contactos</a>
-          <a href="regras.php">Regras da Comunidade</a>
-          <a href="politicas.php">Politicas e privacidade</a>
-          <a href="faq.php">FAQ</a>
+        <div class="logo">
+            <a href="index.php"><img src="logo/Logo.png" alt="PlayScore"></a>
         </div>
 
-      </div>
+        <nav class="nav-links" id="navLinks">
 
-      <div class="dropdown">
+            <a href="index.php">Início</a>
+            <a href="catalogo.php">Catalogo</a>
 
-        <a href="#">Informação</a>
+            <div class="dropdown">
 
-        <div class="dropdown-content">
-          <a href="jogodoano.php">Jogo do Ano</a>
-          <a href="franquia.php">Franquia</a>
-          <a href="lancamentos.php">Lançamentos</a>
+                <a href="#">Sobre Nós</a>
+
+                <div class="dropdown-content">
+                    <a href="contactos.php">Contactos</a>
+                    <a href="regras.php">Regras da Comunidade</a>
+                    <a href="politicas.php">Politicas e privacidade</a>
+                    <a href="faq.php">FAQ</a>
+                </div>
+
+            </div>
+
+            <div class="dropdown">
+
+                <a href="#">Informação</a>
+
+                <div class="dropdown-content">
+                    <a href="jogodoano.php">Jogo do Ano</a>
+                    <a href="lancamentos.php">Lançamentos</a>
+                </div>
+
+            </div>
+
+        </nav>
+
+        <?php if ($nome != "") { ?>
+
+            <div class="user-dropdown">
+
+                <button class="btn-login">
+                    <?php echo $nome; ?> ▼
+                </button>
+
+                <div class="user-dropdown-content">
+
+                    <a href="perfil.php">Perfil</a>
+
+                    <?php if ($tipo == "admin") { ?>
+                        <a href="admin/dashboard.php">Dashboard</a>
+                    <?php } ?>
+
+                    <a href="logout.php">Sair</a>
+
+                </div>
+
+            </div>
+
+        <?php } else { ?>
+
+            <a href="login.php">
+                <button class="btn-login">
+                    Login
+                </button>
+            </a>
+
+        <?php } ?>
+
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
 
-      </div>
-
-    </nav>
-
-    <?php if ($nome != "") { ?>
-
-      <div class="user-dropdown">
-
-        <button class="btn-login">
-          <?php echo $nome; ?> ▼
-        </button>
-
-        <div class="user-dropdown-content">
-
-          <a href="perfil.php">Perfil</a>
-
-          <?php if ($tipo == "admin") { ?>
-            <a href="admin/dashboard.php">Dashboard</a>
-          <?php } ?>
-
-          <a href="logout.php">Sair</a>
-
-        </div>
-
-      </div>
-
-    <?php } else { ?>
-
-      <a href="login.php">
-        <button class="btn-login">
-          Login
-        </button>
-      </a>
-
-    <?php } ?>
-
-    <div class="hamburger" id="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
-  </header>
+    </header> 
 
   <div class="main-title">
     <h1>Perguntas Frequentes</h1>

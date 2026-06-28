@@ -257,8 +257,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
 
                 <div class="generos-form-group">
-                    <label>ID Franquia</label>
-                    <input type="text" name="nome">
+                    <label>Franquia</label>
+
+                    <select name="id_franquia">
+                        <option value="">Sem franquia</option>
+
+                        <?php while ($f = mysqli_fetch_assoc($franquias)) { ?>
+                            <option value="<?= $f['id_franquia']; ?>">
+                                <?= htmlspecialchars($f['nome']); ?>
+                            </option>
+                        <?php } ?>
+
+                    </select>
                 </div>
 
                 <div class="generos-form-buttons">

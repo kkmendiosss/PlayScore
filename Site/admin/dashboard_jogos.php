@@ -14,6 +14,15 @@ if ($_SESSION["tipo_utilizador"] != "admin") {
 
 $nome_admin = $_SESSION["nome"] ?? "Admin";
 
+$registosPorPagina = 10;
+
+$pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+
+if ($pagina < 1) {
+    $pagina = 1;
+}
+
+$inicio = ($pagina - 1) * $registosPorPagina;
 
 if (isset($_GET["eliminar"])) {
     $id = $_GET["eliminar"];
@@ -27,8 +36,18 @@ if (isset($_GET["eliminar"])) {
 }
 
 
-$sql = "SELECT * FROM jogos ORDER BY id_jogo DESC";
+$sql = "SELECT * FROM jogos
+        ORDER BY id_jogo DESC
+        LIMIT $inicio, $registosPorPagina";
 $resultado = mysqli_query($conn, $sql);
+
+$sqlTotal = "SELECT COUNT(*) AS total FROM jogos";
+$resultadoTotal = mysqli_query($conn, $sqlTotal);
+
+$total = mysqli_fetch_assoc($resultadoTotal)['total'];
+
+$totalPaginas = ceil($total / $registosPorPagina);
+
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +56,7 @@ $resultado = mysqli_query($conn, $sql);
 <head>
     <meta charset="UTF-8">
     <title>Backoffice - Jogos</title>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="../css/backoffice.css">
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
@@ -141,23 +160,23 @@ $resultado = mysqli_query($conn, $sql);
                                     }
                                     ?>
                                 </td>
-
+                            
                                 <td class="actions">
 
                                     <a href="dashboard_ver_jogos.php?id=<?php echo $jogo["id_jogo"]; ?>"
                                         class="btn view">
-                                        Ver
+                                        <i class="fa-solid fa-eye"></i>
                                     </a>
 
                                     <a href="dashboard_editar_jogos.php?id=<?php echo $jogo["id_jogo"]; ?>"
                                         class="btn edit">
-                                        Editar
+                                        <i class="fa-solid fa-pen"></i>
                                     </a>
 
                                     <a href="dashboard_jogos.php?eliminar=<?php echo $jogo["id_jogo"]; ?>"
                                         class="btn delete"
                                         onclick="return confirm('Tens a certeza que queres eliminar este jogo?');">
-                                        Eliminar
+                                        <i class="fa-solid fa-trash"></i>
                                     </a>
 
                                 </td>
@@ -169,6 +188,28 @@ $resultado = mysqli_query($conn, $sql);
                     </tbody>
 
                 </table>
+
+                <div class="pagination">
+
+                    <?php if($pagina > 1){ ?>
+                        <a href="?pagina=<?= $pagina-1 ?>">Anterior</a>
+                    <?php } ?>
+
+                <?php for($i = 1; $i <= $totalPaginas; $i++){ ?>
+
+                    <?php if($i == $pagina){ ?>
+                        <span class="ativa"><?= $i ?></span>
+                    <?php } else { ?>
+                        <a href="?pagina=<?= $i ?>"><?= $i ?></a>
+                    <?php } ?>
+
+                <?php } ?>
+
+                    <?php if($pagina < $totalPaginas){ ?>
+                        <a href="?pagina=<?= $pagina+1 ?>">Seguinte</a>
+                    <?php } ?>
+
+                </div>
 
             </section>
 

@@ -63,7 +63,6 @@ $total_jogos = mysqli_fetch_assoc($result_jogos)["total"];
 
                 <div class="dropdown-content">
                     <a href="jogodoano.php">Jogo do Ano</a>
-                    <a href="franquia.php">Franquia</a>
                     <a href="lancamentos.php">Lançamentos</a>
                 </div>
 
@@ -109,7 +108,7 @@ $total_jogos = mysqli_fetch_assoc($result_jogos)["total"];
             <span></span>
         </div>
 
-    </header>
+    </header> 
 
     <section class="hero">
 
@@ -120,13 +119,12 @@ $total_jogos = mysqli_fetch_assoc($result_jogos)["total"];
         <div class="hero-content">
             <h1>Descobre os Melhores Jogos</h1>
             <p>Avaliações, comentários e rankings da comunidade gamer.</p>
-
+            <a href="catalogo.php">
             <button>Explorar Agora</button>
+            </a>
         </div>
 
     </section>
-
-    <!-- MAIN -->
 
     <section class="banner">
         <h1>Jogos Mais Votados</h1>
@@ -165,25 +163,6 @@ $total_jogos = mysqli_fetch_assoc($result_jogos)["total"];
                 <button class="slider-btn right" id="nextBtn">&#10095;</button>
 
             </div>
-        </section>
-
-        <section class="stats">
-
-            <div class="stat-box">
-                <h3>Avaliações</h3>
-                <span><?php echo $total_avaliacoes; ?></span>
-            </div>
-
-            <div class="stat-box">
-                <h3>Comentários</h3>
-                <span><?php echo $total_comentarios; ?></span>
-            </div>
-
-            <div class="stat-box">
-                <h3>Jogos</h3>
-                <span><?php echo $total_jogos; ?></span>
-            </div>
-
         </section>
 
     </main>

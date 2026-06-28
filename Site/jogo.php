@@ -276,7 +276,7 @@ if (!$jogo) {
     <header class="navbar">
 
         <div class="logo">
-            <img src="logo/Logo.png" alt="PlayScore">
+            <a href="index.php"><img src="logo/Logo.png" alt="PlayScore"></a>
         </div>
 
         <nav class="nav-links" id="navLinks">
@@ -303,7 +303,6 @@ if (!$jogo) {
 
                 <div class="dropdown-content">
                     <a href="jogodoano.php">Jogo do Ano</a>
-                    <a href="franquia.php">Franquia</a>
                     <a href="lancamentos.php">Lançamentos</a>
                 </div>
 
@@ -349,7 +348,7 @@ if (!$jogo) {
             <span></span>
         </div>
 
-    </header>
+    </header> 
 
     <main>
 
