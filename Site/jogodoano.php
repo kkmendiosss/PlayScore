@@ -149,7 +149,7 @@ if ($resultado_jogos_ano) {
             <div class="custom-select-wrapper">
                 <select id="selectAno" onchange="mudarAno(this.value)">
                     <?php 
-                    for ($a = 2026; $a >= 2004; $a--) {
+                    for ($a = 2026; $a >= 1998; $a--) {
                         $selected = ($a == $ano_selecionado) ? 'selected' : '';
                         echo "<option value='$a' $selected>$a</option>";
                     }
