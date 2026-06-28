@@ -57,7 +57,6 @@ if (!$franquia) {
             <a href="dashboard.php">Dashboard</a>
 
             <nav class="sidebar-menu">
-                <a href="dashboard_favoritos.php">Favoritos</a>
                 <a href="dashboard_generos.php">Géneros</a>
                 <a href="dashboard_contactos.php">Contactos</a>
                 <a href="dashboard_franquia.php">Franquias</a>
