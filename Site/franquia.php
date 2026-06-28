@@ -96,7 +96,7 @@ $jogos = $stmt_jogos->get_result();
     <title>PlayScore | Franquia</title>
 
     <link rel="stylesheet" href="css/headerfooter.css">
-    <link rel="stylesheet" href="css/franquia.css">
+    <link rel="stylesheet" href="css/franquia.css?v=<?php echo time(); ?>">
     <link rel="icon" href="img/PlayScore_Icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
 </head>
