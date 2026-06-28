@@ -51,7 +51,6 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
 
                 <div class="dropdown-content">
                     <a href="jogodoano.php">Jogo do Ano</a>
-                    <a href="franquia.php">Franquia</a>
                     <a href="lancamentos.php">Lançamentos</a>
                 </div>
 
