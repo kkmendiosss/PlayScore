@@ -202,7 +202,7 @@ $total_jogos = mysqli_fetch_assoc($result_jogos)["total"];
             <p>© 2026 PLAYSCORE NETWORK. TODOS OS DIREITOS RESERVADOS.</p>
         </div>
     </footer>
-
+    <script src="js/headerfooter.js"></script>
     <script src="js/index.js"></script>
 </body>
 

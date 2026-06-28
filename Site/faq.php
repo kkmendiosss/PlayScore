@@ -237,16 +237,7 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
     </div>
   </footer>
 
-
-  <script>
-    const items = document.querySelectorAll('.faq-item');
-
-    items.forEach(item => {
-      item.addEventListener('click', () => {
-        item.classList.toggle('active');
-      });
-    });
-  </script>
+  <script src="js/headerfooter.js"></script>
 
 </body>
 

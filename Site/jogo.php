@@ -631,7 +631,8 @@ if (!$jogo) {
     <div class="copyright">
         © 2026 PLAYSCORE NETWORK. TODOS OS DIREITOS RESERVADOS.
     </div>
-
+    
+    <script src="js/headerfooter.js"></script>
     <script src="js/jogo.js"></script>
 </body>
 
