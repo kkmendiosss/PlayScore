@@ -87,12 +87,28 @@ if (isset($_POST["adicionar"])) {
 <body>
     <div class="backoffice">
         <aside class="sidebar">
-            <div class="sidebar-logo"><img src="logo/Logo.png" alt="PlayScore"></div>
+
+            <div class="sidebar-logo">
+                <img src="../logo/Logo.png" alt="PlayScore">
+            </div>
+
             <h2>Dashboard</h2>
+
+            <a href="dashboard.php">Dashboard</a>
+
             <nav class="sidebar-menu">
+                <a href="dashboard_generos.php">Géneros</a>
+                <a href="dashboard_contactos.php">Contactos</a>
                 <a href="dashboard_franquia.php">Franquias</a>
                 <a href="dashboard_jogos.php">Jogos</a>
+                <a href="dashboard_jogoano.php">Jogo do Ano</a>
+                <a href="dashboard_lancamento.php">Lançamentos</a>
+                <a href="dashboard_comentarios.php">Comentários</a>
+                <a href="dashboard_users.php">Users</a>
             </nav>
+
+            <a href="../index.php" class="back-site">Voltar ao site</a>
+
         </aside>
 
         <main class="main-content">

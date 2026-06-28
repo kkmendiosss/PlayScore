@@ -95,6 +95,7 @@ $resultado = $stmt->get_result();
     <meta charset="UTF-8">
     <title>Backoffice - Franquias</title>
     <link rel="stylesheet" href="../css/backoffice.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
     <link rel="icon" href="img/PlayScore_Icon.png">
@@ -198,20 +199,20 @@ $resultado = $stmt->get_result();
                                         <a
                                             href="dashboard_ver_franquia.php?id=<?php echo (int) $franquia["id_franquia"]; ?>"
                                             class="btn view">
-                                            Ver
+                                            <i class="fa-solid fa-eye"></i>
                                         </a>
 
                                         <a
                                             href="dashboard_editar_franquia.php?id=<?php echo (int) $franquia["id_franquia"]; ?>"
                                             class="btn edit">
-                                            Editar
+                                            <i class="fa-solid fa-pen"></i>
                                         </a>
 
                                         <a
                                             href="dashboard_franquia.php?eliminar=<?php echo (int) $franquia["id_franquia"]; ?>"
                                             class="btn delete"
                                             onclick="return confirm('Tens a certeza que queres eliminar esta franquia do sistema?');">
-                                            Eliminar
+                                            <i class="fa-solid fa-trash"></i>
                                         </a>
 
                                     </td>
