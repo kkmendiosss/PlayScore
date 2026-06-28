@@ -63,7 +63,6 @@ $total_jogos = mysqli_fetch_assoc($result_jogos)["total"];
 
                 <div class="dropdown-content">
                     <a href="jogodoano.php">Jogo do Ano</a>
-                    <a href="franquia.php">Franquia</a>
                     <a href="lancamentos.php">Lançamentos</a>
                 </div>
 

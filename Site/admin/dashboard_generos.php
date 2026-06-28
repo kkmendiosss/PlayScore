@@ -44,6 +44,7 @@ $resultado = mysqli_query($conn, $sql);
     <link rel="stylesheet" href="../css/backoffice.css">
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
@@ -109,13 +110,13 @@ $resultado = mysqli_query($conn, $sql);
                                 <td class="actions">
                                     
                                     <a href="dashboard_editar_generos.php?id=<?php echo $genero["id_genero"]; ?>" class="btn edit">
-                                        Editar
+                                        <i class="fa-solid fa-pen"></i>
                                     </a>
 
                                     <a href="dashboard_generos.php?eliminar=<?php echo $genero["id_genero"]; ?>" 
                                        class="btn delete" 
                                        onclick="return confirm('Tens a certeza que queres eliminar este género?');">
-                                        Eliminar
+                                        <i class="fa-solid fa-trash"></i>
                                     </a>
 
                                 </td>
