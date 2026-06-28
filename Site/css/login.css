@@ -174,16 +174,22 @@ body {
     text-shadow: 0 0 8px rgba(0,247,255,0.8);
 }
 
-@media (max-width: 550px) {
+@media (max-width: 768px) {
+
+    .login-page {
+        padding: 30px 16px;
+    }
 
     .login-card {
-        padding: 38px 24px;
+        padding: 38px 26px;
         border-radius: 28px;
+        max-width: 420px;
     }
 
     .login-card h1 {
-        font-size: 46px;
-        margin-bottom: 38px;
+        font-size: 44px;
+        margin-bottom: 34px;
+        text-align: center;
     }
 
     .login-form label {
@@ -197,11 +203,12 @@ body {
 
     .login-form button {
         width: 100%;
-        font-size: 24px;
+        font-size: 22px;
     }
 
     .register-link {
-        font-size: 20px;
+        font-size: 18px;
         text-align: center;
+        display: block;
     }
 }

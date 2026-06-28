@@ -89,38 +89,36 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
                 </div>
 
             </div>
+            <?php if (isset($_SESSION["nome"]) && $_SESSION["nome"] != "") { ?>
 
-        </nav>
+                <div class="user-dropdown">
 
-        <?php if (isset($_SESSION["nome"]) && $_SESSION["nome"] != "") { ?>
+                    <button class="btn-login">
+                        <?php echo $_SESSION["nome"]; ?> ▼
+                    </button>
 
-            <div class="user-dropdown">
+                    <div class="user-dropdown-content">
 
-                <button class="btn-login">
-                    <?php echo $_SESSION["nome"]; ?> ▼
-                </button>
+                        <a href="perfil.php">Perfil</a>
 
-                <div class="user-dropdown-content">
+                        <?php if ($tipo == "admin") { ?>
+                            <a href="admin/dashboard.php">Dashboard</a>
+                        <?php } ?>
 
-                    <a href="perfil.php">Perfil</a>
+                        <a href="logout.php">Sair</a>
 
-                    <?php if ($tipo == "admin") { ?>
-                        <a href="admin/dashboard.php">Dashboard</a>
-                    <?php } ?>
-
-                    <a href="logout.php">Sair</a>
+                    </div>
 
                 </div>
 
-            </div>
+            <?php } else { ?>
 
-        <?php } else { ?>
+                <a href="login.php">
+                    <button class="btn-login">Login</button>
+                </a>
 
-            <a href="login.php">
-                <button class="btn-login">Login</button>
-            </a>
-
-        <?php } ?>
+            <?php } ?>
+        </nav>
 
         <div class="hamburger" id="hamburger">
             <span></span>
