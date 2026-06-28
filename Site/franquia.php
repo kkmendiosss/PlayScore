@@ -230,15 +230,14 @@ $jogos = $stmt_jogos->get_result();
                         $stmt_datas->close();
 
                         if (!empty($d["primeira"])) {
-                            echo date("Y", strtotime($d["primeira"])) . " - ";
-
-                            if (!empty($d["ultima"]) && $d["ultima"] != $d["primeira"]) {
-                                echo date("Y", strtotime($d["ultima"]));
-                            } else {
-                                echo "Presente";
-                            }
+                        echo date("Y", strtotime($d["primeira"])) . " - ";
+                        if (!empty($d["ultima"]) && $d["ultima"] != $d["primeira"]) {
+                        echo date("Y", strtotime($d["ultima"]));
                         } else {
-                            echo "Sem dados";
+                        echo date("Y");
+                        }
+                        } else {
+                        echo "Sem dados";
                         }
                         ?>
                     </span>
