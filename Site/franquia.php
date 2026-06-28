@@ -184,28 +184,6 @@ $jogos = $stmt_jogos->get_result();
     ?>
 </span>
 
-    <span>🏷️ 
-        <?php
-        $generos = $conn->query("
-    SELECT DISTINCT g.nome
-    FROM jogos j
-    JOIN generos g ON j.id_genero = g.id_genero
-    WHERE j.id_franquia = $id_franquia
-    LIMIT 3
-");
-
-        $lista = [];
-
-        while ($g = $generos->fetch_assoc()) {
-            if (!empty($g['genero'])) {
-                $lista[] = $g['genero'];
-            }
-        }
-
-        echo !empty($lista) ? implode(", ", $lista) : "Sem género";
-        ?>
-    </span>
-
 </div>
 
                 <p><?php echo htmlspecialchars($franquia['descricao']); ?></p>
@@ -215,14 +193,6 @@ $jogos = $stmt_jogos->get_result();
         <section class="jogos-franquia">
             <h2>Jogos da Franquia</h2>
 
-            <div class="filtros">
-                <select>
-                    <option>Ordenar por: Mais recentes</option>
-                    <option>Mais antigos</option>
-                    <option>Melhor classificação</option>
-                </select>
-
-            </div>
 
             <div class="jogos-grid">
                 <?php if ($jogos && $jogos->num_rows > 0) { ?>
