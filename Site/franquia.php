@@ -188,12 +188,10 @@
 
                 <div class="franquia-imagem">
 
-                    <?php
+                <?php
                     $imagem_franquia = imagemUrl(
                         $franquia["capa_url"] ?? "",
                         [
-                            "img/Franquia/uploads",
-                            "img/Franquia",
                             "img/franquia/uploads",
                             "img/franquia"
                         ]
