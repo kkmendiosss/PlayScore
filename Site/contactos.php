@@ -60,10 +60,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
 
-<header class="navbar">
+    <header class="navbar">
 
         <div class="logo">
-            <a href="index.php"><img src="logo/Logo.png" alt="PlayScore"></a>
+            <img src="logo/Logo.png" alt="PlayScore">
         </div>
 
         <nav class="nav-links" id="navLinks">
@@ -97,12 +97,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         </nav>
 
-        <?php if ($nome != "") { ?>
+        <?php if ($nome_user != "") { ?>
 
             <div class="user-dropdown">
 
                 <button class="btn-login">
-                    <?php echo $nome; ?> ▼
+                    <?php echo $nome_user; ?> ▼
                 </button>
 
                 <div class="user-dropdown-content">
@@ -135,7 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <span></span>
         </div>
 
-    </header> 
+   </header>
 
 <div class="main-title">
     <h1>Contactos</h1>

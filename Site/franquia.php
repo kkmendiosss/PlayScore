@@ -103,10 +103,10 @@
 
     <body>
 
-    <header class="navbar">
+  <header class="navbar">
 
         <div class="logo">
-            <img src="logo/Logo.png" alt="PlayScore">
+            <a href="index.php"><img src="logo/Logo.png" alt="PlayScore"></a>
         </div>
 
         <nav class="nav-links" id="navLinks">
@@ -115,6 +115,7 @@
             <a href="catalogo.php">Catalogo</a>
 
             <div class="dropdown">
+
                 <a href="#">Sobre Nós</a>
 
                 <div class="dropdown-content">
@@ -123,15 +124,18 @@
                     <a href="politicas.php">Politicas e privacidade</a>
                     <a href="faq.php">FAQ</a>
                 </div>
+
             </div>
 
             <div class="dropdown">
+
                 <a href="#">Informação</a>
 
                 <div class="dropdown-content">
                     <a href="jogodoano.php">Jogo do Ano</a>
                     <a href="lancamentos.php">Lançamentos</a>
                 </div>
+
             </div>
 
         </nav>
@@ -141,7 +145,7 @@
             <div class="user-dropdown">
 
                 <button class="btn-login">
-                    <?php echo htmlspecialchars($nome); ?> ▼
+                    <?php echo $nome; ?> ▼
                 </button>
 
                 <div class="user-dropdown-content">
@@ -168,7 +172,13 @@
 
         <?php } ?>
 
-    </header>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+    </header> 
 
     <main class="franquia-page">
 
@@ -387,7 +397,7 @@
         </div>
 
     </footer>
-
+    <script src="js/headerfooter.js"></script>
     </body>
 
     </html>
