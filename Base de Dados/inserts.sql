@@ -137,12 +137,26 @@ INSERT INTO `comentarios` (`id_comentario`, `comentario`, `id_utilizador`, `id_j
 	(14, 'Final fantástico!', 1, 51, '2026-06-29 18:43:47'),
 	(15, 'Underrated!', 1, 50, '2026-06-29 18:44:20');
 
+INSERT INTO `favoritos` (`id_favorito`, `id_utilizador`, `id_jogo`, `capa_url`, `id_genero`, `data_adicao`) VALUES
+	(1, 1, 61, 'uploads/capas/capa_6a414bf2cf2f80.76915237.jpg', 3, '2026-06-29 19:39:25'),
+	(2, 1, 60, 'uploads/capas/capa_6a414b80c0f0f7.01388622.jpg', 3, '2026-06-29 19:40:23'),
+	(3, 1, 59, 'uploads/capas/capa_6a414a737534a6.78948351.jpg', 1, '2026-06-29 19:40:27'),
+	(4, 1, 58, 'uploads/capas/capa_6a4148fd93ac91.74061144.jpg', 3, '2026-06-29 19:40:30'),
+	(5, 1, 57, 'uploads/capas/capa_6a414848d29e62.54489259.jpg', 3, '2026-06-29 19:40:33'),
+	(6, 1, 56, 'uploads/capas/capa_6a4145859069f2.99783443.jpg', 1, '2026-06-29 19:40:56'),
+	(7, 1, 55, 'uploads/capas/capa_6a4144e650cab6.40077464.jpg', 1, '2026-06-29 19:40:58'),
+	(8, 1, 54, 'uploads/capas/capa_6a4140f9664eb5.36322545.jpg', 2, '2026-06-29 19:41:00'),
+	(9, 1, 53, 'uploads/capas/capa_6a4140a9d496b0.06755940.jpg', 2, '2026-06-29 19:41:02'),
+	(10, 1, 52, 'uploads/capas/capa_6a413f0275e176.45976025.jpg', 3, '2026-06-29 19:41:05'),
+	(11, 1, 51, 'uploads/capas/capa_6a413ddc2dc533.90265783.jpg', 2, '2026-06-29 19:41:07'),
+	(12, 1, 50, 'uploads/capas/capa_6a413d62c05388.56456473.jpg', 2, '2026-06-29 19:41:09');
+
 INSERT INTO `jogo_do_ano` (`id_jogo_ano`, `id_jogo`, `ano`, `num_votos`) VALUES
 	(1, 21, 2026, 0),
 	(2, 2, 2026, 0),
-	(8, 18, 2019, 1),
+	(8, 18, 2019, 0),
 	(9, 6, 2019, 0),
-	(10, 4, 2019, 0),
+	(10, 4, 2019, 1),
 	(14, 12, 2018, 1),
 	(15, 26, 2026, 2),
 	(17, 45, 2025, 1),
@@ -262,7 +276,7 @@ INSERT INTO `jogo_genero` (`id_jogo`, `id_genero`) VALUES
 INSERT INTO `votos_utilizadores_ano` (`id_voto`, `id_utilizador`, `id_jogo`, `ano`) VALUES
 	(1, 1, 26, 2026),
 	(2, 2, 26, 2026),
-	(3, 1, 18, 2019),
+	(3, 1, 4, 2019),
 	(4, 1, 12, 2018),
 	(5, 1, 45, 2025),
 	(6, 1, 7, 2024),
