@@ -33,12 +33,12 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
 
             <div class="dropdown">
 
-                <a href="#">Sobre Nós</a>
+                <a href="#">Sobre Nós▼</a>
 
                 <div class="dropdown-content">
                     <a href="contactos.php">Contactos</a>
                     <a href="regras.php">Regras da Comunidade</a>
-                    <a href="politicas.php">Politicas e privacidade</a>
+                    <a href="politicas.php">Politicas de privacidade</a>
                     <a href="faq.php">FAQ</a>
                 </div>
 
@@ -46,7 +46,7 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
 
             <div class="dropdown">
 
-                <a href="#">Informação</a>
+                <a href="#">Informação▼</a>
 
                 <div class="dropdown-content">
                     <a href="jogodoano.php">Jogo do Ano</a>
@@ -54,9 +54,7 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
                 </div>
 
             </div>
-
         </nav>
-
         <?php if ($nome != "") { ?>
 
             <div class="user-dropdown">

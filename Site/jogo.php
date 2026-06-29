@@ -286,12 +286,12 @@ if (!$jogo) {
 
             <div class="dropdown">
 
-                <a href="#">Sobre Nós</a>
+                <a href="#">Sobre Nós▼</a>
 
                 <div class="dropdown-content">
                     <a href="contactos.php">Contactos</a>
                     <a href="regras.php">Regras da Comunidade</a>
-                    <a href="politicas.php">Politicas e privacidade</a>
+                    <a href="politicas.php">Politicas de privacidade</a>
                     <a href="faq.php">FAQ</a>
                 </div>
 
@@ -299,7 +299,7 @@ if (!$jogo) {
 
             <div class="dropdown">
 
-                <a href="#">Informação</a>
+                <a href="#">Informação▼</a>
 
                 <div class="dropdown-content">
                     <a href="jogodoano.php">Jogo do Ano</a>
@@ -307,7 +307,6 @@ if (!$jogo) {
                 </div>
 
             </div>
-
         </nav>
 
         <?php if ($nome != "") { ?>
