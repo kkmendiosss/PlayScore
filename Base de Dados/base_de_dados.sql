@@ -47,9 +47,22 @@ CREATE TABLE IF NOT EXISTS `comentarios` (
   KEY `fk_comentarios_jogos` (`id_jogo`),
   CONSTRAINT `fk_comentarios_jogos` FOREIGN KEY (`id_jogo`) REFERENCES `jogos` (`id_jogo`) ON DELETE CASCADE,
   CONSTRAINT `fk_comentarios_users` FOREIGN KEY (`id_utilizador`) REFERENCES `users` (`id_utilizador`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- A despejar dados para tabela playscore.comentarios: ~0 rows (aproximadamente)
+INSERT INTO `comentarios` (`id_comentario`, `comentario`, `id_utilizador`, `id_jogo`, `data_comentario`) VALUES
+	(4, 'Que jogo!', 1, 61, '2026-06-29 18:39:37'),
+	(5, 'WOW!', 1, 60, '2026-06-29 18:39:53'),
+	(6, 'Espetacular!', 1, 59, '2026-06-29 18:40:06'),
+	(7, 'Incrível!', 1, 58, '2026-06-29 18:40:26'),
+	(8, 'É muito bom!', 1, 57, '2026-06-29 18:40:54'),
+	(9, 'Boa sequela!', 1, 56, '2026-06-29 18:41:32'),
+	(10, 'O meu jogo de survival favorito!', 1, 55, '2026-06-29 18:41:56'),
+	(11, 'Muito imersivo!', 1, 54, '2026-06-29 18:42:55'),
+	(12, 'Clássico!', 1, 53, '2026-06-29 18:43:07'),
+	(13, 'Excelente!', 1, 52, '2026-06-29 18:43:29'),
+	(14, 'Final fantástico!', 1, 51, '2026-06-29 18:43:47'),
+	(15, 'Underrated!', 1, 50, '2026-06-29 18:44:20');
 
 -- A despejar estrutura para tabela playscore.contactos
 CREATE TABLE IF NOT EXISTS `contactos` (
@@ -226,7 +239,7 @@ CREATE TABLE IF NOT EXISTS `jogo_do_ano` (
   UNIQUE KEY `chave_unica_jogo_por_ano` (`id_jogo`,`ano`),
   KEY `id_jogo` (`id_jogo`),
   CONSTRAINT `jogo_do_ano_ibfk_1` FOREIGN KEY (`id_jogo`) REFERENCES `jogos` (`id_jogo`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- A despejar dados para tabela playscore.jogo_do_ano: ~8 rows (aproximadamente)
 INSERT INTO `jogo_do_ano` (`id_jogo_ano`, `id_jogo`, `ano`, `num_votos`) VALUES
@@ -237,7 +250,14 @@ INSERT INTO `jogo_do_ano` (`id_jogo_ano`, `id_jogo`, `ano`, `num_votos`) VALUES
 	(10, 4, 2019, 0),
 	(14, 12, 2018, 1),
 	(15, 26, 2026, 2),
-	(17, 45, 2025, 1);
+	(17, 45, 2025, 1),
+	(18, 7, 2024, 1),
+	(19, 49, 2023, 1),
+	(20, 59, 2022, 1),
+	(21, 56, 2021, 1),
+	(22, 47, 2020, 1),
+	(23, 10, 2016, 1),
+	(24, 19, 2015, 1);
 
 -- A despejar estrutura para tabela playscore.jogo_genero
 CREATE TABLE IF NOT EXISTS `jogo_genero` (
@@ -417,7 +437,7 @@ CREATE TABLE IF NOT EXISTS `votos_utilizadores_ano` (
   KEY `fk_votos_jogos` (`id_jogo`),
   CONSTRAINT `fk_votos_jogos` FOREIGN KEY (`id_jogo`) REFERENCES `jogos` (`id_jogo`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_votos_users` FOREIGN KEY (`id_utilizador`) REFERENCES `users` (`id_utilizador`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- A despejar dados para tabela playscore.votos_utilizadores_ano: ~4 rows (aproximadamente)
 INSERT INTO `votos_utilizadores_ano` (`id_voto`, `id_utilizador`, `id_jogo`, `ano`) VALUES
@@ -425,7 +445,14 @@ INSERT INTO `votos_utilizadores_ano` (`id_voto`, `id_utilizador`, `id_jogo`, `an
 	(2, 2, 26, 2026),
 	(3, 1, 18, 2019),
 	(4, 1, 12, 2018),
-	(5, 1, 45, 2025);
+	(5, 1, 45, 2025),
+	(6, 1, 7, 2024),
+	(7, 1, 49, 2023),
+	(8, 1, 59, 2022),
+	(9, 1, 56, 2021),
+	(10, 1, 47, 2020),
+	(11, 1, 10, 2016),
+	(12, 1, 19, 2015);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
