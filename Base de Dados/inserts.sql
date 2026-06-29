@@ -1,48 +1,7 @@
--- --------------------------------------------------------
--- Anfitrião:                    127.0.0.1
--- Versão do servidor:           8.0.30 - MySQL Community Server - GPL
--- SO do servidor:               Win64
--- HeidiSQL Versão:              12.1.0.6537
--- --------------------------------------------------------
+INSERT INTO `users` (`id_utilizador`, `nome`, `email`, `avatar_url`, `password_hash`, `tipo_utilizador`, `data_registo`, `bio`) VALUES
+	(1, 'admin', 'admin@gmail.com', NULL, '$2y$12$BSYBaazHdqhujJi4LVroj.MngwnyMg.rDegvC3tjPRtEgUFz9HG7G', 'admin', '2026-05-26 16:36:43', NULL),
+	(2, 'user', 'user@gmail.com', NULL, '$2y$12$fHI2waCE08koJ.xXlRI.zeotu.atku0U.XQ8P6BEKUq9mZLKiGm6q', 'membro', '2026-05-26 16:37:05', NULL);
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
--- A despejar dados para tabela playscore.avaliacoes: ~2 rows (aproximadamente)
-INSERT INTO `avaliacoes` (`id`, `id_utilizador`, `id_jogo`, `classificacao`) VALUES
-	(1, 1, 20, 5),
-	(2, 2, 20, 3),
-	(3, 1, 22, 4);
-
--- A despejar dados para tabela playscore.comentarios: ~0 rows (aproximadamente)
-INSERT INTO `comentarios` (`id_comentario`, `comentario`, `id_utilizador`, `id_jogo`, `data_comentario`) VALUES
-	(4, 'Que jogo!', 1, 61, '2026-06-29 18:39:37'),
-	(5, 'WOW!', 1, 60, '2026-06-29 18:39:53'),
-	(6, 'Espetacular!', 1, 59, '2026-06-29 18:40:06'),
-	(7, 'Incrível!', 1, 58, '2026-06-29 18:40:26'),
-	(8, 'É muito bom!', 1, 57, '2026-06-29 18:40:54'),
-	(9, 'Boa sequela!', 1, 56, '2026-06-29 18:41:32'),
-	(10, 'O meu jogo de survival favorito!', 1, 55, '2026-06-29 18:41:56'),
-	(11, 'Muito imersivo!', 1, 54, '2026-06-29 18:42:55'),
-	(12, 'Clássico!', 1, 53, '2026-06-29 18:43:07'),
-	(13, 'Excelente!', 1, 52, '2026-06-29 18:43:29'),
-	(14, 'Final fantástico!', 1, 51, '2026-06-29 18:43:47'),
-	(15, 'Underrated!', 1, 50, '2026-06-29 18:44:20');
-
--- A despejar dados para tabela playscore.contactos: ~1 rows (aproximadamente)
-INSERT INTO `contactos` (`id_contacto`, `nome`, `email`, `mensagem`) VALUES
-	(3, 'Admin', 'admin@gmail.com', 'Mensagem teste.'),
-	(4, 'raetgae', 'aerte@ethg', 'ersgts');
-
--- A despejar dados para tabela playscore.favoritos: ~0 rows (aproximadamente)
-
--- A despejar dados para tabela playscore.franquias: ~11 rows (aproximadamente)
 INSERT INTO `franquias` (`id_franquia`, `nome`, `descricao`, `capa_url`) VALUES
 	(5, 'Portal', 'Portal is a series of first-person puzzle-platform video games developed by Valve. Set in the Half-Life universe, the two main games in the series, Portal (2007) and Portal 2 (2011), center on a woman, Chell, who is forced to undergo a series of tests within the Aperture Science Enrichment Center by a malicious artificial intelligence, GLaDOS, that controls the facility.', 'img/Franquia/uploads/franquia_6a4147602b8232.24363531.png'),
 	(6, 'Hades', 'The Hades series is a critically acclaimed, story-rich roguelike action RPG franchise developed by Supergiant Games, blending fast-paced hack-and-slash combat with deep, mythological, and character-driven storytelling.', 'img/Franquia/uploads/franquia_6a41472fad7556.21581551.webp'),
@@ -57,7 +16,6 @@ INSERT INTO `franquias` (`id_franquia`, `nome`, `descricao`, `capa_url`) VALUES
 	(15, 'God of War', 'The God of War franchise is an action-adventure series following Kratos, a Spartan warrior who becomes a vengeful god. Spanning two massive mythologies, the narrative details his violent crusade against the Greek Pantheon, followed by his journey to the Norse realms seeking redemption and a fresh start.', 'img/Franquia/uploads/franquia_6a4149e7de2246.23934870.jpg'),
 	(16, 'Monster Hunter', 'The Monster Hunter franchise is a globally popular, fantasy-themed action RPG series developed and published by Capcom. Players assume the role of a hunter taking on quests to slay or trap massive creatures. Instead of traditional leveling, progression is driven by looting monsters to craft increasingly powerful weapons and armor.', 'img/Franquia/uploads/franquia_6a414b0cdfb0f5.63683905.jpg');
 
--- A despejar dados para tabela playscore.generos: ~15 rows (aproximadamente)
 INSERT INTO `generos` (`id_genero`, `nome`) VALUES
 	(1, 'Adventure'),
 	(2, 'FPS'),
@@ -75,7 +33,32 @@ INSERT INTO `generos` (`id_genero`, `nome`) VALUES
 	(19, 'Hack & Slash'),
 	(24, 'Roguelike');
 
--- A despejar dados para tabela playscore.jogos: ~55 rows (aproximadamente)
+INSERT INTO `contactos` (`id_contacto`, `nome`, `email`, `mensagem`) VALUES
+	(3, 'Admin', 'admin@gmail.com', 'Mensagem teste.'),
+	(4, 'raetgae', 'aerte@ethg', 'ersgts');
+
+INSERT INTO `lancamentos` (`id_lancamento`, `data`, `nome`, `plataformas`) VALUES
+	(1, '2026-07-02', 'Avatar Legends: The Fighting Game', 'PC, PS5, Xbox Series X/S, Switch 2'),
+	(2, '2026-07-02', 'Rhythm Heaven Groove', 'Nintendo Switch'),
+	(3, '2026-07-07', 'Moonlight Peaks', 'PC, Nintendo Switch, Switch 2'),
+	(4, '2026-07-09', 'Assassins Creed Black Flag Resynced', 'PC, PS5, Xbox Series X/S'),
+	(5, '2026-07-09', 'Granblue Fantasy: Relink', 'Nintendo Switch 2'),
+	(6, '2026-07-09', 'Backyard Baseball', 'PC, PS5, Xbox Series X/S, Nintendo Switch'),
+	(7, '2026-07-10', 'Digimon Story: Time Stranger', 'Nintendo Switch, Switch 2'),
+	(8, '2026-07-10', 'Echoes of Aincrad', 'PC, PS5, Xbox Series X/S'),
+	(9, '2026-07-13', 'Ascend to Zero', 'PC, Xbox Series X/S'),
+	(10, '2026-07-14', 'D-topia', 'PC, PS5, Xbox Series X/S, Nintendo Switch, Switch 2'),
+	(11, '2026-07-16', 'Ratatan', 'Nintendo Switch 2'),
+	(12, '2026-07-16', 'Culdcept Begins', 'PC, PS5, Xbox Series X/S, Nintendo Switch'),
+	(13, '2026-07-23', 'Splatoon Raiders', 'Nintendo Switch 2'),
+	(14, '2026-07-30', 'Truxton Extreme', 'PC, PS5, Xbox Series X/S, Nintendo Switch 2'),
+	(15, '2026-08-03', 'Anomaly President', 'PC'),
+	(16, '2026-08-04', 'Beast of Reincarnation', 'PC, PS5, Xbox Series X/S'),
+	(17, '2026-08-06', 'Marvel TOKON: Fighting Souls', 'PC, PS5'),
+	(18, '2026-08-13', 'Memoirium', 'PC'),
+	(19, '2026-08-14', 'Grave Seasons', 'PC, PS5, Xbox Series X/S, Nintendo Switch'),
+	(20, '2026-08-27', 'Metal Gear Solid: Master Collection Vol. 2', 'PC, PS5, Xbox Series X/S, Nintendo Switch, Switch 2');
+
 INSERT INTO `jogos` (`id_jogo`, `titulo`, `desenvolvedor`, `editor`, `descricao`, `data_lancamento`, `capa_url`, `trailer_url`, `plataforma`, `classificacao`, `id_genero`, `id_franquia`, `num_votos`, `soma_classificacao`) VALUES
 	(1, 'Portal 2', 'Valve', 'Valve', 'Sequel to the acclaimed Portal (2007), Portal 2 pits the protagonist of the original game, Chell, and her new robot friend, Wheatley, against more puzzles conceived by GLaDOS, an A.I. with the sole purpose of testing the Portal Gun\'s mechanics and taking revenge on Chell for the events of Portal. As a result of several interactions and revelations, Chell once again pushes to escape Aperture Science Labs.', '2011-04-18', '../uploads/capas/1781648736_co1rs4.jpg', 'https://www.youtube.com/embed/tax4e4hBBZc?si=WDh5UzBqxDynV_E9', 'PC, PlayStation 3, Xbox 360, Nintendo Switch', NULL, 6, 5, 0, 0),
 	(2, 'Subnautica 2', 'Unknown Worlds Entertainment', 'Unknown Worlds Entertainment', 'Subnautica 2 is an underwater survival adventure set on an all-new alien world, developed by Unknown Worlds. Play alone or with friends in 4-player co-op. Adapt to survive by building custom bases and crafting tools. Explore the unknown to uncover the mysteries hidden within the depths.', '2026-05-14', '../uploads/capas/1781648699_co8yd0.jpg', 'https://www.youtube.com/embed/8EZhCzFaQuw?si=gyFw6BAwB2XyiPmj', 'PC, Xbox Series X/S', NULL, 8, 13, 0, 0),
@@ -135,7 +118,25 @@ INSERT INTO `jogos` (`id_jogo`, `titulo`, `desenvolvedor`, `editor`, `descricao`
 	(60, 'Monster Hunter: World', 'Capcom', 'Capcom', 'Welcome to a new world! Take on the role of a hunter and slay ferocious monsters in a living, breathing ecosystem where you can use the landscape and its diverse inhabitants to get the upper hand. Hunt alone or in co-op with up to three other players, and use materials collected from fallen foes to craft new gear and take on even bigger, badder beasts!\r\n\r\n', '2018-01-26', '../uploads/capas/capa_6a414b80c0f0f7.01388622.jpg', 'https://www.youtube.com/embed/OotQrKEqe94?si=_-TygcVa0vUbRgIU', 'PC, PlayStation 4, Xbox One', 0, NULL, 16, 0, 0),
 	(61, 'Monster Hunter Rise', 'Capcom', 'Capcom', 'Rise to the challenge and join the hunt! In Monster Hunter Rise, the latest installment in the award-winning and top-selling Monster Hunter series, you’ll become a hunter, explore brand new maps and use a variety of weapons to take down fearsome monsters as part of an all-new storyline.\r\n\r\n', '2021-03-26', '../uploads/capas/capa_6a414bf2cf2f80.76915237.jpg', 'https://www.youtube.com/embed/a6C5lH5b-f4?si=nfU0aynNsHg-TAaj', 'PC, PlayStation 5, PlayStation 4, Xbox Series X/S, Xbox One, Nintendo Switch', 0, NULL, 16, 0, 0);
 
--- A despejar dados para tabela playscore.jogo_do_ano: ~8 rows (aproximadamente)
+INSERT INTO `avaliacoes` (`id`, `id_utilizador`, `id_jogo`, `classificacao`) VALUES
+	(1, 1, 20, 5),
+	(2, 2, 20, 3),
+	(3, 1, 22, 4);
+
+INSERT INTO `comentarios` (`id_comentario`, `comentario`, `id_utilizador`, `id_jogo`, `data_comentario`) VALUES
+	(4, 'Que jogo!', 1, 61, '2026-06-29 18:39:37'),
+	(5, 'WOW!', 1, 60, '2026-06-29 18:39:53'),
+	(6, 'Espetacular!', 1, 59, '2026-06-29 18:40:06'),
+	(7, 'Incrível!', 1, 58, '2026-06-29 18:40:26'),
+	(8, 'É muito bom!', 1, 57, '2026-06-29 18:40:54'),
+	(9, 'Boa sequela!', 1, 56, '2026-06-29 18:41:32'),
+	(10, 'O meu jogo de survival favorito!', 1, 55, '2026-06-29 18:41:56'),
+	(11, 'Muito imersivo!', 1, 54, '2026-06-29 18:42:55'),
+	(12, 'Clássico!', 1, 53, '2026-06-29 18:43:07'),
+	(13, 'Excelente!', 1, 52, '2026-06-29 18:43:29'),
+	(14, 'Final fantástico!', 1, 51, '2026-06-29 18:43:47'),
+	(15, 'Underrated!', 1, 50, '2026-06-29 18:44:20');
+
 INSERT INTO `jogo_do_ano` (`id_jogo_ano`, `id_jogo`, `ano`, `num_votos`) VALUES
 	(1, 21, 2026, 0),
 	(2, 2, 2026, 0),
@@ -153,7 +154,6 @@ INSERT INTO `jogo_do_ano` (`id_jogo_ano`, `id_jogo`, `ano`, `num_votos`) VALUES
 	(23, 10, 2016, 1),
 	(24, 19, 2015, 1);
 
--- A despejar dados para tabela playscore.jogo_genero: ~97 rows (aproximadamente)
 INSERT INTO `jogo_genero` (`id_jogo`, `id_genero`) VALUES
 	(2, 1),
 	(3, 1),
@@ -259,35 +259,6 @@ INSERT INTO `jogo_genero` (`id_jogo`, `id_genero`) VALUES
 	(45, 24),
 	(47, 24);
 
--- A despejar dados para tabela playscore.lancamentos: ~21 rows (aproximadamente)
-INSERT INTO `lancamentos` (`id_lancamento`, `data`, `nome`, `plataformas`) VALUES
-	(1, '2026-07-02', 'Avatar Legends: The Fighting Game', 'PC, PS5, Xbox Series X/S, Switch 2'),
-	(2, '2026-07-02', 'Rhythm Heaven Groove', 'Nintendo Switch'),
-	(3, '2026-07-07', 'Moonlight Peaks', 'PC, Nintendo Switch, Switch 2'),
-	(4, '2026-07-09', 'Assassins Creed Black Flag Resynced', 'PC, PS5, Xbox Series X/S'),
-	(5, '2026-07-09', 'Granblue Fantasy: Relink', 'Nintendo Switch 2'),
-	(6, '2026-07-09', 'Backyard Baseball', 'PC, PS5, Xbox Series X/S, Nintendo Switch'),
-	(7, '2026-07-10', 'Digimon Story: Time Stranger', 'Nintendo Switch, Switch 2'),
-	(8, '2026-07-10', 'Echoes of Aincrad', 'PC, PS5, Xbox Series X/S'),
-	(9, '2026-07-13', 'Ascend to Zero', 'PC, Xbox Series X/S'),
-	(10, '2026-07-14', 'D-topia', 'PC, PS5, Xbox Series X/S, Nintendo Switch, Switch 2'),
-	(11, '2026-07-16', 'Ratatan', 'Nintendo Switch 2'),
-	(12, '2026-07-16', 'Culdcept Begins', 'PC, PS5, Xbox Series X/S, Nintendo Switch'),
-	(13, '2026-07-23', 'Splatoon Raiders', 'Nintendo Switch 2'),
-	(14, '2026-07-30', 'Truxton Extreme', 'PC, PS5, Xbox Series X/S, Nintendo Switch 2'),
-	(15, '2026-08-03', 'Anomaly President', 'PC'),
-	(16, '2026-08-04', 'Beast of Reincarnation', 'PC, PS5, Xbox Series X/S'),
-	(17, '2026-08-06', 'Marvel TOKON: Fighting Souls', 'PC, PS5'),
-	(18, '2026-08-13', 'Memoirium', 'PC'),
-	(19, '2026-08-14', 'Grave Seasons', 'PC, PS5, Xbox Series X/S, Nintendo Switch'),
-	(20, '2026-08-27', 'Metal Gear Solid: Master Collection Vol. 2', 'PC, PS5, Xbox Series X/S, Nintendo Switch, Switch 2');
-
--- A despejar dados para tabela playscore.users: ~2 rows (aproximadamente)
-INSERT INTO `users` (`id_utilizador`, `nome`, `email`, `avatar_url`, `password_hash`, `tipo_utilizador`, `data_registo`, `bio`) VALUES
-	(1, 'admin', 'admin@gmail.com', NULL, '$2y$12$BSYBaazHdqhujJi4LVroj.MngwnyMg.rDegvC3tjPRtEgUFz9HG7G', 'admin', '2026-05-26 16:36:43', NULL),
-	(2, 'user', 'user@gmail.com', NULL, '$2y$12$fHI2waCE08koJ.xXlRI.zeotu.atku0U.XQ8P6BEKUq9mZLKiGm6q', 'membro', '2026-05-26 16:37:05', NULL);
-
--- A despejar dados para tabela playscore.votos_utilizadores_ano: ~4 rows (aproximadamente)
 INSERT INTO `votos_utilizadores_ano` (`id_voto`, `id_utilizador`, `id_jogo`, `ano`) VALUES
 	(1, 1, 26, 2026),
 	(2, 2, 26, 2026),
@@ -301,9 +272,3 @@ INSERT INTO `votos_utilizadores_ano` (`id_voto`, `id_utilizador`, `id_jogo`, `an
 	(10, 1, 47, 2020),
 	(11, 1, 10, 2016),
 	(12, 1, 19, 2015);
-
-/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
