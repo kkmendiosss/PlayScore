@@ -90,29 +90,34 @@ function construirUrlPaginacao($pag, $q, $gen_array, $ord)
         <nav class="nav-links" id="navLinks">
 
             <a href="index.php">Início</a>
-            <a href="catalogo.php">Catálogo</a>
+            <a href="catalogo.php">Catalogo</a>
 
             <div class="dropdown">
-                <a href="#">Sobre Nós</a>
+
+                <a href="#">Sobre Nós▼</a>
 
                 <div class="dropdown-content">
                     <a href="contactos.php">Contactos</a>
                     <a href="regras.php">Regras da Comunidade</a>
-                    <a href="politicas.php">Políticas e Privacidade</a>
+                    <a href="politicas.php">Politicas de privacidade</a>
                     <a href="faq.php">FAQ</a>
                 </div>
+
             </div>
 
             <div class="dropdown">
-                <a href="#">Informação</a>
+
+                <a href="#">Informação▼</a>
 
                 <div class="dropdown-content">
                     <a href="jogodoano.php">Jogo do Ano</a>
                     <a href="lancamentos.php">Lançamentos</a>
                 </div>
-            </div>
 
-            <?php if ($nome != "") { ?>
+            </div>
+        </nav>
+
+        <?php if ($nome != "") { ?>
 
                 <div class="user-dropdown">
 
@@ -132,13 +137,11 @@ function construirUrlPaginacao($pag, $q, $gen_array, $ord)
 
                 </div>
 
-            <?php } else { ?>
+        <?php } else { ?>
 
-                <a href="login.php" class="btn-login">Login</a>
+            <a href="login.php" class="btn-login">Login</a>
 
-            <?php } ?>
-
-        </nav>
+        <?php } ?>
 
         <div class="hamburger" id="hamburger">
             <span></span>

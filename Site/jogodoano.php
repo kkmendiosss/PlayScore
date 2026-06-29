@@ -74,12 +74,12 @@ if ($resultado_jogos_ano) {
 
             <div class="dropdown">
 
-                <a href="sobrenos.php">Sobre Nós</a>
+                <a href="#">Sobre Nós▼</a>
 
                 <div class="dropdown-content">
                     <a href="contactos.php">Contactos</a>
                     <a href="regras.php">Regras da Comunidade</a>
-                    <a href="politicas.php">Politicas e privacidade</a>
+                    <a href="politicas.php">Politicas de privacidade</a>
                     <a href="faq.php">FAQ</a>
                 </div>
 
@@ -87,7 +87,7 @@ if ($resultado_jogos_ano) {
 
             <div class="dropdown">
 
-                <a href="#">Informação</a>
+                <a href="#">Informação▼</a>
 
                 <div class="dropdown-content">
                     <a href="jogodoano.php">Jogo do Ano</a>
@@ -95,7 +95,6 @@ if ($resultado_jogos_ano) {
                 </div>
 
             </div>
-
         </nav>
 
         <?php if ($nome != "") { ?>
