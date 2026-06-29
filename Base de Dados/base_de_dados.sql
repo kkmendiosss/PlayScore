@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `franquias` (
   PRIMARY KEY (`id_franquia`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- A despejar dados para tabela playscore.franquias: ~0 rows (aproximadamente)
+-- A despejar dados para tabela playscore.franquias: ~11 rows (aproximadamente)
 INSERT INTO `franquias` (`id_franquia`, `nome`, `descricao`, `capa_url`) VALUES
 	(5, 'Portal', 'Portal is a series of first-person puzzle-platform video games developed by Valve. Set in the Half-Life universe, the two main games in the series, Portal (2007) and Portal 2 (2011), center on a woman, Chell, who is forced to undergo a series of tests within the Aperture Science Enrichment Center by a malicious artificial intelligence, GLaDOS, that controls the facility.', 'img/Franquia/uploads/franquia_6a4147602b8232.24363531.png'),
 	(6, 'Hades', 'The Hades series is a critically acclaimed, story-rich roguelike action RPG franchise developed by Supergiant Games, blending fast-paced hack-and-slash combat with deep, mythological, and character-driven storytelling.', 'img/Franquia/uploads/franquia_6a41472fad7556.21581551.webp'),
@@ -156,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `jogos` (
   CONSTRAINT `jogos_ibfk_3` FOREIGN KEY (`id_franquia`) REFERENCES `franquias` (`id_franquia`)
 ) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- A despejar dados para tabela playscore.jogos: ~57 rows (aproximadamente)
+-- A despejar dados para tabela playscore.jogos: ~55 rows (aproximadamente)
 INSERT INTO `jogos` (`id_jogo`, `titulo`, `desenvolvedor`, `editor`, `descricao`, `data_lancamento`, `capa_url`, `trailer_url`, `plataforma`, `classificacao`, `id_genero`, `id_franquia`, `num_votos`, `soma_classificacao`) VALUES
 	(1, 'Portal 2', 'Valve', 'Valve', 'Sequel to the acclaimed Portal (2007), Portal 2 pits the protagonist of the original game, Chell, and her new robot friend, Wheatley, against more puzzles conceived by GLaDOS, an A.I. with the sole purpose of testing the Portal Gun\'s mechanics and taking revenge on Chell for the events of Portal. As a result of several interactions and revelations, Chell once again pushes to escape Aperture Science Labs.', '2011-04-18', '../uploads/capas/1781648736_co1rs4.jpg', 'https://www.youtube.com/embed/tax4e4hBBZc?si=WDh5UzBqxDynV_E9', 'PC, PlayStation 3, Xbox 360, Nintendo Switch', NULL, 6, 5, 0, 0),
 	(2, 'Subnautica 2', 'Unknown Worlds Entertainment', 'Unknown Worlds Entertainment', 'Subnautica 2 is an underwater survival adventure set on an all-new alien world, developed by Unknown Worlds. Play alone or with friends in 4-player co-op. Adapt to survive by building custom bases and crafting tools. Explore the unknown to uncover the mysteries hidden within the depths.', '2026-05-14', '../uploads/capas/1781648699_co8yd0.jpg', 'https://www.youtube.com/embed/8EZhCzFaQuw?si=gyFw6BAwB2XyiPmj', 'PC, Xbox Series X/S', NULL, 8, 13, 0, 0),
@@ -228,7 +228,7 @@ CREATE TABLE IF NOT EXISTS `jogo_do_ano` (
   CONSTRAINT `jogo_do_ano_ibfk_1` FOREIGN KEY (`id_jogo`) REFERENCES `jogos` (`id_jogo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- A despejar dados para tabela playscore.jogo_do_ano: ~0 rows (aproximadamente)
+-- A despejar dados para tabela playscore.jogo_do_ano: ~8 rows (aproximadamente)
 INSERT INTO `jogo_do_ano` (`id_jogo_ano`, `id_jogo`, `ano`, `num_votos`) VALUES
 	(1, 21, 2026, 0),
 	(2, 2, 2026, 0),
@@ -249,7 +249,7 @@ CREATE TABLE IF NOT EXISTS `jogo_genero` (
   CONSTRAINT `jogo_genero_ibfk_2` FOREIGN KEY (`id_genero`) REFERENCES `generos` (`id_genero`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- A despejar dados para tabela playscore.jogo_genero: ~36 rows (aproximadamente)
+-- A despejar dados para tabela playscore.jogo_genero: ~97 rows (aproximadamente)
 INSERT INTO `jogo_genero` (`id_jogo`, `id_genero`) VALUES
 	(2, 1),
 	(3, 1),
@@ -419,7 +419,7 @@ CREATE TABLE IF NOT EXISTS `votos_utilizadores_ano` (
   CONSTRAINT `fk_votos_users` FOREIGN KEY (`id_utilizador`) REFERENCES `users` (`id_utilizador`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- A despejar dados para tabela playscore.votos_utilizadores_ano: ~0 rows (aproximadamente)
+-- A despejar dados para tabela playscore.votos_utilizadores_ano: ~4 rows (aproximadamente)
 INSERT INTO `votos_utilizadores_ano` (`id_voto`, `id_utilizador`, `id_jogo`, `ano`) VALUES
 	(1, 1, 26, 2026),
 	(2, 2, 26, 2026),
