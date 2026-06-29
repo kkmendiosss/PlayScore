@@ -137,7 +137,10 @@
                 </div>
 
             </div>
-      <?php if ($nome != "") { ?>
+
+        </nav>
+
+        <?php if ($nome != "") { ?>
 
             <div class="user-dropdown">
 
@@ -168,9 +171,6 @@
             </a>
 
         <?php } ?>
-        </nav>
-
-  
 
         <div class="hamburger" id="hamburger">
             <span></span>

@@ -95,7 +95,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             </div>
 
-             <?php if ($nome_user != "") { ?>
+        </nav>
+
+        <?php if ($nome_user != "") { ?>
 
             <div class="user-dropdown">
 
@@ -126,9 +128,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </a>
 
         <?php } ?>
-
-        </nav>
-
 
         <div class="hamburger" id="hamburger">
             <span></span>
