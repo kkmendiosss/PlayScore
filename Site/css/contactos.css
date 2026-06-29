@@ -21,9 +21,24 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
 }
 
+.main-title {
+    background: linear-gradient(to right, #ff007f 0%, transparent 100%);
+    background-repeat: no-repeat;
+    background-size: 50% 100%;
+    padding: 30px 40px;
+    margin-top: 95px;
+}
+
+.main-title h1 {
+    margin: 0;
+    font-size: 40px;
+    font-family: 'Kode Mono', monospace;
+    color: #fff;
+}
+
 .page-wrapper {
     max-width: 1000px;
-    margin: 120px auto 80px;
+    margin: 60px auto 80px;
     padding: 0 20px;
 }
 
