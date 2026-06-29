@@ -95,9 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             </div>
 
-        </nav>
-
-        <?php if ($nome_user != "") { ?>
+             <?php if ($nome_user != "") { ?>
 
             <div class="user-dropdown">
 
@@ -129,6 +127,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <?php } ?>
 
+        </nav>
+
+
         <div class="hamburger" id="hamburger">
             <span></span>
             <span></span>
@@ -138,13 +139,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    </header>
 
 <div class="main-title">
-    <h1>Contactos</h1>
+    <h1>REDE DE CONEXÃO // CONTACTOS</h1>
 </div>
 
     <div class="page-wrapper">
 
         <header class="page-header">
-            <h1>REDE DE CONEXÃO // CONTACTOS</h1>
             <p>A elite não apenas joga, ela domina a comunicação. Estamos aqui para responder aos teus tickets.</p>
         </header>
 
