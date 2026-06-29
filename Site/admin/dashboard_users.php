@@ -25,7 +25,19 @@ if (isset($_GET["eliminar"])) {
     exit();
 }
 
-$sql = "SELECT * FROM users ORDER BY id_utilizador DESC";
+$por_pagina = 10;
+$pagina = $_GET["pagina"] ?? 1;
+$pagina = max(1, intval($pagina));
+
+$inicio = ($pagina - 1) * $por_pagina;
+
+$sql_total = "SELECT COUNT(*) AS total FROM users";
+$resultado_total = mysqli_query($conn, $sql_total);
+$total_linhas = mysqli_fetch_assoc($resultado_total)["total"];
+
+$total_paginas = ceil($total_linhas / $por_pagina);
+
+$sql = "SELECT * FROM users ORDER BY id_utilizador DESC LIMIT $inicio, $por_pagina";
 $resultado = mysqli_query($conn, $sql);
 ?>
 
@@ -149,7 +161,34 @@ $resultado = mysqli_query($conn, $sql);
 
                     </tbody>
                 </table>
+                <?php if ($total_paginas > 1) { ?>
 
+                    <div class="pagination">
+
+                        <?php if ($pagina > 1) { ?>
+                            <a href="dashboard_users.php?pagina=<?php echo $pagina - 1; ?>">
+                                Anterior
+                            </a>
+                        <?php } ?>
+
+                        <?php for ($i = 1; $i <= $total_paginas; $i++) { ?>
+
+                            <a href="dashboard_users.php?pagina=<?php echo $i; ?>"
+                                class="<?php echo ($i == $pagina) ? 'active-page' : ''; ?>">
+                                <?php echo $i; ?>
+                            </a>
+
+                        <?php } ?>
+
+                        <?php if ($pagina < $total_paginas) { ?>
+                            <a href="dashboard_users.php?pagina=<?php echo $pagina + 1; ?>">
+                                Seguinte
+                            </a>
+                        <?php } ?>
+
+                    </div>
+
+                <?php } ?>
             </section>
 
         </main>
