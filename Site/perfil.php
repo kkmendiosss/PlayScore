@@ -135,38 +135,38 @@ $total_favoritos =
                 </div>
 
             </div>
-            <?php if ($nome != "") { ?>
+        </nav>
+        <?php if ($nome != "") { ?>
 
-                <div class="user-dropdown">
+            <div class="user-dropdown">
 
-                    <button class="btn-login">
-                        <?php echo $nome; ?> ▼
-                    </button>
+                <button class="btn-login">
+                    <?php echo $nome; ?> ▼
+                </button>
 
-                    <div class="user-dropdown-content">
+                <div class="user-dropdown-content">
 
-                        <a href="perfil.php">Perfil</a>
+                    <a href="perfil.php">Perfil</a>
 
-                        <?php if ($tipo == "admin") { ?>
-                            <a href="admin/dashboard.php">Dashboard</a>
-                        <?php } ?>
+                    <?php if ($tipo == "admin") { ?>
+                        <a href="admin/dashboard.php">Dashboard</a>
+                    <?php } ?>
 
-                        <a href="logout.php">Sair</a>
-
-                    </div>
+                    <a href="logout.php">Sair</a>
 
                 </div>
 
-            <?php } else { ?>
+            </div>
 
-                <a href="login.php">
-                    <button class="btn-login">
-                        Login
-                    </button>
-                </a>
+        <?php } else { ?>
 
-            <?php } ?>
-        </nav>
+            <a href="login.php">
+                <button class="btn-login">
+                    Login
+                </button>
+            </a>
+
+        <?php } ?>
         <div class="hamburger" id="hamburger">
             <span></span>
             <span></span>
