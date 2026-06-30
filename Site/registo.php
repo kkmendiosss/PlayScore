@@ -65,7 +65,7 @@ if (isset($_POST["registar"])) {
 
             <div class="dropdown">
 
-                <a href="#">Sobre Nós</a>
+                <a href="Sobrenos.php">Sobre Nós▼</a>
 
                 <div class="dropdown-content">
                     <a href="contactos.php">Contactos</a>
