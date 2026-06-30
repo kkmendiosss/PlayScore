@@ -363,7 +363,6 @@ $total_favoritos =
         </div>
     </footer>
     <script src="js/perfiluser.js"></script>
-
 </body>
 
 </html>

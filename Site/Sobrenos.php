@@ -1,26 +1,29 @@
 <?php
 session_start();
 include "conexao.php";
+
 $nome = $_SESSION["nome"] ?? "";
-$email = $_SESSION["email"] ?? "";
-$tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
+$tipo = $_SESSION["tipo_utilizador"] ?? "";
+
+$resultado = mysqli_query($conn, "SELECT * FROM lancamentos ORDER BY data");
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-PT">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Regras da Comunidade</title>
+    <title>Catálogo</title>
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/regras.css">
+    <link rel="stylesheet" href="css/sobrenos.css">
     <link rel="icon" href="img/PlayScore_Icon.png">
     <link rel="stylesheet" href="css/headerfooter.css">
     <link rel="stylesheet" href="js/headerfooter.js">
 </head>
 
-<body>
+<body class="fundo">
 
     <header class="navbar">
 
@@ -90,48 +93,79 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
             <span></span>
         </div>
 
-    </header>
+    </header> 
 
-    <div class="main-title">
-        <h1>Regras da Comunidade</h1>
-    </div>
+        <main class="sobre-container">
 
-    <main class="rules-container">
-        <div class="rules-grid">
-            <div class="rule-card card-blue">
-                <img src="img/Regras/Icon1.png" alt="Ícone 1" class="rule-icon">
-                <p>Sê respeitoso. Não toleramos assédio, ataques pessoais ou qualquer discurso de ódio. Mantém a toxicidade fora do jogo.</p>
+        <section class="sobre-topo">
+            <p class="sobre-label">Sobre &gt; Sobre Nós V1 / Equipa</p>
+
+            <h1>Sobre a Elite</h1>
+
+            <p class="sobre-subtitulo">
+                Esta não é apenas força da PlayScore. Conheça os arquitetos do conhecimento competitivo.
+                A força do nosso top 10 altera a comunidade. Encontra-se aqui tudo.
+            </p>
+        </section>
+
+        <section class="missao-card">
+
+            <div class="missao-titulo">
+                <span>A nossa missão //</span>
+                <strong>O objetivo final</strong>
             </div>
-            <div class="rule-card card-pink">
-                <img src="img/Regras/Icon2.png" alt="Ícone 2" class="rule-icon">
-                <p>Não partilhes links para conteúdo ilegal ou pirateado. Respeita os direitos de autor e a segurança da comunidade.</p>
+
+            <div class="missao-conteudo">
+
+                <div class="missao-imagem">
+                    <img src="img/sobrenos/cerebro.png" alt="Cérebro digital">
+                </div>
+
+                <div class="missao-texto">
+                    <p>
+                        Desenvolver ferramentas, algoritmos métricos validados pelos nossos K/D,
+                        mapas e ranking. Utilizar a PlayScore para criar uma análise imparcial
+                        para a indústria competitiva.
+                    </p>
+
+                    <ul>
+                        <li>Acesso estatístico, play pools e cálculos pro.</li>
+                        <li>Análise detalhada para ti e para a tua equipa.</li>
+                        <li>Conduzir para eventos, parcerias pro e um versus justo.</li>
+                    </ul>
+                </div>
+
             </div>
-            <div class="rule-card card-pink">
-                <img src="img/Regras/Icon3.png" alt="Ícone 3" class="rule-icon">
-                <p>Escreve as tuas próprias reviews. Plágio e textos gerados por IA são proibidos. Queremos opiniões reais de pessoas reais.</p>
+
+        </section>
+
+        <section class="equipa">
+
+            <div class="membro">
+                <img src="img/equipa/joao-verdes.jpg" alt="João Verdes">
+                <h3>João Verdes</h3>
             </div>
-            <div class="rule-card card-blue">
-                <img src="img/Regras/Icon4.png" alt="Ícone 4" class="rule-icon">
-                <p>Usa a tag de "Spoiler" em qualquer detalhe importante da história. Não estragues a experiência aos outros jogadores.</p>
+
+            <div class="membro">
+                <img src="img/equipa/samuel-cardoso.jpg" alt="Samuel Cardoso">
+                <h3>Samuel Cardoso</h3>
             </div>
-            <div class="rule-card card-blue">
-                <img src="img/Regras/Icon5.png" alt="Ícone 5" class="rule-icon">
-                <p>Mantém as reviews e comentários sobre o jogo. Evita dramas da comunidade ou discussões fora de contexto.</p>
+
+            <div class="membro">
+                <img src="img/equipa/rodrigo-ramos.jpg" alt="Rodrigo Ramos">
+                <h3>Rodrigo Ramos</h3>
             </div>
-            <div class="rule-card card-pink">
-                <img src="img/Regras/Icon6.png" alt="Ícone 6" class="rule-icon">
-                <p>Não uses o site para publicidade ou para ganhar tráfego noutras redes. Links sem conteúdo útil serão removidos.</p>
+
+            <div class="membro">
+                <img src="img/equipa/joao-santos.jpg" alt="João Santos">
+                <h3>João Santos</h3>
             </div>
-            <div class="rule-card card-pink">
-                <img src="img/Regras/Icon7.png" alt="Ícone 7" class="rule-icon">
-                <p>Explica o porquê da tua nota. Reviews vazias ou de quem admite não ter jogado o título serão eliminadas.</p>
-            </div>
-            <div class="rule-card card-blue">
-                <img src="img/Regras/Icon8.png" alt="Ícone 8" class="rule-icon">
-                <p>Viste algo errado? Denuncia. Avisos e infrações repetidas podem levar à suspensão ou expulsão permanente da conta.</p>
-            </div>
-        </div>
+
+        </section>
+
     </main>
+
+    <script src="js/headerfooter.js"></script>
     <footer>
         <div class="footer-content">
             <div class="footer-column brand-col">
@@ -168,7 +202,6 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
         </div>
     </footer>
 
-    <script src="js/headerfooter.js"></script>
+    <script src="/js/headerfooter.js"></script>
 </body>
-
 </html>
