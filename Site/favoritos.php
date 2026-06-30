@@ -222,6 +222,7 @@ $total_paginas = ceil($total / $limite);
     <div class="copyright">
         © 2026 PLAYSCORE NETWORK. TODOS OS DIREITOS RESERVADOS.
     </div>
+    <script src="js/headerfooter.js"></script>
 </body>
 
 </html>
