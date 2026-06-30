@@ -140,7 +140,7 @@ $resultado = mysqli_query($conn, "SELECT * FROM lancamentos ORDER BY data");
 
             <div class="membro">
                 <img src="img/equipa/IMG_20260318_154255.jpg" alt="João Mendes">
-                <h3>João Verdes</h3>
+                <h3>João Mendes</h3>
             </div>
 
             <div class="membro">

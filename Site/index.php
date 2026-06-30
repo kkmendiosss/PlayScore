@@ -126,7 +126,7 @@ $total_jogos = mysqli_fetch_assoc($result_jogos)["total"];
     </section>
 
     <section class="banner">
-        <h1>Jogos Mais Votados</h1>
+        <h1>Jogos Em Destaque</h1>
     </section>
 
     <main class="container">
@@ -134,8 +134,6 @@ $total_jogos = mysqli_fetch_assoc($result_jogos)["total"];
         <section class="games-section">
 
             <div class="slider-container">
-
-                <button class="slider-btn left" id="prevBtn">&#10094;</button>
 
                 <div class="games-slider" id="slider">
 
@@ -158,8 +156,6 @@ $total_jogos = mysqli_fetch_assoc($result_jogos)["total"];
                     </div>
 
                 </div>
-
-                <button class="slider-btn right" id="nextBtn">&#10095;</button>
 
             </div>
         </section>
