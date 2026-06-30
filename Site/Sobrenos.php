@@ -117,9 +117,6 @@ $resultado = mysqli_query($conn, "SELECT * FROM lancamentos ORDER BY data");
 
             <div class="missao-conteudo">
 
-                <div class="missao-imagem">
-                    <img src="img/sobrenos/cerebro.png" alt="Cérebro digital">
-                </div>
 
                 <div class="missao-texto">
                     <p>
@@ -142,22 +139,22 @@ $resultado = mysqli_query($conn, "SELECT * FROM lancamentos ORDER BY data");
         <section class="equipa">
 
             <div class="membro">
-                <img src="img/equipa/joao-verdes.jpg" alt="João Verdes">
+                <img src="img/equipa/IMG_20260318_154255.jpg" alt="João Mendes">
                 <h3>João Verdes</h3>
             </div>
 
             <div class="membro">
-                <img src="img/equipa/samuel-cardoso.jpg" alt="Samuel Cardoso">
+                <img src="img/equipa/20240901_154029.jpg" alt="Samuel Cardoso">
                 <h3>Samuel Cardoso</h3>
             </div>
 
             <div class="membro">
-                <img src="img/equipa/rodrigo-ramos.jpg" alt="Rodrigo Ramos">
+                <img src="img/equipa/IMG-20250820-WA0002.jpg" alt="Rodrigo Ramos">
                 <h3>Rodrigo Ramos</h3>
             </div>
 
             <div class="membro">
-                <img src="img/equipa/joao-santos.jpg" alt="João Santos">
+                <img src="img/equipa/Fotografia.jpg" alt="João Santos">
                 <h3>João Santos</h3>
             </div>
 
