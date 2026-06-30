@@ -5,7 +5,6 @@ hamburger.addEventListener("click", () => {
     navLinks.classList.toggle("active");
 });
 
-// Dropdowns no telemóvel
 document.querySelectorAll(".dropdown > a").forEach(link => {
     link.addEventListener("click", function (e) {
 
