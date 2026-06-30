@@ -248,5 +248,6 @@ if ($resultado_jogos_ano) {
         const jogosDoAno = <?= json_encode($jogos_para_pesquisa) ?>;
     </script>
     <script src="js/jogodoano.js"></script>
+    <script src="js/headerfooter.js"></script>
 </body>
 </html>

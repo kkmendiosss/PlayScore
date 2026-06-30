@@ -80,7 +80,6 @@ body{
     background:#ff1493;
 }
 
-/* MAIN */
 
 .banner{
     margin-top: 10px;
@@ -110,7 +109,26 @@ body{
     padding:25px;
 }
 
-/* SLIDER */
+.video h2 {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.video-box {
+    width: 100%;
+    max-width: 900px;
+    margin:0 auto;
+}
+
+.video-box iframe {
+    width: 100%;
+    height: 500px;
+    margin-bottom: 20px;
+    border: 4px solid #c8a56a;
+    
+}
+
 
 .slider-container{
     position:relative;
@@ -151,8 +169,6 @@ body{
     transform:scale(1.06);
 }
 
-/* BUTTONS */
-
 .slider-btn{
     width:55px;
     height:55px;
@@ -169,7 +185,6 @@ body{
     background:#ff00aa;
 }
 
-/* STATS */
 
 .stats{
     width:100%;
@@ -199,7 +214,6 @@ body{
     font-weight:600;
 }
 
-/* RESPONSIVO */
 
 @media(max-width:900px){
 

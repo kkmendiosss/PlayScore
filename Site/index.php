@@ -163,7 +163,17 @@ $total_jogos = mysqli_fetch_assoc($result_jogos)["total"];
 
             </div>
         </section>
-
+        <section class="video">
+            <h2>Video Promocional</h2>
+                <div class="video-box">
+                    <iframe
+                        src="https://www.youtube.com/embed/AO_g6TpWcwE"
+                        title="Video"
+                    frameborder="0"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
     </main>
 
     <footer>

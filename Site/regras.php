@@ -167,6 +167,8 @@ $tipo = strtolower(trim($_SESSION["tipo_utilizador"] ?? ""));
             <p>© 2026 PLAYSCORE NETWORK. TODOS OS DIREITOS RESERVADOS.</p>
         </div>
     </footer>
+
+    <script src="js/headerfooter.js"></script>
 </body>
 
 </html>

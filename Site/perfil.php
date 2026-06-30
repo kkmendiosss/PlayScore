@@ -378,7 +378,7 @@ $total_favoritos =
             document.getElementById("guardarAvatarBtn").click();
         };
     </script>
-
+    <script src="js/headerfooter.js"></script>
 </body>
 
 </html>

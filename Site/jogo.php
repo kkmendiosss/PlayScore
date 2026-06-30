@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "conexao.php";
+$id_utilizador = $_SESSION["id"] ?? null;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["comentario"])) {
 
@@ -142,35 +143,38 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["favorito"])) {
             WHERE id_jogo = ?
         ");
 
-        $dados->bind_param("i", $id_jogo);
-        $dados->execute();
-        $jogoDados = $dados->get_result()->fetch_assoc();
+    $dados->bind_param("i", $id_jogo);
+    $dados->execute();
+    $jogoDados = $dados->get_result()->fetch_assoc();
 
-        $gen = $conn->prepare("
-            SELECT id_genero
-            FROM jogo_genero
-            WHERE id_jogo = ?
-            LIMIT 1
-        ");
+    $gen = $conn->prepare("
+        SELECT id_genero
+        FROM jogo_genero
+        WHERE id_jogo = ?
+        LIMIT 1
+    ");
 
-        $gen->bind_param("i", $id_jogo);
-        $gen->execute();
-        $genero = $gen->get_result()->fetch_assoc();
+    $gen->bind_param("i", $id_jogo);
+    $gen->execute();
+    $genero = $gen->get_result()->fetch_assoc();
 
-        $insert = $conn->prepare("
-            INSERT INTO favoritos (id_utilizador, id_jogo, capa_url, id_genero)
-            VALUES (?, ?, ?, ?)
-        ");
+    $capa = str_replace("../", "", $jogoDados["capa_url"] ?? "");
+    $id_genero = $genero["id_genero"] ?? null;
 
-        $insert->bind_param(
-            "iisi",
-            $id_utilizador,
-            $id_jogo,
-            str_replace("../", "", $jogoDados["capa_url"]),
-            $genero["id_genero"]
-        );
+    $insert = $conn->prepare("
+        INSERT INTO favoritos (id_utilizador, id_jogo, capa_url, id_genero)
+        VALUES (?, ?, ?, ?)
+    ");
 
-        $insert->execute();
+    $insert->bind_param(
+        "iisi",
+        $id_utilizador,
+        $id_jogo,
+        $capa,
+        $id_genero
+    );
+
+    $insert->execute();
     }
 
     header("Location: jogo.php?id=".$id_jogo);
