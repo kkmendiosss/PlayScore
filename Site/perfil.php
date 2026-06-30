@@ -362,23 +362,7 @@ $total_favoritos =
             <p>© 2026 PLAYSCORE NETWORK. TODOS OS DIREITOS RESERVADOS.</p>
         </div>
     </footer>
-    <script>
-        document.getElementById("toggleBioEdit").onclick = function() {
-
-            const form = document.getElementById("bioForm");
-
-            if (form.style.display == "none") {
-                form.style.display = "block";
-            } else {
-                form.style.display = "none";
-            }
-        };
-
-        document.getElementById("avatarInput").onchange = function() {
-            document.getElementById("guardarAvatarBtn").click();
-        };
-    </script>
-    <script src="js/headerfooter.js"></script>
+    <script src="js/perfiluser.js"></script>
 </body>
 
 </html>
